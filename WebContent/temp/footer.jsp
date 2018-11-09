@@ -41,7 +41,6 @@
 	 <div class="address">
 				(주)보라카이<span> 대표 : bora</span><br>
 				주소 : <span>서울 특별시 종로구 삼일대로</span><br>
->>>>>>> 43eb95ee9ff7e4193eba575ddd2a02ddd5c47c67
 			
 				고객센터 :<span> 1212-2121</span> E-mail: <span>brabra@gmail.com</span>
 				<p>Copyright © <strong>Boracay</strong> All Rights Reserved.</p>
