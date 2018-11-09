@@ -14,7 +14,7 @@
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">
-	        <li><a href="#">NOTICE</a></li>
+	        <li><a href="${pageContext.request.contextPath}/activity/activityList.do">NOTICE</a></li>
 	        <li><a href="#">ACTIVITY</a></li>
 	        <li><a href="#">QNA</a></li>
 	      </ul>
