@@ -5,9 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="./temp/bootStrap.jsp"></jsp:include>
 </head>
 <body>
-	<h1>INDEX</h1>
-	<h1>안녕하세요.</h1>
+<jsp:include page="./temp/header.jsp"></jsp:include>
+	<div class="container-fluid">
+		<div class="row">
+			<h1>Index</h1>
+		</div>
+	</div>
 </body>
 </html>

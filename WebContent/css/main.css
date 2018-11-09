@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+<style>
+
+	.logo {
+      color: #3C3530;
+      font-size: 200px;
+  	}
+	  
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    .navbar-inverse {
+      color: black;
+      background-color: #4ea1d3;
+      border-color: #4ea1d3;
+    }
+    
+    .navbar-brand {
+      float: left;
+      width: 48px;
+      background-image: url("../images/logo.png");
+    }
+    
+    .navbar-inverse .navbar-nav>li>a {
+      color: #d8e9ef;
+      font-weight: bold;
+      text-align: center;
+	} 
+
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+      
+    }
+   
+  }
+</style>
