@@ -10,6 +10,8 @@
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
+      	 
+      
     }
     
     .navbar .navbar-nav {
@@ -19,6 +21,8 @@
 	
 	.navbar .navbar-collapse {
 	  text-align: center;
+	  height: 65px;
+	  
 	}
     
     .navbar-inverse {
@@ -30,7 +34,7 @@
     .navbar-brand {
       float: left;
       width: 48px;
-      margin-top: 1.5px;
+      margin-top: 0.5px;
       background-image: url("../images/logo.png");
     }
     
@@ -38,19 +42,28 @@
       color: #d8e9ef;
       font-weight: bold;
       text-align: center;
+      padding-bottom: 10px;
 	} 
+	
+	 footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
 
-  .carousel-inner img {
+  	.carousel-inner img {
       width: 100%; /* Set width to 100% */
       margin: auto;
       min-height:200px;
-  }
+  	}
 
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
+ 	@media (max-width: 600px) {
+    	.carousel-caption {
+   		   display: none; 
       
     }
+
+}
    
   }
 </style>
