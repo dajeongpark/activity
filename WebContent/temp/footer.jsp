@@ -41,7 +41,6 @@
 </head>
 <body>
 
-
 	<footer class="footer">
 		<div class="cust"></div>
 			<ul class="footer-menu">
@@ -61,6 +60,5 @@
 		</table>
 	
 </footer>
-
 </body>
 </html>
