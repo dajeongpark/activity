@@ -28,16 +28,6 @@
 </head>
 <body>
 
-<<<<<<< HEAD
-	<footer class="footer">
-		<div class="cust"></div>
-			<ul class="footer-menu">
-				<a>회사소개</a> 
-              <a>개인정보처리방식</a> 
-              <a>이용약관</a> 
-             
-          </ul>
-=======
 <footer class="container-fluid text-center">
   <div class="footer">
 	  <div class="footer-menu">
