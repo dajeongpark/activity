@@ -7,27 +7,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bora.action.ActionForward;
+import com.bora.activity.ActivityService;
+
 /**
  * Servlet implementation class ActivityController
  */
 @WebServlet("/ActivityController")
 public class ActivityController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ActivityService activityService;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ActivityController() {
         super();
-        // TODO Auto-generated constructor stub
+        activityService = new ActivityService();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String command = request.getPathInfo();
+		
+		ActionForward actionForward = new ActionForward();
+		
+		if(command.equals("/activityList.do")) {
+			//actionForward = activityService.selectList(request, response);
+		}
+		
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
