@@ -42,17 +42,16 @@ public class ActivityService {
 			Pager pager = mk.makePage(totalCount);
 			request.setAttribute("list", ar);
 			request.setAttribute("pager", pager);
-			request.setAttribute("activity", "notice");
 			actionForward.setPath("../WEB-INF/view/activity/activityList.jsp");
 		} catch (Exception e) {
 			request.setAttribute("message", "Fail");
 			request.setAttribute("path", "../index.jsp");
-			//actionForward.setPath("../WEB-INF/view/common/result.jsp");
-			actionForward.setPath("../WEB-INF/view/activity/activityList.jsp");//지우기
+			actionForward.setPath("../WEB-INF/view/common/result.jsp");
 			e.printStackTrace();
 		}
 		
 		actionForward.setCheck(true);
+		actionForward.setPath("/activityList.do");
 		
 		return actionForward;
 	}

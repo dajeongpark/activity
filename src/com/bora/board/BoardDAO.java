@@ -23,6 +23,6 @@ public interface BoardDAO {
 	public int delete(int num) throws Exception;
 	
 	//getCount
-	public int getCount(Search search) throws Exception;
+	public int getCount(String search, String kind) throws Exception;
 	
 }

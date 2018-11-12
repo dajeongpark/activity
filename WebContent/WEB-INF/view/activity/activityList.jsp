@@ -42,40 +42,17 @@
 		grid-template-columns: 500px 500px 500px;
 		grid-gap: 30px;
 	}
-	.images > image {
-		padding: 20px;
-		font-size: 150%;
-	}
 	
-	.cover {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		right: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		opacity: 0;
-		transition: .5s ease;
-		background-color: black;
-	}
-	.image {
+	.images li a:hover {
 		opacity: 1;
 	}
-	.category {
+	.cover {
 		color: white;
 		font-size: 20px;
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		-webkit-transform: translate(-50%,-50%);
-		-m
 	}
-	
-	
-	
-	
-	
 	
 	
 </style>
@@ -84,7 +61,7 @@
 <c:import url="../../../temp/header.jsp"></c:import>
 <div class="container-fluid">
 	<div class="row">
-	
+		
 		<div class="tab">
 			<ul class="areas">
 				<li><a href="#">서울</a></li>
@@ -98,16 +75,13 @@
 			<div class="activityList">
 				<ul class="images" style="list-style-type:none">
 					<li class="image"><a href="#"><img src="https://dimgcdn.ybtour.co.kr/TN/88/88becd05117af13807ed42888469bc77.tn.410x280.jpg"></a>
-						<div class="cover">
-							<div class="category">area</div>
-						</div>
 						
-						<!-- <span class="black" style="display:none; opacity: 0.8;"></span>
+						<span class="black" style="display:none; opacity: 0.8;"></span>
 						<span class="cover" style="display:none; opacity: 1;">
-							<span class="">area</span>
+							<span class="box">area</span>
 							<span class="name">surfing</span>
 							<span class="anchor">more</span>
-						</span> -->
+						</span>
 					</li>
 					<li class="image"><a href="#"><img src="https://dimgcdn.ybtour.co.kr/TN/c7/c73afdcd85db7b06d627dbc5e004e6f7.tn.410x280.jpg"></a></li>
 					<li class="image"><a href="#"><img src="https://dimgcdn.ybtour.co.kr/TN/27/271380b653a4ff7e7634fe63f4bdeb78.tn.410x280.jpg"></a></li>
