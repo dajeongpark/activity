@@ -1,6 +1,8 @@
 package com.bora.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,9 +37,17 @@ public class ActivityController extends HttpServlet {
 		
 		ActionForward actionForward = new ActionForward();
 		
-		if(command.equals("/activity.do")) {
+		if(command.equals("/activityList.do")) {
 			actionForward = activityService.selectList(request, response);
 		}
+		
+		if(actionForward.isCheck()) {
+			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
+			view.forward(request, response);
+		}else {
+			response.sendRedirect(actionForward.getPath());
+		}
+		
 		
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
