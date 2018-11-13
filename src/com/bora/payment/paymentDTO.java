@@ -4,13 +4,14 @@ import java.sql.Date;
 
 public class paymentDTO {
 
+	
 	private String name;
 	private String email;
-	private int phone;
+	private String phone;
 	private String title;
 	private int totalPrice;
-	private int	paymethod;
-	private	int	carnum;
+	private String payMethod;
+	private int cardNum;
 	private Date selectDate;
 	
 	public String getName() {
@@ -25,10 +26,10 @@ public class paymentDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getTitle() {
@@ -43,17 +44,17 @@ public class paymentDTO {
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	public int getPaymethod() {
-		return paymethod;
+	public String getPayMethod() {
+		return payMethod;
 	}
-	public void setPaymethod(int paymethod) {
-		this.paymethod = paymethod;
+	public void setPayMethod(String payMethod) {
+		this.payMethod = payMethod;
 	}
-	public int getCarnum() {
-		return carnum;
+	public int getCardNum() {
+		return cardNum;
 	}
-	public void setCarnum(int carnum) {
-		this.carnum = carnum;
+	public void setCardNum(int cardNum) {
+		this.cardNum = cardNum;
 	}
 	public Date getSelectDate() {
 		return selectDate;
@@ -61,7 +62,5 @@ public class paymentDTO {
 	public void setSelectDate(Date selectDate) {
 		this.selectDate = selectDate;
 	}
-	
-	
 	
 }
