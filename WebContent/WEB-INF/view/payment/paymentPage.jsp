@@ -19,9 +19,15 @@
             <div class="mWt48p">
                 <div class="left_box">
                     <h1 class="pageTitle">이용규칙 확인하기</h1>
-                    <form action="method">
-                    	
-                    </form>
+                    <div class="gray_whiteBox b_round2">해당날짜에 1자리 남아있습니다.</div>
+                    <div class="date_check">
+                        <h3 class="boxTitle"><span id="region">지역</span><span id="date">예약날짜</span></h3>
+                        <div class="no_grayBox"><span id="reserveDate">11월30일</span><br><span id="reserveTime">12:00</span></div>
+                    </div>
+                    <div class="g_line"></div>
+                    <div class="notes">
+                        <h3 class="boxTitle">주의할 사항</h3>
+                    </div>
                 </div>
             </div>
             <div class="mWt48p">

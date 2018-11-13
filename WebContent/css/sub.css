@@ -1,5 +1,12 @@
 @charset "EUC-KR";
 
-.mWt48p{
-	
-}
+.mWt48p{width:48%;}
+.left_box{float:left;}
+.right_box{float:right;}
+.gray_whiteBox{background-color:#fff; border:1px solid #d1d1d1;}
+.no_grayBox{background-color: #aaa; height:56px; margin:8px 12px;}
+.thumbnail{width:50px; height:50px;}
+.g_line{width:100%; height:1px; margin:15px 0;}
+.b_round2{border-radius: 2px;}
+.finalCheck{font-weight:bold;}
+.boxTitle{padding:15px;}

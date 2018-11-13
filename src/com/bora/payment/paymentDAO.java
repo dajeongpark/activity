@@ -17,18 +17,15 @@ public class paymentDAO {
 	//payment checkDetaills
 	
 	public int paymentAdd() throws Exception {
-		/*Connection con = DBConnector.getConnect();
-		String sql = "insert into teamP values(?,?,?,?,?)";
+		Connection con = DBConnector.getConnect();
+		String sql = "insert into teamP values(?,?,?,?,?,?)";
 		
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		int result = 
 		
 		DBConnector.disConnect(st, con);
-		return result;*/
-	};
-	public void paymentEdit() throws Exception{
-		
+		return result;
 	};
 	public void paymentDelete() throws Exception{
 		

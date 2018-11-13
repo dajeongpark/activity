@@ -9,11 +9,27 @@ public class paymentDTO {
 	private String email;
 	private String phone;
 	private String title;
+	private int onePrice;
+	private int person;
 	private int totalPrice;
 	private String payMethod;
 	private int cardNum;
 	private Date selectDate;
 	
+	
+	
+	public int getOnePrice() {
+		return onePrice;
+	}
+	public void setOnePrice(int onePrice) {
+		this.onePrice = onePrice;
+	}
+	public int getPerson() {
+		return person;
+	}
+	public void setPerson(int person) {
+		this.person = person;
+	}
 	public String getName() {
 		return name;
 	}
