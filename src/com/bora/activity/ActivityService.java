@@ -38,20 +38,15 @@ public class ActivityService {
 		
 		try {
 			List<ActivityDTO> ar = activityDAO.selectList(rowNumber);
-			int totalCount = activityDAO.getCount(rowNumber.getSearch());
-			Pager pager = mk.makePage(totalCount);
 			request.setAttribute("list", ar);
-			request.setAttribute("pager", pager);
-			actionForward.setPath("../WEB-INF/view/activity/activityList.jsp");
 		} catch (Exception e) {
-			request.setAttribute("message", "Fail");
-			request.setAttribute("path", "../index.jsp");
-			actionForward.setPath("../WEB-INF/view/common/result.jsp");
 			e.printStackTrace();
 		}
+		String path=request.getPathInfo();
+		path = path.replace(".do", ".jsp");
 		
 		actionForward.setCheck(true);
-		actionForward.setPath("/activityList.do");
+		actionForward.setPath("../WEB-INF/view/activity"+path);
 		
 		return actionForward;
 	}
