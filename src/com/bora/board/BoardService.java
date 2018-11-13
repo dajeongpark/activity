@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bora.action.ActionForward;
 
-public interface BoardReplyService {
+public interface BoardService {
 	
 	//selectList
 	public ActionForward selectList(HttpServletRequest request, HttpServletResponse response);
