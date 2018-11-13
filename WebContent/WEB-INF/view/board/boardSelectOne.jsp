@@ -13,7 +13,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<h1>board View</h1>
+			<h1>${board} View</h1>
 		</div>
 	</div>
 
@@ -22,18 +22,17 @@
 		<h1>Writer :${boardDTO.writer}</h1>
 		<h1>Contents :${boardDTO.contents}</h1>
 	</div>
-
 	<div>
-		<a href="./boardList.do">List</a>
-		<a href="./boardUpage.do">Update</a>	
-		<a href="./boardDelete">Delete</a>	
-		<a href="./boardwrite.do">Write</a>
+		<a href="./<%=request.getContextPath()%>/boardList.do">List</a>
+		<a href="./${requestScope.board}Update.do?num=${boardDTO.num}">Update</a>	
+		<a href="./${requestScope.board}Delete.do?num=${boardDTO.num}">Delete</a>	
+			<c:if test="${board ne 'notice'}">
+				<a href="./${board}Reply.do">Reply</a> <!-- ne = 같지 않다 = != -->
+			</c:if>
 	</div>
 
 
 
-
-
-	<c:import url="../../../temp/footer.jsp"></c:import>
+<c:import url="../../../temp/footer.jsp"></c:import>
 </body>
 </html>

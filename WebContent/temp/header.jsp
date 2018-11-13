@@ -15,7 +15,7 @@
 	      <ul class="nav navbar-nav">
 	        <li><a href="#">NOTICE</a></li>
 	        <li><a href="${pageContext.request.contextPath}/activity/activityList.do">ACTIVITY</a></li>
-	        <li><a href="#">QNA</a></li>
+	        <li><a href="${pageContext.request.contextPath}/board/boardList.do">QNA</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
