@@ -5,14 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-
 import com.bora.board.BoardDAO;
 import com.bora.board.BoardDTO;
 import com.bora.page.RowNumber;
 import com.bora.page.Search;
 import com.bora.util.DBConnector;
-import com.dajeong.notice.NoticeDTO;
 
 public class NoticeDAO implements BoardDAO {
 
