@@ -11,10 +11,10 @@
 	$(function() {
 		$("#btn").click(function() {
 			opener.document.frm.id.value='${param.id}';
-			opener.documnet.frm.idcheck.value='s';
+			opener.document.frm.idCheck.value='s';
 			self.close();
-		})
-	})
+		});
+	});
 </script>
 </head>
 <body>

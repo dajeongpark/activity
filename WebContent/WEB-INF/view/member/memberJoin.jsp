@@ -11,11 +11,11 @@
 	$(function() {
 		
 		$("#id").change();(function() {
-			$("#idcheck").val('f');
+			$("#idCheck").val('f');
 		});
 		
 		$("#join").click(function() {
-			var check = $("#idcheck").val();
+			var check = $("#idCheck").val();
 			if(check=='s'){
 				alert("OK");
 			}else{
@@ -24,7 +24,6 @@
 		});
 		
 		$("#btn").click(function() {
-			//var id=$('#id').val();
 			var id = document.frm.id.value;
 			window.open("./memberCheckId.do?id="+id, "CheckID","width=500, height=200, top=300, left=500");
 		});	
@@ -54,7 +53,8 @@
 <div class="container-fluid">
 	<div class="row">
 		<form name="frm" action="./memberJoin.do" method="post">
-			<div class="form-group">
+		<input type="hidden" value="f" name="idCheck" id="idCheck">
+				<div class="form-group">
 			      <label for="id">ID:</label>
 			      <input type="text" class="form-control" id="id" placeholder="Enter id" name="id">
 			      <input type="button" id="btn" class="btn btn-default" value="중복확인">
@@ -90,7 +90,7 @@
 	              <p>admin: <input type="radio" class="form-control" id="kind" name="kind" value="admin"></p>
 	              <p>user: <input type="radio" class="form-control" id="kind" name="kind" value="user" checked="checked"></p>
 	            </div>
-			 <input type="button" id="join" class="btn btn-default" value="JOIN">
+			 <input type="submit" id="join" class="btn btn-default" value="JOIN">
  		</form>
 	</div>
 </div>
