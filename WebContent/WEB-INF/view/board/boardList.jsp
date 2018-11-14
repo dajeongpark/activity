@@ -15,23 +15,24 @@
 <c:import url="../../../temp/header.jsp"></c:import>
 
 	<div class="container-fluid">
-		<div class="row">
-			<h1><strong>QNA</strong></h1>
+		<div class="row"><!-- 이미지추가? -->
+			<h1><strong>Q&amp;A</strong></h1>
 		</div>
 		<div class="row">
 			<div>
 				<form class="form-inline" action="./${board}List.do">
 					<div class="form-grop">
-						<select class="form-control" id="sel1" name="kind">
-							<option>Title</option>
-							<option>Contents</option>
-							<option>Writer</option>
+						<select class="form-control" name="selectBox" id="sel1" ><!-- name="kind" -->
+							<option class="title">Title</option>
+							<option class="contents">Contents</option>
+							<option class="Writer">Writer</option>
 							
 						</select> 
 						<input type="text" class="form-control" id="search" placeholder="Enter search" name="search">
-					</div>
+						<button type="submit" class="btn btn-primary active">Submit</button>
+				</div>
 					
-					<button type="submit" class="btn btn-primary active">Submit</button>
+					
 				</form>
 				
 			</div>
@@ -45,7 +46,7 @@
 					<th scope="col">Hit</th>
 				</tr>
 				
-				<c:forEach items="${board}" var="boardDTO">
+				<c:forEach items="${list}" var="boardDTO">
 					<tr>
 					
 						<td>${boardDTO.num}</td>
@@ -99,6 +100,14 @@
 				</c:if>
 			</c:otherwise>
 		</c:choose>
+		
+		<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+			<a href="./${board}Write.jsp"></a>
+			</div>
+		</div>
+		</div>
 
 <jsp:include page="../../../temp/footer.jsp"></jsp:include>
 </html>

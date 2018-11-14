@@ -4,12 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판 삭제 폼</title>
 <jsp:include page="../../../temp/bootStrap.jsp"></jsp:include>
 </head>
 <body>
 <jsp:include page="../../../temp/header.jsp"></jsp:include>
 
+<form action="${board}Delete.jsp" name="deleteform" method="post">
+<table border="1" summary="게시판 삭제">
+<h2>Delete</h2>
+
+
+</table>
+</form>
 <jsp:include page="../../../temp/footer.jsp"></jsp:include>
 </body>
 </html>

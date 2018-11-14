@@ -1,12 +1,19 @@
 package com.bora.reply;
 
-public class ReplyDAO {
+
+
+
+public class ReplyDAO{
+	
+
 	
 	//selectList(replyList)
 	
 	//replyWrite
 	
+	
 	//replyUpdate
+	
 	
 	//replyDelete
 	

@@ -8,23 +8,23 @@
 <title>Insert title here</title>
 <c:import url="../../../temp/bootStrap.jsp"></c:import>
 <script type="text/javascript">
-function move(url){
-	location.href=url;
-}
-function boardUpdateCheck(){
-	var form=document.BoardUpdateForm;
-	return true;
-}
-
+$(function(){
+	$(".del").click(function(){
+		var fum=$(this).attr("id");
+		var fname=$(this).attr("title");
+		$.post("../")
+	});
+});
 </script>
 </head>
 <body>
 <c:import url="../../../temp/header.jsp"></c:import>
 
 	<div class="container-fluid">
-	 <div class="row">
-	 	<h1>${board}UPDATE</h1>
+	 <div id="wrap" align="center"> 
+	 	<h1>${board}Update</h1>
 	 </div>
+	 
 	 <div class="row">
 	 	<form action="./${board}Update.do" method="post" enctype="multipart/form-data">
 	 		<div class="form-group">
@@ -34,27 +34,20 @@ function boardUpdateCheck(){
 	 		
 	 		<div class="form-group">
 	 			<label for="writer">Writer :</label>
-	 			<input type="text" class="form-control" disabled="disabled" value="${boardDTO.writer}" id="writer" placeholder="Enter Writer" name="writer">
+	 			<input type="text" class="form-control" value="${boardDTO.writer}" id="writer" placeholder="Enter Writer" name="writer">
 	 		</div>
 	 		
 		 	<div class="form-group">
 	 			<label for="contents">Contents:</label>
-	 		<textarea rows="25" cols="" class="form-control" name="contents">${boardDTO.contents}</textarea>
+	 		<textarea rows="15" cols="" class="form-control" name="contents">${boardDTO.contents}</textarea>
 	 		</div>
-	 	
-	 	<c:forEach items="${files}" var="file" varStatus="i">
-	 		<div class="form-group" id="p${file.fnum}">
-	 			<span>${file.oname}</span>
-	 			<span class="del" id="${file.fnum}" title="${file.fname}">X</span>
-	 		</div>
-	 	</c:forEach>
-	 	
-	 	<button type="submit" class="btn btn-default">목록으로</button>
+	 		
+	 <input type="file" class="custom-file-input" id="del">
+	 
+	 	<button type="submit" class="btn btn-default">upload</button>
 	 	</form>
 	 
 	 </div>
-	 
-	 
 	</div>
 
 
