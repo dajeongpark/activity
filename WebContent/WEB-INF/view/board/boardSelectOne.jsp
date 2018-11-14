@@ -26,9 +26,7 @@
 		<a href="./<%=request.getContextPath()%>/boardList.do">List</a>
 		<a href="./${requestScope.board}Update.do?num=${boardDTO.num}">Update</a>	
 		<a href="./${requestScope.board}Delete.do?num=${boardDTO.num}">Delete</a>	
-			<c:if test="${board ne 'notice'}">
-				<a href="./${board}Reply.do">Reply</a> <!-- ne = 같지 않다 = != -->
-			</c:if>
+		<a href="./${requestScope.board}Reply.do?num=${boardDTO.num}">Reply</a>
 	</div>
 
 

@@ -1,8 +1,7 @@
 <%@page import="com.bora.board.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <!DOCTYPE html>
 <html>
@@ -14,6 +13,7 @@
 </head>
 <body>
 <c:import url="../../../temp/header.jsp"></c:import>
+
 	<div class="container-fluid">
 		<div class="row">
 			<h1><strong>QNA</strong></h1>
@@ -89,7 +89,7 @@
 	</div>
 		<c:choose>
 			<c:when test="${board eq 'notice'}">
-				<c:if test="${noti empty member and member.kind eq 'LOGIN'}"> 
+				<c:if test="${noti empty member and member.kind eq 'T'}"> 
 					<c:import url="../../../temp/writeButton.jsp"></c:import>
 				</c:if>
 			</c:when>

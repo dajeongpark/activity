@@ -5,11 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<jsp:include page="../../../temp/bootStrap.jsp"></jsp:include>
 </head>
 <body>
-<jsp:include page="../../../temp/header.jsp"></jsp:include>
 
-<jsp:include page="../../../temp/footer.jsp"></jsp:include>
 </body>
 </html>
