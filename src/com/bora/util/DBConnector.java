@@ -10,15 +10,15 @@ public class DBConnector {
 
 	public static Connection getConnect() throws Exception{
 		Connection con = null;
-		
 		String user = "qrboard";
 		String password = "qrboard";
 		String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		
 		Class.forName(driver);
+		
 		con = DriverManager.getConnection(url, user, password);
-		return con;		
+		return con;	
 	}
 	
 	public static void disConnect(ResultSet rs, PreparedStatement st, Connection con) {
