@@ -14,18 +14,13 @@
 			$("#idCheck").val('f');
 		});
 		
-		$("#join").click(function() {
-			var check = $("#idCheck").val();
-			if(check=='s'){
-				alert("OK");
-			}else{
-				alert("아이디 중복 체크가 필요합니다");
-			}
-		});
-		
 		$("#btn").click(function() {
 			var id = document.frm.id.value;
-			window.open("./memberCheckId.do?id="+id, "CheckID","width=500, height=200, top=300, left=500");
+			if(id!=""){
+				window.open("./memberCheckId.do?id="+id, "CheckID","width=500, height=200, top=300, left=500");		
+			}else {
+				alert("아이디를 입력하세요");
+			}
 		});	
 		
 		$("#alert-success").hide();
@@ -34,6 +29,7 @@
 			var pw1=$("#pw1").val();
 			var pw2=$("#pw2").val();
 			if(pw1!=""||pw2!=""){
+				
 				if(pw1==pw2){
 					$("#alert-success").show();
 					$("#alert-danger").hide();
@@ -42,7 +38,50 @@
 					$("#alert-danger").show();
 				}
 			}
+		});
+		
+		$("#emailSelect").change(function() {
+			$("#emailSelect option:selected").each(function() {
+				if($(this).val()=='1'){
+					$("#email2").val("");
+					$("#email2").attr("disabled",false);
+				}else {
+					$("#email2").val($(this).text());
+					$("#email2").attr("disabled",true);
+				}
+			});
 		});		
+
+		$("#join").click(function() {
+			var check = $("#idCheck").val();
+			if(check!='s'){
+				alert("아이디 중복체크를 해주세요.");
+				return false;
+			}else if($("#pw1").val()==''){
+				alert("비밀번호를 입력하세요");
+				$("#pw1").focus();
+				return false;
+			}else if($("#pw1").val()!=$("#pw2").val()){
+				alert("비밀번호가 일치하지 않습니다");
+				$("#pw2").focus();
+				return false;
+			}else if($("#name").val()==''){
+				alert("성함을 입력하세요");
+				$("#name").focus();
+				return false;
+			}else if($("#email1").val()==''){
+				alert("이메일을 입력하세요");
+				$("#email1").focus();
+				return false;
+			}else if($("#phone").val()==''){
+				alert("연락처를 입력하세요");
+				$("#phone").focus();
+				return false;
+			}else {
+				$("#frm").submit();
+			}				
+			
+		});
 		
 	});
 </script>
@@ -52,7 +91,7 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<form name="frm" action="./memberJoin.do" method="post">
+		<form id="frm" name="frm" action="./memberJoin.do" method="post">
 		<input type="hidden" value="f" name="idCheck" id="idCheck">
 				<div class="form-group">
 			      <label for="id">ID:</label>
@@ -73,10 +112,19 @@
 			      <label for="name">Name:</label>
 	              <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
 	    	    </div>
-	            <div class="form-group">
-	              <label for="email">E-Mail:</label>
-	              <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-	            </div>
+	            
+	            <label for="email">E-Mail:</label>
+	            <div class="form-inline">
+	              <input type="text" id="email1" class="form-control" placeholder="Enter email" name="email1">@<input type="text" id="email2" class="form-control"name="email2">
+	              <select name="emailSelect" class="form-control" id="emailSelect">
+	              	<option value="0" selected>선택하세요</option>
+	              	<option value="naver.com">naver.com</option>
+	              	<option value="gmail.com">gmail.com</option>
+	              	<option value="daum.net">daum.net</option>
+	              	<option value="1">직접입력</option>
+	              </select>
+	            </div><br>
+	             
 	            <div class="form-group">
 	              <label for="phone">Phone:</label>
 	              <input type="text" class="form-control" id="phone" placeholder="Enter phone" name="phone">
@@ -90,7 +138,7 @@
 	              <p>admin: <input type="radio" class="form-control" id="kind" name="kind" value="admin"></p>
 	              <p>user: <input type="radio" class="form-control" id="kind" name="kind" value="user" checked="checked"></p>
 	            </div>
-			 <input type="submit" id="join" class="btn btn-default" value="JOIN">
+			 <input type="button" id="join" class="btn btn-default" value="JOIN">
  		</form>
 	</div>
 </div>

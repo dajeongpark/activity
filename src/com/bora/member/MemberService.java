@@ -175,7 +175,7 @@ public class MemberService {
 			try {
 				int result = memberDAO.join(memberDTO);
 				if(result>0) {
-					request.setAttribute("message", "Join Success");
+					request.setAttribute("message", "회원가입을 축하합니다.");
 					request.setAttribute("path", "../index.jsp");
 				}else {
 					request.setAttribute("message", "Join Fail");
