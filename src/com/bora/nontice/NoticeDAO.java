@@ -84,7 +84,11 @@ public class NoticeDAO implements BoardDAO {
 
 	@Override
 	public int getCount(Search search) throws Exception {
-		// TODO Auto-generated method stub
+		Connection con = DBConnector.getConnect();
+		String sql = "select ";
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		
 		return 0;
 	}
 
