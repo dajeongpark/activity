@@ -19,7 +19,6 @@ public class NoticeDAO implements BoardDAO {
 		String sql="";
 		PreparedStatement st = con.prepareStatement(sql);
 		
-		
 		return null;
 	}
 
