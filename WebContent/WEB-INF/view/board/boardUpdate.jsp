@@ -20,8 +20,8 @@ $(function(){
 <body>
 <c:import url="../../../temp/header.jsp"></c:import>
 
-	<div class="container-fluid">
-	 <div id="wrap" align="center"> 
+	<div id="wrap" align="center">
+	 <div class="row"> 
 	 	<h1>${board}Update</h1>
 	 </div>
 	 
@@ -42,9 +42,11 @@ $(function(){
 	 		<textarea rows="15" cols="" class="form-control" name="contents">${boardDTO.contents}</textarea>
 	 		</div>
 	 		
-	 <input type="file" class="custom-file-input" id="del">
-	 
-	 	<button type="submit" class="btn btn-default">upload</button>
+	 	<input type="file" class="custom-file-input" id="del"><br>
+	 <form action="./memberLogin.do"><!-- 비밀번호도 추가했는데 안되면 뺴기 -->
+        Password: <input type="password" name="pwd" maxlength="8">
+	 <button type="submit" class="btn btn-default">upload</button>
+	 </form>
 	 	</form>
 	 
 	 </div>

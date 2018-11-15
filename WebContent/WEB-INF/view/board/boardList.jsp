@@ -15,7 +15,7 @@
 <c:import url="../../../temp/header.jsp"></c:import>
 
 	<div class="container-fluid">
-		<div class="row"><!-- 이미지추가? -->
+		<div class="row" id="wrap" align="center"><!-- 이미지추가? -->
 			<h1><strong>Q&amp;A</strong></h1>
 		</div>
 		<div class="row">

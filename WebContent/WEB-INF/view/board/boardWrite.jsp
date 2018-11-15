@@ -7,6 +7,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../../../temp/bootStrap.jsp"></c:import>
+<script type="text/javascript">
+	$(function() {
+		
+		CKEDITOR.replace("contents");
+		
+		$("#btn").click(function() {
+			var title = $("#title").val();
+			if(title != ''){
+				$("#frm").submit();
+			}else {
+				alert("Title을 입력");
+			}
+		});
+	
+		$("#file").on("click", ".remove", function() {
+			var t = $(this).attr("title");
+			$("#f"+t).remove();
+			count--;
+		});
+	});
+</script>	
 
 </head>
 <body>
@@ -26,10 +47,17 @@
 				
 		<div class="form-grop">
 			<label class="contents">contents: </label>
-			<input type="text" class="form-control" id="contents" placeholder="Enter contents" name="contents">
+			<input type="text" class="form-control" id="contents" placeholder="Enter contents" name="contents"> 
 		</div>
-
-		<input type="button" class="btn btn-primary">
+	
+		    <div class="files" id="file">
+		    <label for="file">File:</label>
+		      <input type="file" class="form-control" id="file" name="f1"><br>
+              
+              <label for="file">File:</label>
+		      <input type="file" class="form-control" id="file" name="f2">	
+		    </div>
+		<input type="button" class="btn btn-default" value="write">
 		</form>
 
 

@@ -4,19 +4,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 삭제 폼</title>
+<title>게시판 삭제</title>
 <jsp:include page="../../../temp/bootStrap.jsp"></jsp:include>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
 <jsp:include page="../../../temp/header.jsp"></jsp:include>
 
-<form action="${board}Delete.jsp" name="deleteform" method="post">
-<table border="1" summary="게시판 삭제">
-<h2>Delete</h2>
+	<div class="container">
+		<h1>${board}Delete</h1>
 
+		<form class="form-horizontal" action="/action_page.php" method="post">
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="boardPw">pw check : </label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="boardPw" id="boardPw"
+						placeholder="boardPw">
+				</div>
+			</div>
 
-</table>
-</form>
+			<div class="form-group text-center">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default">삭제</button>
+
+				</div>
+			</div>
+		</form>
+	</div>
+	
 <jsp:include page="../../../temp/footer.jsp"></jsp:include>
 </body>
 </html>
