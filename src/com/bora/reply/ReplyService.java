@@ -18,10 +18,6 @@ public class ReplyService {
 		ActionForward actionForward = new ActionForward();
 		
 		
-		
-		
-		
-		
 		return actionForward;
 	}
 	//selectList

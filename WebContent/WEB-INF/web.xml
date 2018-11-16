@@ -1,16 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-
-	<servlet>
-		<servlet-name>board</servlet-name>
-		<servlet-class>com.bora.controller.ReplyController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>board</servlet-name>
-		<url-pattern>/board/*</url-pattern>
-	</servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
 
   <servlet>
+  	<servlet-name>ajax</servlet-name>
+  	<servlet-class>com.bora.controller.AjaxController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ajax</servlet-name>
+  	<url-pattern>/ajax/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>file</servlet-name>
+    <servlet-class>com.bora.controller.FileController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>file</servlet-name>
+    <url-pattern>/file/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>memo</servlet-name>
+    <servlet-class>com.bora.controller.MemoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>memo</servlet-name>
+    <url-pattern>/memo/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>member</servlet-name>
+    <servlet-class>com.bora.controller.MemberController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>member</servlet-name>
+    <url-pattern>/member/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>qna</servlet-name>
+    <servlet-class>com.bora.controller.QnaController</servlet-class>
+    <init-param>
+      <param-name>board</param-name>
+      <param-value>qna</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>qna</servlet-name>
+    <url-pattern>/qna/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>notice</servlet-name>
+    <servlet-class>com.bora.controller.NoticeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>notice</servlet-name>
+    <url-pattern>/notice/*</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+    <servlet>
 	<servlet-name>activity</servlet-name>
 	<servlet-class>com.bora.controller.ActivityController</servlet-class>
   </servlet>
@@ -29,4 +76,10 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
    
+  
+  
+  
+  
+  
+  
 </web-app>

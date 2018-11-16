@@ -20,6 +20,7 @@
 				alert("Title을 입력");
 			}
 		});
+		
 	
 		$("#file").on("click", ".remove", function() {
 			var t = $(this).attr("title");
