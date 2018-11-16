@@ -1,6 +1,6 @@
 package com.bora.payment;
 
-public class paymentService {
+public class PaymentService {
 
 	//selectList
 	//selectOnt

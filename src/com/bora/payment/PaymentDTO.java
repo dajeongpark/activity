@@ -2,7 +2,7 @@ package com.bora.payment;
 
 import java.sql.Date;
 
-public class paymentDTO {
+public class PaymentDTO {
 
 	private String name;
 	private String email;

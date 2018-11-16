@@ -1,6 +1,6 @@
 package com.bora.payment;
 
-public class paymentDAO {
+public class PaymentDAO {
 
 	//payment Add
 	//payment Edit
