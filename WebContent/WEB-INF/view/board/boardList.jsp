@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판목록</title>
+<title>게시판 목록</title>
 <c:import url="../../../temp/bootStrap.jsp"></c:import>
 
 </head>
@@ -46,7 +46,7 @@
 					<th scope="col">Hit</th>
 				</tr>
 				
-				<c:forEach items="${list}" var="boardDTO">
+				<c:forEach items="${board}" var="boardDTO">
 					<tr>
 					
 						<td>${boardDTO.num}</td>
