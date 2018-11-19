@@ -43,14 +43,45 @@
 		$("#emailSelect").change(function() {
 			$("#emailSelect option:selected").each(function() {
 				if($(this).val()=='1'){
-					$("#email2").val("");
-					$("#email2").attr("disabled",false);
+					$("#domain").val("");
+					$("#domain").attr("readonly",false);
 				}else {
-					$("#email2").val($(this).text());
-					$("#email2").attr("disabled",true);
+					$("#domain").val($(this).text());
+					$("#domain").attr("readonly",true);
 				}
 			});
-		});		
+		});
+		
+		$(document).ready(function(){ 
+		    $("input#phone").blur(function(){
+		    	var num = $("#phone").val();
+		    	blur(num)
+		    });
+
+		    $("input#phone").click(function(){
+		    	var num = $("#phone").val();
+		    	focus(num);
+		    });
+
+		});
+
+
+		function focus(num) {
+			num = num.replace(/[^0-9]/g, '');
+			$("#phone").val(num);
+		}
+
+		function blur(num) {
+			num = num.replace(/[^0-9]/g, '');
+			var tmp = '';
+			tmp += num.substr(0, 3);
+			tmp += '-';
+			tmp += num.substr(3, 4);
+			tmp += '-';
+			tmp += num.substr(7);
+			$("#phone").val(tmp);
+		}
+
 
 		$("#join").click(function() {
 			var check = $("#idCheck").val();
@@ -69,9 +100,13 @@
 				alert("성함을 입력하세요");
 				$("#name").focus();
 				return false;
-			}else if($("#email1").val()==''){
+			}else if($("#email").val()==''){
 				alert("이메일을 입력하세요");
-				$("#email1").focus();
+				$("#email").focus();
+				return false;
+			}else if($("#domain").val()==''){
+				alert("이메일을 입력하세요");
+				$("#domain").focus();
 				return false;
 			}else if($("#phone").val()==''){
 				alert("연락처를 입력하세요");
@@ -115,13 +150,13 @@
 	            
 	            <label for="email">E-Mail:</label>
 	            <div class="form-inline">
-	              <input type="text" id="email1" class="form-control" placeholder="Enter email" name="email1">@<input type="text" id="email2" class="form-control"name="email2">
+	              <input type="text" id="email" class="form-control" placeholder="Enter email" name="email">@<input type="text" id="domain" class="form-control"name="domain">
 	              <select name="emailSelect" class="form-control" id="emailSelect">
-	              	<option value="0" selected>선택하세요</option>
+	              	<option value="1" selected>직접입력</option>
 	              	<option value="naver.com">naver.com</option>
 	              	<option value="gmail.com">gmail.com</option>
+	              	<option value="nate.com">nate.com</option>
 	              	<option value="daum.net">daum.net</option>
-	              	<option value="1">직접입력</option>
 	              </select>
 	            </div><br>
 	             

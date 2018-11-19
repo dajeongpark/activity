@@ -17,7 +17,7 @@
 		<h3>NAME : ${member.name}</h3>
 		<h3>BIRTH : ${member.birth}</h3>
 		<h3>PHONE : ${member.phone}</h3>
-		<h3>E-MAIL : ${member.email}</h3>
+		<h3>E-MAIL : ${member.email}@${member.domain}</h3>
 	</div>
 	<div class="row">
 		<a href="./memberUpdate.do">UPDATE</a>

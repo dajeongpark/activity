@@ -78,6 +78,7 @@ public class MemberService {
 				memberDTO.setPw(request.getParameter("pw"));
 				memberDTO.setName(request.getParameter("name"));
 				memberDTO.setEmail(request.getParameter("email"));
+				memberDTO.setDomain(request.getParameter("domain"));
 				memberDTO.setPhone(request.getParameter("phone"));
 				memberDTO.setBirth(request.getParameter("birth"));
 
@@ -168,6 +169,7 @@ public class MemberService {
 			memberDTO.setPw(request.getParameter("pw"));
 			memberDTO.setName(request.getParameter("name"));
 			memberDTO.setEmail(request.getParameter("email"));
+			memberDTO.setDomain(request.getParameter("domain"));
 			memberDTO.setPhone(request.getParameter("phone"));
 			memberDTO.setBirth(request.getParameter("birth"));
 			memberDTO.setKind(request.getParameter("kind"));

@@ -38,14 +38,15 @@ public class MemberDAO {
 	//update
 	public int update(MemberDTO memberDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql = "update member set pw=?, name=?, email=?, phone=?, birth=? where id=?";
+		String sql = "update member set pw=?, name=?, email=?, phone=?, birth=?, domain=? where id=?";
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setString(1, memberDTO.getPw());
 		st.setString(2, memberDTO.getName());
 		st.setString(3, memberDTO.getEmail());
 		st.setString(4, memberDTO.getPhone());
 		st.setString(5, memberDTO.getBirth());
-		st.setString(6, memberDTO.getId());
+		st.setString(6, memberDTO.getDomain());
+		st.setString(7, memberDTO.getId());
 		int result = st.executeUpdate();
 		
 		DBConnector.disConnect(st, con);
@@ -66,6 +67,7 @@ public class MemberDAO {
 		if(rs.next()) {
 			memberDTO.setName(rs.getString("name"));
 			memberDTO.setEmail(rs.getString("email"));
+			memberDTO.setDomain(rs.getString("domain"));
 			memberDTO.setPhone(rs.getString("phone"));
 			memberDTO.setBirth(rs.getString("birth"));
 		}else {
@@ -78,7 +80,7 @@ public class MemberDAO {
 	//join
 	public int join(MemberDTO memberDTO) throws Exception{
 		Connection con = DBConnector.getConnect();
-		String sql = "insert into member values(?,?,?,?,?,?,?)";
+		String sql = "insert into member values(?,?,?,?,?,?,?,?)";
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setString(1, memberDTO.getId());
 		st.setString(2, memberDTO.getPw());
@@ -87,6 +89,7 @@ public class MemberDAO {
 		st.setString(5, memberDTO.getPhone());
 		st.setString(6, memberDTO.getBirth());
 		st.setString(7, memberDTO.getKind());
+		st.setString(8, memberDTO.getDomain());
 		int result = st.executeUpdate();
 		DBConnector.disConnect(st, con);
 		

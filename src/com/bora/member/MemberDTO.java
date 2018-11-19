@@ -11,7 +11,14 @@ public class MemberDTO {
 	private String phone;
 	private String birth;
 	private String kind;
+	private String domain;
 	
+	public String getDomain() {
+		return domain;
+	}
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
 	public String getId() {
 		return id;
 	}
