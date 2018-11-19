@@ -6,9 +6,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.bora.action.ActionForward;
 import com.bora.board.BoardReplyService;
 import com.bora.file.FileDAO;
+import com.bora.notice.NoticeDAO;
 
 public class NoticeService implements BoardReplyService{
-
+	private NoticeDAO noticeDAO;
+	
 	@Override
 	public ActionForward selectList(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub

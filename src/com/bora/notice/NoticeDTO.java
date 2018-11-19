@@ -1,5 +1,7 @@
 package com.bora.notice;
 
-public class NoticeDTO {
+import com.bora.board.BoardDTO;
+
+public class NoticeDTO extends BoardDTO {
 
 }
