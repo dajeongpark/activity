@@ -60,11 +60,22 @@ public class NoticeService implements BoardReplyService{
 			FileDTO fileDTO = new FileDTO();
 			fileDTO.setNum(num);
 			fileDTO.setKind("N");
+			List<FileDTO> ar = fileDAO.selectList(fileDTO);
+			request.setAttribute("dto", boardDTO);
+			request.setAttribute("files", ar);
+			request.setAttribute("board", "notice");
+			actionForward.setCheck(true);
+			actionForward.setPath("../WEB-INF/view/board/boardSelectOne.jsp");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			actionForward.setCheck(false);
+			actionForward.setPath("./noticeList.do");
 			e.printStackTrace();
 		}
-		return null;
+		if(boardDTO==null) {
+			actionForward.setCheck(false);
+			actionForward.setPath("./noticeList.do");
+		}
+		return actionForward;
 	}
 
 	@Override
