@@ -9,6 +9,7 @@ import com.bora.action.ActionForward;
 import com.bora.board.BoardDTO;
 import com.bora.board.BoardReplyService;
 import com.bora.file.FileDAO;
+import com.bora.file.FileDTO;
 import com.bora.notice.NoticeDAO;
 import com.bora.page.MakePager;
 import com.bora.page.Pager;
@@ -50,7 +51,19 @@ public class NoticeService implements BoardReplyService{
 
 	@Override
 	public ActionForward selectOne(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		ActionForward actionForward = new ActionForward();
+		BoardDTO boardDTO = null;
+		int num = Integer.parseInt(request.getParameter("num"));
+		try {
+			boardDTO = noticeDAO.selectOne(num);
+			FileDAO fileDAO = new FileDAO();
+			FileDTO fileDTO = new FileDTO();
+			fileDTO.setNum(num);
+			fileDTO.setKind("N");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
