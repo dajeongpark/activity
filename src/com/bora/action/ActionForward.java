@@ -1,6 +1,7 @@
 package com.bora.action;
 
 public class ActionForward {
+	
 	private boolean check;
 	private String path;
 	

@@ -10,6 +10,7 @@ import com.bora.board.BoardDAO;
 import com.bora.board.BoardDTO;
 import com.bora.board.BoardReplyDAO;
 import com.bora.board.BoardReplyDTO;
+import com.bora.notice.NoticeDTO;
 import com.bora.page.RowNumber;
 import com.bora.page.Search;
 import com.bora.util.DBConnector;

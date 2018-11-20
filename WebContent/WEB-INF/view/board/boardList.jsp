@@ -113,16 +113,17 @@
 	
 	<c:choose>
 		<c:when test="${board eq 'notice'}">
-			<c:if test="${not empty member and member.kind eq 'T'}">
+			<c:if test="${not empty member and member.kind eq 'admin'}">
 				<c:import url="../../../temp/writebutton.jsp"></c:import>
 			</c:if>
 		</c:when>
 		<c:otherwise>
-			<c:if test="${not empty member and member.kind eq 'T'}">
+			<c:if test="${not empty member and member.kind eq 'user'}">
 				<c:import url="../../../temp/writebutton.jsp"></c:import>
 			</c:if>	
 		</c:otherwise>
 	</c:choose>
+	
 </div>
 <jsp:include page="../../../temp/footer.jsp"></jsp:include>
 </body>

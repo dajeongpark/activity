@@ -96,6 +96,7 @@ public class QnaService implements BoardReplyService {
 		
 		actionForward.setCheck(true);
 		return actionForward;
+		
 	}
 
 }

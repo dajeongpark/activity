@@ -68,7 +68,7 @@
 	      </div>
 	    </div>
 	  </div>
-	</div><br>
+	</div><br>  
 
 </div>
 <jsp:include page="./temp/footer.jsp"></jsp:include>

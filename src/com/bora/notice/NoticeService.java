@@ -1,20 +1,51 @@
 package com.bora.notice;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bora.action.ActionForward;
+import com.bora.board.BoardDTO;
 import com.bora.board.BoardReplyService;
 import com.bora.file.FileDAO;
 import com.bora.notice.NoticeDAO;
+import com.bora.page.MakePager;
+import com.bora.page.Pager;
+import com.bora.page.RowNumber;
 
 public class NoticeService implements BoardReplyService{
 	private NoticeDAO noticeDAO;
 	
 	@Override
 	public ActionForward selectList(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+		ActionForward actionForward = new ActionForward();
+		int curPage = 1;
+		try {
+			curPage = Integer.parseInt(request.getParameter("curPage"));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		String kind = request.getParameter("kind");
+		String search = request.getParameter("search");
+		MakePager makePager = new MakePager(curPage, search, kind);
+		RowNumber rowNumber = makePager.makeRow();
+		try {
+			List<BoardDTO> ar = noticeDAO.selectList(rowNumber);
+			int totalCount = noticeDAO.getCount(rowNumber.getSearch());
+			Pager pager = makePager.makePager(totalCount);
+			request.setAttribute("list",ar);
+			request.setAttribute("pager", pager);
+			request.setAttribute("board", "notice");
+			actionForward.setPath("../WEB-INF/view/board/boardList.jsp");
+		} catch (Exception e) {
+			request.setAttribute("message", "안녕");
+			request.setAttribute("path", "../index.jsp");
+			actionForward.setPath("../WEB-INF/view/common/result.jsp");
+			e.printStackTrace();
+		}
+		actionForward.setCheck(true);
+		return actionForward;
 	}
 
 	@Override

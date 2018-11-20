@@ -31,7 +31,7 @@
 		<a href="./${requestScope.board}Update.do?num=${dto.num}">UPDATE</a>
 		<a href="./${requestScope.board}Delete.do?num=${dto.num}">DELETE</a>
 	  <c:if test="${board ne 'notice'}">	
-		<a href="./${board}Reply.do">REPLY</a>
+		<a href="./${board}ReplyDAO.do">REPLY</a>
 	  </c:if>	
 	</div>
 <jsp:include page="../../../temp/footer.jsp"></jsp:include>

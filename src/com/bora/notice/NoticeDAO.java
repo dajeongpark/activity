@@ -3,6 +3,7 @@ package com.bora.notice;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bora.board.BoardDAO;
@@ -15,8 +16,32 @@ public class NoticeDAO implements BoardDAO{
 
 	@Override
 	public List<BoardDTO> selectList(RowNumber rowNumber) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con = DBConnector.getConnect();
+		String sql = "select * from "
+				+ "(select rownum R, N.* from "
+				+ "(select num,title,writer,contents,reg_date,hit from notice "
+				+ "where "+rowNumber.getSearch().getKind()+" like ? "
+				+ "order by num desc) N) "
+				+ "where R between ? and ?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1,"%"+ rowNumber.getSearch()+"%");
+		st.setInt(2, rowNumber.getStartRow());
+		st.setInt(3, rowNumber.getLastRow());
+		ResultSet rs = st.executeQuery();
+		List<BoardDTO> ar = new ArrayList<>();
+		NoticeDTO noticeDTO = null;
+		while(rs.next()) {
+			noticeDTO = new NoticeDTO();
+			noticeDTO.setNum(rs.getInt("num"));
+			noticeDTO.setTitle(rs.getString("title"));
+			noticeDTO.setWriter(rs.getString("writer"));
+			noticeDTO.setReg_date(rs.getDate("reg_date"));
+			noticeDTO.setHit(rs.getInt("hit"));
+			ar.add(noticeDTO);
+		}
+		DBConnector.disConnect(st, con);
+		
+		return ar;
 	}
 
 	@Override
@@ -80,9 +105,15 @@ public class NoticeDAO implements BoardDAO{
 	@Override
 	public int getCount(Search search) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql="select ";
+		String sql="select count(num) from notice "
+				+ "where "+search.getKind()+" like ?";
 		PreparedStatement st = con.prepareStatement(sql);
-		return 0;
+		st.setString(1, "%"+search.getSearch()+"%");
+		ResultSet rs = st.executeQuery();
+		rs.next();
+		int result = rs.getInt(1);
+		DBConnector.disConnect(st, con);
+		return result;
 	}
 
 }

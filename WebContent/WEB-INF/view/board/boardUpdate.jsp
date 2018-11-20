@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<c:import url="../../../temp/bootstrap.jsp"/>
+<c:import url="../../../temp/bootStrap.jsp"/>
 <script type="text/javascript">
 	$(function() {
 		$(".del").click(function() {
