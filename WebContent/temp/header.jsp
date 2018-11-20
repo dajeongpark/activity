@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
 	    <div class="navbar-header">
@@ -13,7 +13,7 @@
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">
-	        <li><a href="${pageContext.request.contextPath}/board/boardList.do">NOTICE</a></li>
+	        <li><a href="${pageContext.request.contextPath}/notice/noticeList.do">NOTICE</a></li>
 	        <li><a href="${pageContext.request.contextPath}/activity/activityList.do">ACTIVITY</a></li>
 	        <li><a href="#">QNA</a></li>
 	      </ul>
