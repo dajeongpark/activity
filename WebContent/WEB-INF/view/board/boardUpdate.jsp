@@ -12,14 +12,24 @@ $(function(){
 	$(".del").click(function(){
 		var fum=$(this).attr("id");
 		var fname=$(this).attr("title");
-		$.post("../")
+		$.post("../file/fileDelete.do",{fnum:funum, fname:fname}, function(){
+			data = data.trim();
+			if(data=='1'){
+				alert("Success");
+				$('#p'+fnum).remove();
+			}else{
+				alert('Fail');
+			}
+		});
 	});
 });
 </script>
 </head>
-<body>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
 <c:import url="../../../temp/header.jsp"></c:import>
 
+<div class="container-fluid">
 	<div id="wrap" align="center">
 	 <div class="row"> 
 	 	<h1>${board}Update</h1>
@@ -42,16 +52,23 @@ $(function(){
 	 		<textarea rows="15" cols="" class="form-control" name="contents">${boardDTO.contents}</textarea>
 	 		</div>
 	 		
-	 	<input type="file" class="custom-file-input" id="del"><br>
-	 <form action="./memberLogin.do"><!-- 비밀번호도 추가했는데 안되면 뺴기 -->
-        Password: <input type="password" name="pwd" maxlength="8">
+	 	<c:forEach items="${files}" var="file" varStatus="i">
+	 		<div class="form-group" id="p${file.fnum}">
+				<span>${file.oname}</span>	 		
+	 			<span class="del" id="${file.fnum}" title="${file.fname}">X</span>
+	 		</div>
+	 	</c:forEach>
+	 	
+	<!--  <form action="./memberLogin.do">비밀번호도 추가했는데 안되면 뺴기
+        Password: <input type="password" name="pwd" maxlength="8"> </form>-->
+	 
 	 <button type="submit" class="btn btn-default">upload</button>
 	 </form>
-	 	</form>
-	 
+	 	
+	
 	 </div>
 	</div>
-
+</div>
 
 
 <c:import url="../../../temp/footer.jsp"></c:import>

@@ -43,14 +43,14 @@ public class QnaController extends HttpServlet {
 		System.out.println(board);
 		
 		String command = request.getPathInfo();
-		
 		ActionForward actionForward = null;
+		QnaService qnaService= new QnaService();
 		
-		if(command.equals("/qnaList.do")) {
+		if(command.equals("/boardList.do")) {
 			actionForward = qnaService.selectList(request, response);
-		}else if(command.equals("/qnaSelectOne.do")) {
+		}else if(command.equals("/boardSelectOne.do")) {
 			actionForward = qnaService.selectOne(request, response);
-		}else if(command.equals("/qnaWrite.do")) {
+		}else if(command.equals("/boardWrite.do")) {
 			actionForward = qnaService.insert(request, response);
 		}
 			
@@ -61,6 +61,8 @@ public class QnaController extends HttpServlet {
 		}else {
 			response.sendRedirect(actionForward.getPath());
 		}
+		
+		
 	}
 
 	/**

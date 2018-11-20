@@ -2,6 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%
+ 	
+ %>
     
 <!DOCTYPE html>
 <html>
@@ -19,8 +22,25 @@
 
 	<div class="container-fluid">
 		<div class="row" id="wrap" align="center"><!-- 이미지추가? -->
-			<h1><strong>BORACAY Q&amp;A</strong></h1>
+			<h1><strong>${board}BORACAY Q&amp;A</strong></h1>
 		</div>
+		<div class="row">
+		<div>
+			<form class="form-inline" action="./${board}List.do">
+				<div class="form-grop" align="right">
+					<select class="form-control" name="kind" id="sel1">
+						<!-- name="kind" -->
+						<option class="title">Title</option>
+						<option class="contents">Contents</option>
+						<option class="Writer">Writer</option>
+
+					</select> 
+					<input type="text" class="form-control" id="search" placeholder="Enter search" name="search">
+					<button type="submit" class="btn btn-primary active">Search</button>
+				</div>
+			</form>
+		</div>
+	</div>
 		<table class="table table-hover" summary="번호,제목,작성자,날짜,조회수"> 
 				<tr>
 					<th scope="col">NO</th>
@@ -30,7 +50,7 @@
 					<th scope="col">Hit</th>
 				</tr>
 				
-				<c:forEach items="${board}" var="boardDTO">
+				<c:forEach items="${list}" var="boardDTO">
 					<tr>
 					
 						<td>${boardDTO.num}</td>
@@ -52,7 +72,7 @@
 	<div class="container-fluid">
 		<div class="row">
 		<ul class="pagination">	
-			<li><a href="./${board}List.do?curPage=1"><span class="glyphicon glyphicon-backward"></span></a>
+			<li><a href="./${board}list.do?curPage=1"><span class="glyphicon glyphicon-backward"></span></a>
 			
 			<c:if test="${pager.curBlock gt 1}">
 				<li><a href="./${board}list.do?curPage=${pager.starNum-1}"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -83,23 +103,6 @@
 				</c:if>
 			</c:otherwise>
 		</c:choose>
-		
-	<div class="row">
-		<div>
-			<form class="form-inline" action="./${board}List.do">
-				<div class="form-grop">
-					<select class="form-control" name="selectBox" id="sel1">
-						<!-- name="kind" -->
-						<option class="title">Title</option>
-						<option class="contents">Contents</option>
-						<option class="Writer">Writer</option>
-
-					</select> <input type="text" class="form-control" id="search" placeholder="Enter search" name="search">
-					<button type="submit" class="btn btn-primary active">Submit</button>
-				</div>
-			</form>
-		</div>
-	</div>
 
 
 	<div class="container-fluid">

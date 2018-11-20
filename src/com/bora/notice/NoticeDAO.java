@@ -11,7 +11,7 @@ import com.bora.board.BoardDTO;
 import com.bora.page.RowNumber;
 import com.bora.page.Search;
 import com.bora.util.DBConnector;
-import com.oreilly.servlet.MultipartRequest;
+
 
 public class NoticeDAO implements BoardDAO {
 
