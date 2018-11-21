@@ -3,7 +3,6 @@ package com.bora.controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,58 +10,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bora.action.ActionForward;
-import com.bora.qna.QnaService;
+import com.bora.notice.NoticeService;
 
 /**
- * Servlet implementation class QnaController
+ * Servlet implementation class NoticeController
  */
-@WebServlet("/QnaController")
-public class QnaController extends HttpServlet {
+@WebServlet("/NoticeController")
+public class NoticeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private QnaService qnaService;
-    
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaController() {
+    public NoticeController() {
         super();
-        qnaService = new QnaService();
         // TODO Auto-generated constructor stub
     }
-   
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String board = this.getServletConfig().getInitParameter("board");
-		System.out.println(board);
-		
+		String phone = request.getServletContext().getInitParameter("phone");
+		System.out.println(phone);
 		String command = request.getPathInfo();
 		ActionForward actionForward = null;
-		QnaService qnaService= new QnaService();
+		NoticeService noticeService = new NoticeService();
 		
-		if(command.equals("/boardList.do")) {
-			actionForward = qnaService.selectList(request, response);
-		}else if(command.equals("/boardSelectOne.do")) {
-			actionForward = qnaService.selectOne(request, response);
-		}else if(command.equals("/boardWrite.do")) {
-			actionForward = qnaService.insert(request, response);
-		}else if(command.equals("/boardUpdate.do")) {
-			actionForward = qnaService.update(request, response);
-		}else if(command.equals("/boardDelete.do")) {
-			actionForward =qnaService.delete(request, response);
+		if(command.equals("/noticeList.do")) {
+			actionForward = noticeService.selectList(request, response);
+		}else if(command.equals("/noticeSelectOne.do")) {
+			actionForward = noticeService.selectOne(request, response);
+		}else if(command.equals("/noticeWrite.do")) {
+			actionForward = noticeService.insert(request, response);
+		}else  if(command.equals("/noticeUpdate.do")){
+			actionForward = noticeService.update(request, response);
 		}
-			
 		
 		if(actionForward.isCheck()) {
-			RequestDispatcher view  = request.getRequestDispatcher(actionForward.getPath());
+			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
 			view.forward(request, response);
 		}else {
 			response.sendRedirect(actionForward.getPath());
 		}
-		
-		
 	}
 
 	/**

@@ -18,12 +18,11 @@ public class NoticeDAO implements BoardDAO {
 	@Override
 	public List<BoardDTO> selectList(RowNumber rowNumber) throws Exception {
 		Connection con = DBConnector.getConnect();
-		//rownum을 하나의 컬럼으로 만들어서 컬럼 갯수 세기
-		//from 뒤에 띄어쓰기 유의
+		
 		String sql = "select * from "
 				+ "(select rownum R, N.* from "
 				+ "(select num,title,writer,reg_date,hit from notice "
-				+ "where "+rowNumber.getSearch().getKind()+" like ? "	//테이블명은 ? 안됨
+				+ "where "+rowNumber.getSearch().getKind()+" like ? "	
 				+ "order by num desc) N) "
 				+ "where R between ? and ?";
 			
@@ -58,11 +57,12 @@ public class NoticeDAO implements BoardDAO {
 		String sql = "select * from notice where num=?";
 		
 		PreparedStatement st = con.prepareStatement(sql);
+		
 		st.setInt(1, num);
 		ResultSet rs = st.executeQuery();
 		NoticeDTO ndto = new NoticeDTO();
 		if(rs.next()) {
-			ndto.setNum(rs.getInt("num"));
+			ndto.setNum(num); 
 			ndto.setTitle(rs.getString("title"));
 			ndto.setContents(rs.getString("contents"));
 			ndto.setWriter(rs.getString("writer"));
@@ -99,8 +99,6 @@ public class NoticeDAO implements BoardDAO {
 		st.setString(2, boardDTO.getTitle());
 		st.setString(3, boardDTO.getContents());
 		st.setString(4, boardDTO.getWriter());
-	
-		
 		int result = st.executeUpdate();
 		
 		DBConnector.disConnect(st, con);
@@ -132,9 +130,7 @@ public class NoticeDAO implements BoardDAO {
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setInt(1, num);
 		int result = st.executeUpdate();
-		
 		DBConnector.disConnect(st, con);
-		
 		return result;
 	}
 

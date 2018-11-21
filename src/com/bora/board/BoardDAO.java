@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bora.page.RowNumber;
 import com.bora.page.Search;
+import com.bora.reply.ReplyDTO;
 
 public interface BoardDAO {
 	
@@ -24,5 +25,7 @@ public interface BoardDAO {
 	
 	//getCount
 	public int getCount(Search search) throws Exception;
+
+	
 	
 }
