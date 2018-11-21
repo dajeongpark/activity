@@ -13,16 +13,46 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<h3>ID : ${member.id}</h3>
-		<h3>NAME : ${member.name}</h3>
-		<h3>BIRTH : ${member.birth}</h3>
-		<h3>PHONE : ${member.phone}</h3>
-		<h3>E-MAIL : ${member.email}@${member.domain}</h3>
-	</div>
-	<div class="row">
-		<a href="./memberUpdate.do">UPDATE</a>
-		<a href="./memberDelete.do">DELETE</a>
-	</div>
+	  <form class="form-horizontal" action="./memberUpdate.do" method="post">
+	  	<h2>회원 정보</h2>
+	    <div class="form-group">
+	      <label class="control-label col-sm-2" for="id">ID:</label>
+	      <div class="col-sm-10">
+	        <p class="form-control-static">${member.id}</p>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="control-label col-sm-2" for="id">NAME:</label>
+	      <div class="col-sm-10">
+	        <p class="form-control-static">${member.name}</p>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="control-label col-sm-2" for="id">BIRTH:</label>
+	      <div class="col-sm-10">
+	        <p class="form-control-static">${member.birth}</p>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="control-label col-sm-2" for="id">PHONE:</label>
+	      <div class="col-sm-10">
+	        <p class="form-control-static">${member.phone}</p>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="control-label col-sm-2" for="id">E-MAIL:</label>
+	      <div class="col-sm-10">
+	        <p class="form-control-static">${member.email}@${member.domain}</p>
+	      </div>
+	    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <a href="./memberUpdate.do" class="btn btn-default">UPDATE</a>
+		<a href="./memberDelete.do" class="btn btn-default">DELETE</a>
+      </div>
+    </div>
+  </form>
+  </div>
 </div>
 
 <c:import url="../../../temp/footer.jsp"/>

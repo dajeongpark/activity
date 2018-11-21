@@ -126,6 +126,7 @@
 
 <div class="container-fluid">
 	<div class="row">
+	<h2>회원가입</h2>
 		<form id="frm" name="frm" action="./memberJoin.do" method="post">
 		<input type="hidden" value="f" name="idCheck" id="idCheck">
 				<div class="form-group">
@@ -170,8 +171,7 @@
 	            </div>
 	            <div class="form-group">
 	              <label for="kind">Kind:</label>
-	              <p>admin: <input type="radio" class="form-control" id="kind" name="kind" value="admin"></p>
-	              <p>user: <input type="radio" class="form-control" id="kind" name="kind" value="user" checked="checked"></p>
+	              <p>admin: <input type="radio" id="kind" name="kind" value="admin">  user: <input type="radio" id="kind" name="kind" value="user" checked="checked"></p>
 	            </div>
 			 <input type="button" id="join" class="btn btn-default" value="JOIN">
  		</form>
