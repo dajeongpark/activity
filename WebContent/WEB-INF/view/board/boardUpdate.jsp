@@ -64,8 +64,6 @@ $(function(){
 	 
 	 <button type="submit" class="btn btn-default">upload</button>
 	 </form>
-	 	
-	
 	 </div>
 	</div>
 </div>

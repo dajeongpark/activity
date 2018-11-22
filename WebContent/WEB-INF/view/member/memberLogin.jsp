@@ -13,7 +13,7 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<h3>Login</h3>
+		<h3>로그인</h3>
 		<form name="frm" action="./memberLogin.do" method="post" >
 			<input type="hidden" value="f" name="idcheck" id="idcheck">
 			    <div class="form-group">

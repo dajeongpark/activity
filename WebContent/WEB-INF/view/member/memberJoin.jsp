@@ -119,6 +119,7 @@
 
 <div class="container-fluid">
 	<div class="row">
+	<h2>회원가입</h2>
 		<form id="frm" name="frm" action="./memberJoin.do" method="post">
 		<input type="hidden" value="f" name="idCheck" id="idCheck">
 				<div class="form-group">

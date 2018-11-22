@@ -8,14 +8,14 @@
 <title>Insert title here</title>
 <c:import url="../../../temp/bootStrap.jsp"/>
 <script type="text/javascript">
-	$(function() {
-		$("#btn1").click(function() {
-			opener.document.frm.id.value='${param.id}';
-			opener.document.frm.idCheck.value='s';
-			self.close();
-		});
-		
+$(function() {
+	$("#btn1").click(function() {
+		opener.document.frm.id.value='${param.id}';
+		opener.document.frm.idCheck.value='s';
+		self.close();
 	});
+	
+});
 </script>
 </head>
 <body>

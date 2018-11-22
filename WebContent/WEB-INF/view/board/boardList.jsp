@@ -13,17 +13,40 @@
 <meta charset="UTF-8">
 <title>게시판 목록</title>
 <%@include file="../../../temp/bootStrap.jsp" %>
-<script type="text/javascript">
+<style type="text/css">
+img{
+	position: relative;
+	opacity: 0.8;
+	width: 70%;
+	height: 243px;	
+}
+h1{
+	position: absolute;
+	top: 150px;
+	left: 900px;
+	font-size-adjust: small;
+	opacity: 0.7;
+	text-shadow: 1px 1px 2px black;
+	
+}
+strong{
+	position: absolute;
+	color: white;
+	font-size-adjust: none;	
+}
 
-</script>
+</style>
 
 </head>
 <body>
 <c:import url="../../../temp/header.jsp"></c:import>
 
 	<div class="container-fluid">
-		<div class="row" id="wrap" align="center"><!-- 이미지추가? -->
-			<h1><strong>${board}BORACAY</strong></h1>
+		<div id="wrap" align="center" class="image"><!-- @ -->
+			<img alt="Qna images" src="../images/QNA1.png" >
+			<div class="text">
+			<h1>BORACAY&nbsp;&nbsp;<strong>Q&amp;A</strong></h1>
+			</div>
 		</div>
 		
 		<div class="row">
@@ -41,7 +64,7 @@
 
 		  </form>
 	  </div>
-		<table class="table table-hover">
+		<table class="table table-hover" summary="번호,제목,작성자,작성한 날짜, 조회수">
 			<tr>
 				<td>NUM</td>
 				<td>TITLE</td>

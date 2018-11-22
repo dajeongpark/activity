@@ -84,6 +84,7 @@
 
 <div class="container-fluid">
 	<div class="row">
+	<h2>회원 정보 수정</h2>
 		<form id="frm" name="frm" action="./memberUpdate.do" method="post" >
 		    <div class="form-group">
 		      <label for="id">ID:</label>
