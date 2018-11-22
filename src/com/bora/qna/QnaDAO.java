@@ -11,23 +11,43 @@ import com.bora.board.BoardDTO;
 import com.bora.board.BoardReplyService;
 import com.bora.board.BoardReplyDAO;
 import com.bora.board.BoardReplyDTO;
-import com.bora.notice.NoticeDTO;
 import com.bora.page.RowNumber;
 import com.bora.page.Search;
 import com.bora.util.DBConnector;
 
 public class QnaDAO implements BoardDAO, BoardReplyDAO {
-	
-	@Override
+	//답글
+	@Override 
 	public int reply(BoardReplyDTO boardReplyDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con =DBConnector.getConnect();
+		String sql="insert into qna values(qna_seq.nextval,?,?,?,sysdate,0,?,?,?)";
+		
+		PreparedStatement st= con.prepareStatement(sql);
+		st.setString(1, boardReplyDTO.getTitle());
+		st.setString(2, boardReplyDTO.getWriter());
+		st.setString(3, boardReplyDTO.getContents());
+		st.setInt(4, boardReplyDTO.getRef());
+		st.setInt(5, boardReplyDTO.getStep());
+		st.setInt(6, boardReplyDTO.getDepth());
+		int result= st.executeUpdate();
+		
+		DBConnector.disConnect(st, con);
+		return result;
 	}
 	
 	@Override
-	public int replyUpdate(BoardReplyDTO boardReplyDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int replyUpdate(BoardReplyDTO parent) throws Exception {
+		Connection con=DBConnector.getConnect();
+		String sql="update qna set step=step+1 where ref=? and step>?";
+		
+		PreparedStatement st= con.prepareStatement(sql);
+		st.setInt(1, parent.getRef());
+		st.setInt(2, parent.getStep());
+		st.setInt(3, parent.getDepth());
+		int result=st.executeUpdate();
+		
+		DBConnector.disConnect(st, con);
+		return result;
 	}
 
 	@Override

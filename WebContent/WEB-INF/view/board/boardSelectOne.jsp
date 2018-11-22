@@ -22,15 +22,15 @@
 			<h1>Writer :${boardDTO.writer}</h1>
 			<h1>Contents :${boardDTO.contents}</h1>
 		</div>
-		<div> <!--내장객체 이름 scope 가져올값 -->
+		<div> 
 			<a href="./${requestScope.board}List.do">List</a> 
 			<a href="./${requestScope.board}Update.do?num=${boardDTO.num}">Update</a>
 			<a href="./${requestScope.board}Delete.do?num=${boardDTO.num}">Delete</a>
 			<a href="./${requestScope.board}Reply.do?num=${boardDTO.num}">Reply</a>
-		</div>
 		<c:if test="${board ne 'notice'}">
 			<a href="./${board}Reply.do">Reply</a>
 		</c:if>
+		</div>
 	</div>
 
 

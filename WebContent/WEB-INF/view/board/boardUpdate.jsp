@@ -37,6 +37,7 @@ $(function(){
 	 
 	 <div class="row">
 	 	<form action="./${board}Update.do" method="post" enctype="multipart/form-data">
+	 			<input type="hidden" name="num" value="${dto.num}">
 	 		<div class="form-group">
 	 			<label for="title">Title :</label>
 	 			<input type="text" value="${boardDTO.title}" class="form-control" id="title" placeholder="Enter Title" name="title">
