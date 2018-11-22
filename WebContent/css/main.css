@@ -118,26 +118,38 @@
       background-color: #4ea1d3;
       color: #fff;
   }
-  .navbar {
+  .navbar { 
+  	  color: #fff;
+  	  width: 100%;
+  	  height: 50px;
       margin-bottom: 0;
       background-color: #4ea1d3;
       z-index: 9999;
       border: 0;
       font-size: 12px !important;
       line-height: 1.42857143 !important;
-      letter-spacing: 4px;
+      letter-spacing: 2px;
       border-radius: 0;
       font-family: Montserrat, sans-serif;
+      box-sizing: border-box;      
   }
   
+  .nav .navbar-nav .navbar-center {
+  	  text-align: center;
+  }
+
   .navbar-brand {
-  	  width: 48px;
-  	  background-image: url("../images/logo.png");
-  }	  
-  
+  	  width: 150px;
+   	  float: left;
+   	  background-image: url("../images/h-logo-sm.png");
+   	  background-repeat: no-repeat;
+   	  margin-top: 2px;
+  }
+    
   .navbar li a, .navbar .navbar-brand {
       color: #fff !important;
   }
+    
   .navbar-nav li a:hover, .navbar-nav li.active a {
       color: #4ea1d3 !important;
       background-color: #fff !important;
@@ -151,6 +163,59 @@
       margin-bottom: 20px;
       color: #4ea1d3;
   }
+  
+  footer .footer {
+  	  width: 100%;
+  	  height: 250px;
+  } 
+  
+  footer .footer_section01 {
+    margin-bottom: 25px;
+    padding: 20px 0 35px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .footer_section01 a {
+    margin-left: 88px;
+    float: left;
+    display: block;
+    vertical-align: middle;
+    font-size: 12px;
+    letter-spacing: -1px;
+    color: #555;
+  }
+  
+  footer .footer_section02 h1 {
+    width: 120px;
+    height: 32px;
+    top: 50%;
+    float: left;
+    margin-top: 12px;
+    margin-left: 80px;
+    background-image: url("../images/f-logo-sm.png");
+  }
+  
+  footer .footer_section02 address {
+    margin-left: 250px;
+    font-size: 12px;
+    line-height: 19px;
+    color: #888;
+    text-align: left;
+  }
+  
+  .footer_section03 {
+  	width: 942px;
+  	height: 45px;
+    background-image: url("../images/footer_award.png");
+    margin: 0 auto;
+  }
+  
+  .content-section, .wrap-inner {
+    margin: 0 auto;
+    width: 1100px;
+  }
+    
   .slideanim {visibility:hidden;}
   .slide {
       animation-name: slide;
