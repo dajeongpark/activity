@@ -7,7 +7,7 @@ public class ReplyDTO {
 	private String writer;
 	private String contents;
 	private Date reg_date;
-	private String dtKind;
+	private int idx;
 	
 	public int getNum() {
 		return num;
@@ -33,11 +33,11 @@ public class ReplyDTO {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
-	public String getDtKind() {
-		return dtKind;
+	public int getIdx() {
+		return idx;
 	}
-	public void setDtKind(String dtKind) {
-		this.dtKind = dtKind;
+	public void setIdx(int idx) {
+		this.idx = idx;
 	}
 
 }

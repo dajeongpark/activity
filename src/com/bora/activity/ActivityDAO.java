@@ -32,9 +32,8 @@ public class ActivityDAO {
 			activityDTO.setTitle(rs.getString("title"));
 			activityDTO.setContents(rs.getString("contents"));
 			activityDTO.setHit(rs.getInt("hit"));
-			activityDTO.setFname(rs.getString("fname"));
-			activityDTO.setOname(rs.getString("oname"));
 			activityDTO.setArea(rs.getString("area"));
+			activityDTO.setPrice(rs.getInt("price"));
 			ar.add(activityDTO);
 		}
 		
@@ -43,12 +42,86 @@ public class ActivityDAO {
 	}
 	
 	//selectOne
+	public ActivityDTO selectOne(int num) throws Exception {
+		Connection con = DBConnector.getConnect();
+		String sql = "select * from activity where num = ?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setInt(1, num);
+		
+		ActivityDTO activityDTO = null;
+		ResultSet rs = st.executeQuery();
+		if(rs.next()) {
+			activityDTO = new ActivityDTO();
+			activityDTO.setNum(rs.getInt("num"));
+			activityDTO.setTitle(rs.getString("title"));
+			activityDTO.setContents(rs.getString("contents"));
+			activityDTO.setHit(rs.getInt("hit"));
+			activityDTO.setArea(rs.getString("area"));
+			activityDTO.setPrice(rs.getInt("price"));
+		}
+		
+		DBConnector.disConnect(rs, st, con);
+		return activityDTO;
+	}
 	
-	//activityWrite
+	//insert
+	public int insert(ActivityDTO activityDTO) throws Exception {
+		Connection con = DBConnector.getConnect();
+		String sql = "insert into activity values (?, ?, ?, 0, ?, ?)";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setInt(1, activityDTO.getNum());
+		st.setString(2, activityDTO.getTitle());
+		st.setString(3, activityDTO.getContents());
+		st.setString(4, activityDTO.getArea());
+		st.setInt(5, activityDTO.getPrice());
+		
+		int result = st.executeUpdate();
+		DBConnector.disConnect(st, con);
+		return result;
+	}
 	
-	//activityUpdate
+	//getNum (sequence 가져오기)
+	public int getNum() throws Exception {
+		Connection con = DBConnector.getConnect();
+		String sql = "select activity_seq.nextval from dual";
+		PreparedStatement st = con.prepareStatement(sql);
+		ResultSet rs = st.executeQuery();
+		rs.next();
+		int num = rs.getInt(1);
+		DBConnector.disConnect(rs, st, con);
+		return num;
+	}
 	
-	//activityDelete
+	//update
+	public int update(ActivityDTO activityDTO) throws Exception {
+		Connection con = DBConnector.getConnect();
+		String sql = "update activity set title=?, area=?, price=?, contents=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, activityDTO.getTitle());
+		st.setString(2, activityDTO.getArea());
+		st.setInt(3, activityDTO.getPrice());
+		st.setString(4, activityDTO.getContents());
+		
+		int result = st.executeUpdate();
+		DBConnector.disConnect(st, con);
+		return result;
+	}
+	
+	//delete
+	public int delete(int num) throws Exception {
+		Connection con = DBConnector.getConnect();
+		String sql = "delete activity where num=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setInt(1, num);
+		
+		int result = st.executeUpdate();
+		DBConnector.disConnect(st, con);
+		return result;
+	}
 	
 	//getCount
 	public int getCount(Search search) throws Exception {

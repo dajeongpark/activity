@@ -5,9 +5,9 @@ public class ActivityDTO {
 	private String title;
 	private String contents;
 	private int hit;
-	private String fname;
-	private String oname;
 	private String area;
+	private int price;
+	private int idx;
 	
 	public int getNum() {
 		return num;
@@ -33,24 +33,23 @@ public class ActivityDTO {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	public String getFname() {
-		return fname;
-	}
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-	public String getOname() {
-		return oname;
-	}
-	public void setOname(String oname) {
-		this.oname = oname;
-	}
 	public String getArea() {
 		return area;
 	}
 	public void setArea(String area) {
 		this.area = area;
 	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
 	
-
 }

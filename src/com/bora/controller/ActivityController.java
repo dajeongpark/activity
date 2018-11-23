@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bora.action.ActionForward;
 import com.bora.activity.ActivityService;
-
 /**
  * Servlet implementation class ActivityController
  */
@@ -39,6 +38,14 @@ public class ActivityController extends HttpServlet {
 		
 		if(command.equals("/activityList.do")) {
 			actionForward = activityService.selectList(request, response);
+		}else if(command.equals("/activitySelectOne.do")){
+			actionForward = activityService.selectOne(request, response);
+		}else if(command.equals("/activityWrite.do")) {
+			actionForward = activityService.insert(request, response);
+		}else if(command.equals("/activityUpdate.do")) {
+			actionForward = activityService.update(request, response);
+		}else if(command.equals("activityDelete.do")) {
+			actionForward = activityService.delete(request, response);
 		}
 		
 		if(actionForward.isCheck()) {
@@ -47,7 +54,6 @@ public class ActivityController extends HttpServlet {
 		}else {
 			response.sendRedirect(actionForward.getPath());
 		}
-		
 		
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

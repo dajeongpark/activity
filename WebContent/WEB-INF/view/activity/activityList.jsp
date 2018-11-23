@@ -37,6 +37,7 @@
 		
 	}
 	.images {
+		width: 100%;
 		display: grid;
 		margin: 0 auto;
 		grid-template-columns: 500px 500px 500px;
@@ -53,9 +54,27 @@
 		top: 50%;
 		left: 50%;
 	}
-	
+	.btnBox {
+		width: 50px;
+		margin: auto;
+	}
+
 	
 </style>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".areas1").click(function(){
+			$(".areas2").hide();
+			var a = $(this).attr('title');
+			$("."+a).show(); //id("#"+a)로 show()하면 한 개만 뜸
+		});
+		$(".areas0").click(function(){
+			$(".areas2").show();
+		});
+	});
+</script>
+
 </head>
 <body>
 <c:import url="../../../temp/header.jsp"></c:import>
@@ -64,39 +83,50 @@
 		
 		<div class="tab">
 			<ul class="areas">
-				<li><a href="#">서울</a></li>
-				<li><a href="#">경기</a></li>
-				<li><a href="#">강원</a></li>
-				<li><a href="#">그 외 지역</a></li>
+				<li class="areas0" id="all_tab" title="all"><a href="#">전체보기</a></li>
+				<li class="areas1" id="s_tab" title="s"><a href="#">서울</a></li>
+				<li class="areas1" id="gg_tab" title="gg"><a href="#">경기</a></li>
+				<li class="areas1" id="gw_tab" title="gw"><a href="#">강원</a></li>
+				<li class="areas1" id="e_tab" title="e"><a href="#">그 외 지역</a></li>
 			</ul>
 		</div>
 		
 		<form class="form-inline">
 			<div class="activityList">
+				
 				<ul class="images" style="list-style-type:none">
-					<li class="image"><a href="#"><img src="https://dimgcdn.ybtour.co.kr/TN/88/88becd05117af13807ed42888469bc77.tn.410x280.jpg"></a>
-						
-						<span class="black" style="display:none; opacity: 0.8;"></span>
-						<span class="cover" style="display:none; opacity: 1;">
-							<span class="box">area</span>
-							<span class="name">surfing</span>
-							<span class="anchor">more</span>
-						</span>
-					</li>
-					<li class="image"><a href="#"><img src="https://dimgcdn.ybtour.co.kr/TN/c7/c73afdcd85db7b06d627dbc5e004e6f7.tn.410x280.jpg"></a></li>
-					<li class="image"><a href="#"><img src="https://dimgcdn.ybtour.co.kr/TN/27/271380b653a4ff7e7634fe63f4bdeb78.tn.410x280.jpg"></a></li>
-					<li class="image"><a href="#"><img src="../../../images/surf04.jpg"></a></li>
-					<li class="image"><a href="#"><img src="../../../images/surf05.jpg"></a></li>
-					<li class="image"><a href="#"><img src="../../../images/surf06.jpg"></a></li>
-					<li class="image"><a href="#"><img src="../../../images/surf07.jpg"></a></li>
-					<li class="image"><a href="#"><img src="../../../images/surf08.jpg"></a></li>
-					<li class="image"><a href="#"><img src="../../../images/surf09.jpg"></a></li>
+					<c:forEach items="${list}" var="activityDTO">
+						<c:if test="${activityDTO.area eq 's'}">
+							<li class="areas2 s" id="s"><a href="./activitySelectOne.do?num=${activityDTO.num}">${activityDTO.title}</a></li> <!-- title을 사진으로 바꿔야 함 -->
+						</c:if>
+						<c:if test="${activityDTO.area eq 'gg'}">
+							<li class="areas2 gg" id="gg"><a href="./activitySelectOne.do?num=${activityDTO.num}">${activityDTO.title}</a></li> <!-- title을 사진으로 바꿔야 함 -->
+						</c:if>
+						<c:if test="${activityDTO.area eq 'gw'}">
+							<li class="areas2 gw" id="gw"><a href="./activitySelectOne.do?num=${activityDTO.num}">${activityDTO.title}</a></li> <!-- title을 사진으로 바꿔야 함 -->
+						</c:if>
+						<c:if test="${activityDTO.area eq 'e'}">
+							<li class="areas2 e" id="e"><a href="./activitySelectOne.do?num=${activityDTO.num}">${activityDTO.title}</a></li> <!-- title을 사진으로 바꿔야 함 -->
+						</c:if>
+					</c:forEach>
 				</ul>
+				
 			</div>
 		</form>
 		
 	</div>
 </div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="btnBox">
+		<%-- <c:if test="${not empty member and member.kind eq '관리자'}"> --%>
+			<a href="./activityWrite.do" class="btn btn-primary">WRITE</a>
+		<%-- </c:if> --%>
+		</div>
+	</div>
+</div>
+
 <c:import url="../../../temp/footer.jsp"></c:import>
 </body>
 </html>

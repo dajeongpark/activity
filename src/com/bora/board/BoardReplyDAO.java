@@ -3,9 +3,10 @@ package com.bora.board;
 public interface BoardReplyDAO {
 	
 	//reply
-	public int reply(BoardReplyDTO boardReplyDTO) throws Exception;
+	public int reply(BoardReplyDTO brDTO) throws Exception;
 	
 	//replyUpdate
-	public int replyUpdate(BoardReplyDTO boardReplyDTO) throws Exception;
-
+	public int replyUpdate(BoardReplyDTO brDTO) throws Exception;
+	
+	
 }

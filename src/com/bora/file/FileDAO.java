@@ -39,7 +39,7 @@ public class FileDAO {
 	//insert
 	public int insert(FileDTO fileDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql = "insert into upload values (file_seq.nextval,?,?,?,?)";
+		String sql = "insert into upload values (upload_seq.nextval,?,?,?,?)";
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		st.setString(1, fileDTO.getFname());
@@ -61,6 +61,19 @@ public class FileDAO {
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		st.setInt(1, fnum);
+		
+		int result = st.executeUpdate();
+		DBConnector.disConnect(st, con);
+		return result;
+	}
+	
+	//deleteAll
+	public int deleteAll(int num) throws Exception {
+		Connection con = DBConnector.getConnect();
+		String sql = "delete upload where num=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setInt(1, num);
 		
 		int result = st.executeUpdate();
 		DBConnector.disConnect(st, con);
