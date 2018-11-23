@@ -147,7 +147,7 @@ public class MemberService {
 				actionForward.setCheck(false);
 				actionForward.setPath("../index.jsp");
 			}else {
-				request.setAttribute("message", "Login Fail");
+				request.setAttribute("message", "아이디 또는 비밀번호를 다시 확인하세요.");
 				actionForward.setCheck(true);
 				actionForward.setPath("../WEB-INF/view/member/memberLogin.jsp");
 			}

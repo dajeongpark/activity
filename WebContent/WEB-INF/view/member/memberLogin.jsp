@@ -27,7 +27,10 @@
 			    <div class="form-group">
 			      <label for="kind">KIND:</label>
 			      <p>admin: <input type="radio" id="kind" name="kind" value="admin"> user: <input type="radio" id="kind" name="kind" value="user" checked="checked"></p>
-			    </div> 
+			    </div>
+
+			    <p style="color: red">${message}</p><br>
+
 			 <button type="submit" class="btn btn-default">LOGIN</button>
 		</form>
 	</div>
