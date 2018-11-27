@@ -47,8 +47,8 @@
 	    </div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <a href="./memberUpdate.do" class="btn btn-default">UPDATE</a>
-		<a href="./memberDelete.do" class="btn btn-default">DELETE</a>
+        <a href="./memberUpdate.do" class="btn btn-default">회원 정보 수정</a>
+		<a href="./memberDelete.do" class="btn btn-default">회원 탈퇴</a>
       </div>
     </div>
   </form>
