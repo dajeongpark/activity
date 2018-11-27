@@ -7,13 +7,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../../../temp/bootStrap.jsp"/>
+<script type="text/javascript">
+	$(function() {
+		$("#del").click(function() {
+			if(confirm("회원 탈퇴를 하시겠습니까?")){
+				location.replace("./memberDelete.do")
+			}else {
+				return false;
+			}
+		});
+	});
+</script>
 </head>
 <body>
 <c:import url="../../../temp/header.jsp"/>
 
 <div class="container-fluid">
 	<div class="row">
-	  <form class="form-horizontal" action="./memberUpdate.do" method="post">
+	  <form id="frm" class="form-horizontal" action="./memberUpdate.do" method="post">
 	  	<h2>회원 정보</h2>
 	    <div class="form-group">
 	      <label class="control-label col-sm-2" for="id">ID:</label>
@@ -48,7 +59,8 @@
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
         <a href="./memberUpdate.do" class="btn btn-default">회원 정보 수정</a>
-		<a href="./memberDelete.do" class="btn btn-default">회원 탈퇴</a>
+        <input type="button" id="del" class="btn btn-default" value="회원 탈퇴">
+		<!-- <a href="./memberDelete.do" class="btn btn-default">회원 탈퇴</a> -->
       </div>
     </div>
   </form>

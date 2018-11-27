@@ -45,12 +45,12 @@ public class MemberService {
 		MemberDTO memberDTO = null;
 		HttpSession session = request.getSession();
 		memberDTO = (MemberDTO)session.getAttribute("member");
-		String message = "Delete Fail";
+		String message = "회원 탈퇴에 실패하였습니다.";
 		
 		try {
 			int result = memberDAO.delete(memberDTO);
 			if(result>0) {
-				message = "Delete Success";
+				message = "회원 탈퇴가 처리되었습니다.";
 				session.invalidate();
 			}
 		} catch (Exception e) {

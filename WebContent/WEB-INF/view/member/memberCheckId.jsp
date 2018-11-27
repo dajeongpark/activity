@@ -22,11 +22,11 @@
 <h2>아이디 중복 체크</h2>
 	<div>
 		<c:if test="${result eq '0'}">
-			<h3>${param.id} 사용 가능한 ID입니다.</h3>
+			<p style="color: green; font-size: 17px">${param.id} 사용 가능한 ID입니다.</p>
 			<button id="btn1" class="btn btn-default">사용하기</button>
 		</c:if>
 		<c:if test="${result eq '1'}">
-			<h3>${param.id} 사용 불가능한 ID입니다.</h3>
+			<p style="color: red; font-size: 17px">${param.id} 사용 불가능한 ID입니다.</p>
 		</c:if>
 	</div>
 	
