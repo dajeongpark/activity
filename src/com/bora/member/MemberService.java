@@ -79,13 +79,15 @@ public class MemberService {
 				memberDTO.setName(request.getParameter("name"));
 				memberDTO.setEmail(request.getParameter("email"));
 				memberDTO.setDomain(request.getParameter("domain"));
-				memberDTO.setPhone(request.getParameter("phone"));
 				memberDTO.setBirth(request.getParameter("birth"));
+				memberDTO.setPhone1(request.getParameter("phone1"));
+				memberDTO.setPhone2(request.getParameter("phone2"));
+				memberDTO.setPhone3(request.getParameter("phone3"));
 
 				int result = memberDAO.update(memberDTO);
 				if(result>0) {
 					request.getSession().setAttribute("member", memberDTO);
-					message="Update Success";
+					message="회원 정보가 수정되었습니다.";
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -170,9 +172,11 @@ public class MemberService {
 			memberDTO.setName(request.getParameter("name"));
 			memberDTO.setEmail(request.getParameter("email"));
 			memberDTO.setDomain(request.getParameter("domain"));
-			memberDTO.setPhone(request.getParameter("phone"));
 			memberDTO.setBirth(request.getParameter("birth"));
 			memberDTO.setKind(request.getParameter("kind"));
+			memberDTO.setPhone1(request.getParameter("phone1"));
+			memberDTO.setPhone2(request.getParameter("phone2"));
+			memberDTO.setPhone3(request.getParameter("phone3"));
 			
 			try {
 				int result = memberDAO.join(memberDTO);

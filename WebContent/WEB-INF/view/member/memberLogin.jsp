@@ -26,7 +26,7 @@
 			    </div>
 			    <div class="form-group">
 			      <label for="kind">KIND:</label>
-			      <p>admin: <input type="radio" id="kind" name="kind" value="admin"> user: <input type="radio" id="kind" name="kind" value="user" checked="checked"></p>
+			      <p>관리자: <input type="radio" id="kind" name="kind" value="admin"> 일반회원: <input type="radio" id="kind" name="kind" value="user" checked="checked"></p>
 			    </div>
 
 			    <p style="color: red">${message}</p><br>

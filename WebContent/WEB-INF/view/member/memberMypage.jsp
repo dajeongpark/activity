@@ -47,7 +47,7 @@
 	    <div class="form-group">
 	      <label class="control-label col-sm-2" for="id">PHONE:</label>
 	      <div class="col-sm-10">
-	        <p class="form-control-static">${member.phone}</p>
+	        <p class="form-control-static">${member.phone1}-${member.phone2}-${member.phone3}</p>
 	      </div>
 	    </div>
 	    <div class="form-group">
