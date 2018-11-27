@@ -19,7 +19,7 @@ public class NoticeDAO implements BoardDAO{
 		Connection con = DBConnector.getConnect();
 		String sql = "select * from "
 				+ "(select rownum R, N.* from "
-				+ "(select num,title,writer,contents,reg_date,hit from notice "
+				+ "(select num,title,writer,reg_date,hit from notice "
 				+ "where "+rowNumber.getSearch().getKind()+" like ? "
 				+ "order by num desc) N) "
 				+ "where R between ? and ?";
@@ -39,7 +39,7 @@ public class NoticeDAO implements BoardDAO{
 			noticeDTO.setHit(rs.getInt("hit"));
 			ar.add(noticeDTO);
 		}
-		DBConnector.disConnect(st, con);
+		DBConnector.disConnect(rs, st, con);
 		
 		return ar;
 	}

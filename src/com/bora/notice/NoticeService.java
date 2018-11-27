@@ -40,7 +40,7 @@ public class NoticeService implements BoardReplyService{
 			request.setAttribute("board", "notice");
 			actionForward.setPath("../WEB-INF/view/board/boardList.jsp");
 		} catch (Exception e) {
-			request.setAttribute("message", "안녕");
+			request.setAttribute("message", "fail");
 			request.setAttribute("path", "../index.jsp");
 			actionForward.setPath("../WEB-INF/view/common/result.jsp");
 			e.printStackTrace();
@@ -80,7 +80,8 @@ public class NoticeService implements BoardReplyService{
 
 	@Override
 	public ActionForward insert(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		ActionForward actionForward = new ActionForward();
+		
 		return null;
 	}
 
