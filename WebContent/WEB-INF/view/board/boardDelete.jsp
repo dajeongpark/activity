@@ -6,6 +6,10 @@
     int num=Integer.parseInt(request.getParameter("num"));
     QnaDAO qnaDAO = new QnaDAO();
     int result=qnaDAO.delete(num); //해보고 안되면 삭제ㄱ
+    	String str="삭제 실패하셨습니다.";
+    if(result>0){
+    	str = "삭제 완료하셨습니다.";
+    }
     %>
 <!DOCTYPE html>
 <html>
@@ -15,7 +19,7 @@
 <script type="text/javascript">
 <%if (result>0){%>
 alert('Delete Success');
-location.href="./list.jsp";
+location.href="./boardlist.jsp";
 <%}else {%>
 alert("Delete Fail");
 history.go(-1);

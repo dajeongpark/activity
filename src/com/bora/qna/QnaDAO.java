@@ -109,12 +109,40 @@ public class QnaDAO implements BoardDAO, BoardReplyDAO {
 		return ar;
 	}
 
-
+	/* insert 출력 /insert를 출력했을때, 1은 성공 0은 실패
+	 * public static void main(String[] args) {
+		QnaDAO qnaDAO = new QnaDAO(); 
+		BoardDTO boardDTO = new BoardDTO();
+		boardDTO.setTitle("title");
+		boardDTO.setContents("contents");
+		boardDTO.setWriter("writer");
+		try {
+			//변수 선언
+			//데이터타입 변수명
+			int insert=0;
+			insert=qnaDAO.insert(boardDTO);
+			System.out.println(insert);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	*/
+	
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql = "insert into qna values(?,?,?,?,sysdate,0,)";
-		return 0;
+		String sql = "insert into qna values(qna_seq.nextval,?,?,?,sysdate,0,0,0,0)";
+		PreparedStatement st= con.prepareStatement(sql); //미리전송보기
+		
+		st.setString(1, boardDTO.getTitle());
+		st.setString(2, boardDTO.getContents());
+		st.setString(3, boardDTO.getWriter());
+		
+		int result= st.executeUpdate();
+		
+		DBConnector.disConnect(st, con);
+		return result;
 	}
 
 	@Override

@@ -18,7 +18,8 @@
 <script type="text/javascript">
 	$(function() {
 		
-	/* 	CKEDITOR.replace("contents"); */
+		CKEDITOR.replace("contents");
+		
 		$("#btn").click(function() {
 			var title = $("#title").val();
 			if(title != ''){
@@ -78,7 +79,8 @@
 	
 		 
 		<input type="button" value="File add">
-		<div class="files" id="file"></div>
+		<div class="files" id="file">
+		</div>
 		<button type="button" id="btn" class="btn btn-default">WRITER</button>
 	</form>
 	</div>

@@ -68,11 +68,12 @@ strong{
 							<input type="text" class="form-control" id="search"
 								placeholder="Enter search" name="search">
 						</div>
-							<button type="submit" class="btn btn-default">Submit</button>
+							<button type="submit" class="btn btn-default">Search</button>
 					</form>
+					<button type="text"></button>
 				</div>
 				<table class="table table-hover" summary="번호,제목,작성자,작성한 날짜, 조회수">
-					<tbody><tr>
+					<tr>
 						<td>NUM</td>
 						<td>&nbsp;&nbsp;&nbsp;TITLE&nbsp;</td>
 						<td>WRITER</td>
@@ -96,7 +97,9 @@ strong{
 					</c:forEach>
 
 
-				</tbody></table>
+				</table>
+				
+				<!-- <a href="./boardWrite.jsp" class="btn btn-default">Write</a> -->
 			</div>
 			<div class="container-fluid">
 				<div class="row">
@@ -120,11 +123,12 @@ strong{
 						</c:if>
 						<li><a href="./${board}List.do?curPage=${pager.totalPage}"><span
 								class="glyphicon glyphicon-forward"></span></a></li>
+								
 					</ul>
 				</div>
 			</div>
 
-			<c:choose>
+			 <c:choose>
 				<c:when test="${board eq 'notice'}">
 					<c:if test="${not empty member and member.kind eq 'T'}">
 						<c:import url="../../../temp/writeButton.jsp"></c:import>
@@ -137,7 +141,7 @@ strong{
 					</c:if>
 				</c:otherwise>
 
-			</c:choose>
+			</c:choose> 
 
 		</div>
 	</div>

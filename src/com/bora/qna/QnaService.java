@@ -22,8 +22,22 @@ public class QnaService implements BoardReplyService {
 	
 	@Override
 	public ActionForward insert(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+		ActionForward actionForward = new ActionForward();
+		BoardDTO boardDTO = new BoardDTO(); //QNADAO안에 insert랑 값이 같고, 
+		boardDTO.setTitle(request.getParameter("title")); //set : 입력한 값을 getParameter를 통해 가
+		boardDTO.setContents(request.getParameter("contents"));
+		boardDTO.setWriter(request.getParameter("writer"));
+		try {
+			
+			int insert=qnaDAO.insert(boardDTO);
+			System.out.println(insert);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return actionForward;
 	}
 
 	@Override
