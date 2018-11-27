@@ -29,17 +29,12 @@ public class QnaController extends HttpServlet {
         qnaService = new QnaService();
         // TODO Auto-generated constructor stub
     }
-    /* @Override 
-    public void init(ServletConfig config) throws ServletException {
-    	String board = config.getInitParameter("board");
-    }
-*/
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String board = this.getServletConfig().getInitParameter("board");
+		String board = this.getServletContext().getInitParameter("board");
 		System.out.println(board);
 		
 		String command = request.getPathInfo();
@@ -54,9 +49,9 @@ public class QnaController extends HttpServlet {
 			actionForward = qnaService.insert(request, response);
 		}else if(command.equals("/boardUpdate.do")) {
 			actionForward = qnaService.update(request, response);
-		}else if(command.equals("/boardDelete.do")) {
+		}/*else if(command.equals("/boardDelete.do")) {
 			actionForward =qnaService.delete(request, response);
-		}
+		}*/
 			
 		
 		if(actionForward.isCheck()) {

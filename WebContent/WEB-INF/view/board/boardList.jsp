@@ -64,17 +64,17 @@ strong{
 								<option>Title</option>
 								<option>Contents</option>
 								<option>Writer</option>
-							</select> <input type="text" class="form-control" id="search"
+							</select> 
+							<input type="text" class="form-control" id="search"
 								placeholder="Enter search" name="search">
-							<button type="submit" class="btn btn-default">Search</button>
 						</div>
-
+							<button type="submit" class="btn btn-default">Submit</button>
 					</form>
 				</div>
 				<table class="table table-hover" summary="번호,제목,작성자,작성한 날짜, 조회수">
-					<tr>
+					<tbody><tr>
 						<td>NUM</td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;TITLE&nbsp;</td>
+						<td>&nbsp;&nbsp;&nbsp;TITLE&nbsp;</td>
 						<td>WRITER</td>
 						<td>DATE</td>
 						<td>HIT</td>
@@ -83,11 +83,11 @@ strong{
 						<tr>
 							<td>${boardDTO.num}</td>
 							<td><a href="./${board}SelectOne.do?num=${boardDTO.num}">
-									<c:catch>
-										<c:forEach begin="1" end="${boardDTO.depth}">
+							<c:catch>
+						<c:forEach begin="1" end="${boardDTO.depth}">
 							--
 						</c:forEach>
-									</c:catch> ${boardDTO.title}
+								</c:catch> ${boardDTO.title}
 							</a></td>
 							<td>${boardDTO.writer}</td>
 							<td>${boardDTO.reg_date}</td>
@@ -96,7 +96,7 @@ strong{
 					</c:forEach>
 
 
-				</table>
+				</tbody></table>
 			</div>
 			<div class="container-fluid">
 				<div class="row">
@@ -110,8 +110,7 @@ strong{
 						</c:if>
 
 
-						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}"
-							var="i">
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 							<li><a href="./${board}List.do?curPage=${i}">${i}</a></li>
 						</c:forEach>
 

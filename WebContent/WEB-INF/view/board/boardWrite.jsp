@@ -1,3 +1,5 @@
+<%@page import="com.bora.notice.NoticeDTO"%>
+<%@page import="com.bora.notice.NoticeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
@@ -16,14 +18,13 @@
 <script type="text/javascript">
 	$(function() {
 		
-		CKEDITOR.replace("contents");
-		
+	/* 	CKEDITOR.replace("contents"); */
 		$("#btn").click(function() {
 			var title = $("#title").val();
 			if(title != ''){
 				$("#frm").submit();
 			}else {
-				alert("Title을 입력");
+				alert("Title을 입력하세요");
 			}
 		});
 		var count=1;
@@ -41,12 +42,11 @@
 			}else {
 				alert("파일은 2개까지 가능합니다.")
 			}
-	
+		});
 		$("#file").on("click", ".remove", function() {
 			var t = $(this).attr("title");
 			$("#f"+t).remove();
 			count--;
-		});
 	});
 		
 	});
@@ -54,11 +54,11 @@
 </script>	
 
 </head>
-<body>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 <c:import url="../../../temp/header.jsp"></c:import>
 <div class="container-fluid">
  <div class="row">
-	<form action="./${board}write.do" method="Post" enctype="multipart/form-data">
+	<form id="frm" action="./${board}write.do" method="Post" enctype="multipart/form-data">
 		
 		<div class="form-grop">
 			<label class="title">title: </label>
@@ -72,7 +72,8 @@
 				
 		<div class="form-grop">
 			<label class="contents">contents: </label>
-			<input type="text" class="form-control" id="contents" placeholder="Enter contents" name="contents"> 
+			<textarea rows="10" cols="" class="form-control" name="contents"></textarea>
+			<!-- <input type="text" class="form-control" id="contents" placeholder="Enter contents" name="contents">  -->
 		</div>
 	
 		 

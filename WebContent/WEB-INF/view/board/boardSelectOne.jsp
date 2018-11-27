@@ -26,9 +26,10 @@
 			<a href="./${requestScope.board}List.do">List</a> 
 			<a href="./${requestScope.board}Update.do?num=${boardDTO.num}">Update</a>
 			<a href="./${requestScope.board}Delete.do?num=${boardDTO.num}">Delete</a>
-			<a href="./${requestScope.board}Reply.do?num=${boardDTO.num}">Reply</a>
-		<c:if test="${board ne 'notice'}">
-			<a href="./${board}Reply.do">Reply</a>
+			<a href="./${requestScope.board}Replyform.do?num=${boardDTO.num}">Reply</a>
+		<c:if test="${board ne 'notice'}"><!-- notice랑 board는 같지 않다 -->
+		
+		<a href="./${board}Replyform.do">Reply</a> 
 		</c:if>
 		</div>
 	</div>

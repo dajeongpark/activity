@@ -16,8 +16,8 @@ import com.bora.page.Search;
 import com.bora.util.DBConnector;
 
 public class QnaDAO implements BoardDAO, BoardReplyDAO {
-	//답글
-	@Override 
+	
+	@Override			 //답글
 	public int reply(BoardReplyDTO boardReplyDTO) throws Exception {
 		Connection con =DBConnector.getConnect();
 		String sql="insert into qna values(qna_seq.nextval,?,?,?,sysdate,0,?,?,?)";
@@ -35,21 +35,44 @@ public class QnaDAO implements BoardDAO, BoardReplyDAO {
 		return result;
 	}
 	
-	@Override
+	@Override 		//replyUpdate
 	public int replyUpdate(BoardReplyDTO parent) throws Exception {
-		Connection con=DBConnector.getConnect();
+		Connection con= DBConnector.getConnect();
 		String sql="update qna set step=step+1 where ref=? and step>?";
 		
 		PreparedStatement st= con.prepareStatement(sql);
 		st.setInt(1, parent.getRef());
 		st.setInt(2, parent.getStep());
-		st.setInt(3, parent.getDepth());
 		int result=st.executeUpdate();
 		
 		DBConnector.disConnect(st, con);
 		return result;
 	}
 
+	@Override		//selectOne
+	public BoardDTO selectOne(int num) throws Exception {
+		QnaDTO qnaDTO=null;
+		Connection con = DBConnector.getConnect();
+		String sql ="select * from qna where num=?";
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setInt(1, num);
+		ResultSet rs = st.executeQuery();
+		
+		if(rs.next()) {
+			qnaDTO = new QnaDTO();
+			qnaDTO.setNum(rs.getInt("num"));
+			qnaDTO.setTitle(rs.getString("title"));
+			qnaDTO.setWriter(rs.getString("writer"));
+			qnaDTO.setContents(rs.getString("contents"));
+			qnaDTO.setReg_date(rs.getDate("reg_date"));
+			qnaDTO.setHit(rs.getInt("hit"));	
+		}
+		
+		DBConnector.disConnect(rs, st, con);
+		return qnaDTO;
+	}
+	
 	@Override
 	public List<BoardDTO> selectList(RowNumber rowNumber) throws Exception {
 		Connection con = DBConnector.getConnect();
@@ -86,28 +109,6 @@ public class QnaDAO implements BoardDAO, BoardReplyDAO {
 		return ar;
 	}
 
-	@Override
-	public BoardDTO selectOne(int num) throws Exception {
-		Connection con = DBConnector.getConnect();
-		String sql = "select * from qna where num=?";
-		
-		PreparedStatement st = con.prepareStatement(sql);
-		st.setInt(1, num);
-		ResultSet rs = st.executeQuery();
-		QnaDTO qnaDTO = null;
-		if(rs.next()) {
-			qnaDTO = new QnaDTO();
-			qnaDTO.setNum(rs.getInt("num"));
-			qnaDTO.setTitle(rs.getString("title"));
-			qnaDTO.setWriter(rs.getString("writer"));
-			qnaDTO.setContents(rs.getString("contents"));
-			qnaDTO.setReg_date(rs.getDate("reg_date"));
-			qnaDTO.setHit(rs.getInt("hit"));
-		}
-		
-		DBConnector.disConnect(rs, st, con);
-		return qnaDTO;
-	}
 
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
