@@ -91,10 +91,23 @@
 	} */
 	
 	$(function() {
+		var curPage=1;
 		$("#commentBtn").click(function() {
-			$("#frm").submit();
+			$.post("./replyWrite.do?curPage="+curPage, function(data) {
+				alert("clicked");
+				$(".replyTable").html(data);
+			});
+			curPage++;
 		});
 	});
+	
+	function deleteFunction() {
+		if(confirm("정말로 삭제하시겠습니까?")){
+			location.href='./activityDelete.do?num=${activityDTO.num}'
+		}else{
+			
+		}
+	}
 	
 	
 	
@@ -114,34 +127,32 @@
 				<tr> <td>CONTENTS</td> </tr>
 				<tr>
 					<td>
-						AREA	 : ${activityDTO.area}<br>
-						PRICE	 : ${activityDTO.price}원(1인)<br>
-						CONTENTS : <br>${activityDTO.contents}
-						
+						<c:forEach items="${files}" var="fileDTO">
+							<img src="../upload/${fileDTO.fname}"><br>
+						</c:forEach>
+						${firstFile}
+						<br>${activityDTO.contents}<br>
 						<div class="btnBox">
 							<button onclick="openReserve()" class="btn btn-primary">예약하기</button>
 							<button onclick="location.href='./activityList.do'" class="btn btn-primary">목록으로 돌아가기</button>
 							
-							<c:if test="${not empty member and member.kind eq '관리자'}">
-							<c:import url="">
-							<button onclick="location.href='./activityUpdate.do?num=${activityDTO.num}'" class="btn btn-primary">수정</button>
-							<button onclick="location.href='./activityDelete.do?num=${activityDTO.num}'" class="btn btn-primary">삭제</button>
-							</c:import>
-							</c:if>
+							<%-- <c:if test="${not empty member and member.kind eq '관리자'}"> --%>
+							<c:import url="../../../temp/updateDeleteButton.jsp"></c:import>
+							<%-- </c:if> --%>
 							
 						</div>
 						
 						<div class="row second">
-						
+							
 							<table class="replyWriteTable">
 								<tr class="replySpace">
 									<td colspan=3>
-										<form class="form-horizontal" id="frm" method="post">
+										<form class="form-horizontal" action="#" id="frm" method="post">
 											<form class="form-inline">
 												<div class="commentBox">
 													<label class="control-label col-sm-2">Comment</label>
 													<div class="col-sm-7">
-														<input type="text" class="form-control" id="contents" placeholder="Enter Comment" name="contents">
+														<input type="text" class="form-control" id="contents" placeholder="Enter Comment" name="contents" autocomplete="off">
 													</div>
 													<input type="button" id="commentBtn" class="btn btn-default" value="댓글 달기">
 												</div>
@@ -150,7 +161,7 @@
 									</td>
 								</tr>
 							</table>
-								
+							
 							<table class="replyTable">
 								<c:forEach items="${comments}" var="replyDTO">
 									<tr> <td>${replyDTO.writer}</td> <td>${replyDTO.contents}</td> <td>${replyDTO.reg_date}</td> </tr>

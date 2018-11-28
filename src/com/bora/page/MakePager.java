@@ -12,7 +12,7 @@ public class MakePager {
 	private Search search;
 	
 	public MakePager(int curPage, String search, String kind) {
-		this(curPage, 10, search, kind); //생성자 안에서 다른 생성자 호출하기 // use this one instead
+		this(curPage, 9, search, kind); //생성자 안에서 다른 생성자 호출하기 // use this one instead
 		
 		/*this.curPage = curPage;
 		this.search = new Search();

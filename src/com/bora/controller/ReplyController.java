@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bora.action.ActionForward;
-import com.bora.activity.ActivityService;
+import com.bora.reply.ReplyService;
 
 /**
  * Servlet implementation class ReplyController
@@ -18,14 +18,14 @@ import com.bora.activity.ActivityService;
 @WebServlet("/ReplyController")
 public class ReplyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ActivityService activityService;
+	private ReplyService replyService;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ReplyController() {
         super();
-        activityService = new ActivityService();
+        replyService = new ReplyService();
     }
 
 	/**
@@ -35,7 +35,13 @@ public class ReplyController extends HttpServlet {
 		String command = request.getPathInfo();
 		ActionForward actionForward = new ActionForward();
 		
-		
+		if(command.equals("/replyWrite.do")) {
+			actionForward = replyService.insert(request, response);
+		}else if(command.equals("/replyUpdate.do")) {
+			actionForward = replyService.update(request, response);
+		}else if(command.equals("/replyDelete.do")) {
+			actionForward = replyService.delete(request, response);
+		}
 		
 		if(actionForward.isCheck()) {
 			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
@@ -43,6 +49,7 @@ public class ReplyController extends HttpServlet {
 		}else {
 			response.sendRedirect(actionForward.getPath());
 		}
+		
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

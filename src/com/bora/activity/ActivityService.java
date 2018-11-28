@@ -15,22 +15,17 @@ import com.bora.page.MakePager;
 import com.bora.page.RowNumber;
 import com.bora.reply.ReplyDAO;
 import com.bora.reply.ReplyDTO;
+import com.bora.reply.ReplyService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.bora.page.Pager;
 
 public class ActivityService {
 	
-	private ActionForward actionForward;
 	private ActivityDAO activityDAO;
-	private ReplyDAO replyDAO;
-	private ReplyDTO replyDTO;
 	
 	public ActivityService() {
-		actionForward = new ActionForward();
 		activityDAO = new ActivityDAO();
-		replyDAO = new ReplyDAO();
-		replyDTO = new ReplyDTO();
 	}
 	
 	//selectList
@@ -43,10 +38,8 @@ public class ActivityService {
 		} catch (Exception e) {
 			
 		}
-		String kind = request.getParameter("kind");
-		String search = request.getParameter("search");
 		
-		MakePager mk = new MakePager(curPage, search, kind);
+		MakePager mk = new MakePager(curPage, "", "");
 		RowNumber rowNumber = mk.makeRow();
 		
 		try {
@@ -55,6 +48,7 @@ public class ActivityService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		String path=request.getPathInfo();
 		path = path.replace(".do", ".jsp");
 		
@@ -80,6 +74,7 @@ public class ActivityService {
 			List<FileDTO> ar = fileDAO.selectList(fileDTO);
 			request.setAttribute("files", ar);
 			request.setAttribute("activityDTO", activityDTO);
+			request.setAttribute("firstFile", ar.get(0).getFname());
 			
 			actionForward.setCheck(true);
 			actionForward.setPath("../WEB-INF/view/activity/activitySelectOne.jsp");
@@ -92,17 +87,8 @@ public class ActivityService {
 		
 		/* ==================== replyList ==================== */
 		
-		try {
-			int replyNum = Integer.parseInt(request.getParameter("num"));
-			List<ReplyDTO> replyAr = replyDAO.selectList(replyNum);
-			request.setAttribute("comments", replyAr);
-			request.setAttribute("replyDTO", replyDTO);
-		} catch (Exception e1) {
-			
-			e1.printStackTrace();
-		}
-		actionForward.setCheck(true);
-		actionForward.setPath("../WEB-INF/view/activity/activitySelectOne.jsp");
+		ReplyService replyService = new ReplyService();
+		replyService.selectList(request, response);
 		
 		/* ==================== replyList ==================== */
 		
@@ -115,41 +101,13 @@ public class ActivityService {
 		return actionForward;
 	}
 	
-	//replyInsert
-	public ActionForward replyInsert(HttpServletRequest request, HttpServletResponse response) {
-		ActionForward actionForward = new ActionForward();
-		
-		
-		/* =================== replyInsert =================== */
-		
-		ReplyDTO replyDTO = new ReplyDTO();
-		
-		replyDTO.setContents(request.getParameter("contents"));
-		try {
-			replyDAO.insert(replyDTO);
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-			
-		actionForward.setCheck(true);
-		actionForward.setPath("../WEB-INF/view/activity/activitySelectOne.jsp");
-		
-		/* =================== replyInsert =================== */
-		
-		
-		
-		return actionForward;
-	}
-	
-	
 	//insert
 	public ActionForward insert(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
 		
 		String method = request.getMethod();
 		if(method.equals("POST")) {
-			String message = "Fail";
+			String message = "Insert Fail";
 			String path = "./activityList.do";
 			int maxSize = 1024*1024*10;
 			String save = request.getServletContext().getRealPath("upload");
@@ -182,7 +140,7 @@ public class ActivityService {
 						fileDAO.insert(fileDTO);
 					}
 					
-					message = "Success";
+					message = "Insert Success";
 					actionForward.setCheck(true);
 					actionForward.setPath("../WEB-INF/view/common/result.jsp");
 					
@@ -307,6 +265,34 @@ public class ActivityService {
 		
 		actionForward.setCheck(true);
 		actionForward.setPath("../WEB-INF/view/common/result.jsp");
+		
+		return actionForward;
+	}
+	
+	//more
+	public ActionForward more(HttpServletRequest request, HttpServletResponse response) {
+		ActionForward actionForward = new ActionForward();
+		ActivityDTO activityDTO = new ActivityDTO();
+		
+		int curPage = Integer.parseInt(request.getParameter("curPage"));
+		
+		MakePager mk = new MakePager(curPage, "", "");
+		RowNumber rowNumber = mk.makeRow();
+		
+		List<ActivityDTO> ar;
+		try {
+			ar = activityDAO.selectList(rowNumber);
+			request.setAttribute("list", ar);
+			request.setAttribute("activityDTO", activityDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String path = request.getPathInfo();
+		path = path.replace(".do", ".jsp");
+		
+		actionForward.setCheck(true);
+		actionForward.setPath("../WEB-INF/view/activity/"+path);
 		
 		return actionForward;
 	}

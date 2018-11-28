@@ -55,21 +55,18 @@
 			$("#area").val("s");
 		});
 		$("#gg").click(function() {
-			$("#area").val() = 'gg';
 			$("#selectArea").hide();
 			$(".areas").hide();	
 			$(".gg").show();
 			$("#area").val("gg");
 		});
 		$("#gw").click(function() {
-			$("#area").val() = 'gw';
 			$("#selectArea").hide();
 			$(".areas").hide();	
 			$(".gw").show();
 			$("#area").val("gw");
 		});
 		$("#e").click(function() {
-			$("#area").val() = 'e';
 			$("#selectArea").hide();
 			$(".areas").hide();	
 			$(".e").show();
@@ -89,7 +86,7 @@
 		
 			<div class="form-group">
 				<label for="title">TITLE: </label>
-				<input type="text" class="form-control" id="title" placeholder="Enter Title : title(area)" name="title">
+				<input type="text" class="form-control" id="title" placeholder="Enter Title : title(area)" name="title" autocomplete="off">
 			</div>
 			
 			<div class="form-group dropdown">
@@ -136,7 +133,7 @@
 			
 			<div class="form-group">
 				<label for="price">PRICE: </label>
-				<input type="text" class="form-control" id="price" placeholder="Enter Price" name="price">
+				<input type="text" class="form-control" id="price" placeholder="Enter Price" name="price" autocomplete="off">
 			</div>
 			
 			<div class="form-group">
@@ -144,7 +141,12 @@
 				<textarea rows="25" cols="" class="form-control" id="contents" placeholder="Enter Contents" name="contents"></textarea>
 			</div>
 			
-			<input type="button" id="add" value="File Add">				
+			<input type="button" id="addFirst" value="File for Title" name="addFirst">
+			<div class="files" id="file">
+				
+			</div>
+			
+			<input type="button" id="add" value="File Add">	
 			<div class="files" id="file">
 				
 			</div>

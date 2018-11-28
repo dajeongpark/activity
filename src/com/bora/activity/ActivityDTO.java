@@ -2,18 +2,23 @@ package com.bora.activity;
 
 public class ActivityDTO {
 	private int num;
+	private String writer;
 	private String title;
 	private String contents;
 	private int hit;
 	private String area;
 	private int price;
-	private int idx;
-	
 	public int getNum() {
 		return num;
 	}
 	public void setNum(int num) {
 		this.num = num;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	public String getTitle() {
 		return title;
@@ -45,11 +50,7 @@ public class ActivityDTO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int getIdx() {
-		return idx;
-	}
-	public void setIdx(int idx) {
-		this.idx = idx;
-	}
+	
+	
 	
 }

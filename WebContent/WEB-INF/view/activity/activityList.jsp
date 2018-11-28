@@ -6,11 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- <link rel="stylesheet" type="text/css" href="../../../css/reset.css"> -->
 <c:import url="../../../temp/bootStrap.jsp"></c:import>
 <style>
+/* *{margin:0; padding:0;} */
 	.areas {
 		list-style-type: none;
-		margin: 0 auto;
+		margin: 1% auto;
 		/* padding: 0; */
 		overflow: hidden;
 		background-color: lightblue;
@@ -30,35 +32,111 @@
 	}
 	
 	.images li {
-		display: inline-block;
-		padding: 20px;
+		display: inline;
 		margin: 0 auto;
-		margin-top: 30px;
+		/* margin-top: 30px; */
 		
 	}
 	.images {
 		width: 100%;
-		display: grid;
-		margin: 0 auto;
+		height: 100%;
+		margin: 2% auto;
+		/* display: grid;
 		grid-template-columns: 500px 500px 500px;
-		grid-gap: 30px;
+		grid-gap: 30px; */
 	}
+	
 	
 	.images li a:hover {
 		opacity: 1;
 	}
-	.cover {
-		color: white;
-		font-size: 20px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
+	
+	
+	.moreBtnBox {
+		display: block;
+		width: 150px;
+		height: 80px;
+		margin: 30px auto;
 	}
-	.btnBox {
-		width: 50px;
-		margin: auto;
+	.writeBtnBox{
+		display: block;
+		width: 100px;
+		height: 80px;
+		margin-left: 7%;
+		margin-top: 30px;
+		float: left;
+	}
+	
+	.imageBox {
+	position: relative;
+	width: 100%;
+	max-width: 33%;
+	float: left;
+	/* padding: 0.4%; */
 	}
 
+	.image {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+	
+	.overlay {
+		position: absolute; 
+		bottom: 0; 
+		background: rgb(0, 0, 0);
+		background: rgba(0, 0, 0, 0.8); /* Black see-through */
+		color: white; 
+		width: 100%;
+		height: 100%;
+		transition: .5s ease;
+		opacity:0;
+		font-size: 20px;
+		text-align: center;
+		cursor: pointer;
+	}
+	
+	.imageBox:hover .overlay {
+		opacity: 0.9;
+	}
+	
+	.activityList {
+		width: 100%;
+		height: 100%;
+		margin: 0 auto;
+	}
+	
+	.glyphicon {
+		size: 5px;
+	}
+	
+	.areaBox {
+		display: inline-block;
+		width: 50px;
+		height: 20px;
+		border: 1px solid #5b5b5b;
+		color: #fff;
+		font-size: 9px;
+		line-height: 18px;
+		margin-top: 15%;
+	}
+	.titleBox {
+		display: block;
+		width: 100%;
+		padding: 15px 0 29px 0;
+		color: #f0f0f0;
+		font-size: 21px;
+		font-weight: lighter;
+		text-align: center;
+		line-height: 1.25em;
+		margin-top: 40%;
+	}
+	.anchor {
+		display: inline-block;
+		padding: 0 2px;
+		border-bottom: 1px solid #868686;
+		font-size: 10px;
+	}
 	
 </style>
 
@@ -72,6 +150,21 @@
 		$(".areas0").click(function(){
 			$(".areas2").show();
 		});
+		
+		var curPage=2;
+		$("#more").click(function() {
+			$.get("./activityMore.do?curPage="+curPage, function(data) {
+				$("#images").append(data);
+			});
+			curPage++;
+		});
+		
+		/* $(window).scroll(function() {
+		    if($(window).scrollTop() == $(document).height() - $(window).height()) {
+		           // ajax call get data from server and append to the div
+		    }
+		}); */
+		
 	});
 </script>
 
@@ -94,19 +187,63 @@
 		<form class="form-inline">
 			<div class="activityList">
 				
-				<ul class="images" style="list-style-type:none">
+				<ul class="images" id="images" style="list-style-type:none">
 					<c:forEach items="${list}" var="activityDTO">
 						<c:if test="${activityDTO.area eq 's'}">
-							<li class="areas2 s" id="s"><a href="./activitySelectOne.do?num=${activityDTO.num}">${activityDTO.title}</a></li> <!-- title을 사진으로 바꿔야 함 -->
+							<li class="areas2 s" id="s">
+								<div class="imageBox">
+									<img src="../upload/test.png" class="image">
+									<div class="overlay" onclick="location.href='./activitySelectOne.do?num=${activityDTO.num}'">
+										<span class="areaBox">서울</span>
+										<span><p></p>${activityDTO.title}<p></p></span>
+										<span class="anchor">
+											더보기 <span class="glyphicon glyphicon-triangle-right"></span>
+										</span>
+									</div>
+								</div>
+							</li>
 						</c:if>
 						<c:if test="${activityDTO.area eq 'gg'}">
-							<li class="areas2 gg" id="gg"><a href="./activitySelectOne.do?num=${activityDTO.num}">${activityDTO.title}</a></li> <!-- title을 사진으로 바꿔야 함 -->
+							<li class="areas2 gg" id="gg">
+								<div class="imageBox">
+									<img src="../upload/test.png" class="image">
+									<div class="overlay" onclick="location.href='./activitySelectOne.do?num=${activityDTO.num}'">
+										<span class="areaBox">경기</span>
+										<span><p></p>${activityDTO.title}<p></p></span>
+										<span class="anchor">
+											더보기<span class="glyphicon glyphicon-triangle-right"></span>
+										</span>
+									</div>
+								</div>
+							</li>
 						</c:if>
 						<c:if test="${activityDTO.area eq 'gw'}">
-							<li class="areas2 gw" id="gw"><a href="./activitySelectOne.do?num=${activityDTO.num}">${activityDTO.title}</a></li> <!-- title을 사진으로 바꿔야 함 -->
+							<li class="areas2 gw" id="gw">
+								<div class="imageBox">
+									<img src="../upload/test.png" class="image">
+									<div class="overlay" onclick="location.href='./activitySelectOne.do?num=${activityDTO.num}'">
+										<span class="areaBox">강원</span>
+										<span><p></p>${activityDTO.title}<p></p></span>
+										<span class="anchor">
+											더보기<span class="glyphicon glyphicon-triangle-right"></span>
+										</span>
+									</div>
+								</div>
+							</li>
 						</c:if>
 						<c:if test="${activityDTO.area eq 'e'}">
-							<li class="areas2 e" id="e"><a href="./activitySelectOne.do?num=${activityDTO.num}">${activityDTO.title}</a></li> <!-- title을 사진으로 바꿔야 함 -->
+							<li class="areas2 e" id="e">
+								<div class="imageBox">
+									<img src="../upload/test.png" class="image">
+									<div class="overlay" onclick="location.href='./activitySelectOne.do?num=${activityDTO.num}'">
+										<span class="areaBox">그 외 지역</span>
+										<span><p></p>${activityDTO.title}<p></p></span>
+										<span class="anchor">
+											더보기<span class="glyphicon glyphicon-triangle-right"></span>
+										</span>
+									</div>
+								</div>
+							</li>
 						</c:if>
 					</c:forEach>
 				</ul>
@@ -117,15 +254,25 @@
 	</div>
 </div>
 
-<div class="container-fluid">
-	<div class="row">
-		<div class="btnBox">
-		<%-- <c:if test="${not empty member and member.kind eq '관리자'}"> --%>
-			<a href="./activityWrite.do" class="btn btn-primary">WRITE</a>
-		<%-- </c:if> --%>
+
+	<div class="container-fluid">
+		<div class="row">
+		
+		
+	<%-- <c:if test="${not empty member and member.kind eq '관리자'}"> --%>
+			<c:import url="../../../temp/writeButton.jsp"></c:import>
+	<%-- </c:if> --%>
+		
+		<div class="moreBtnBox">
+			<button id="more" class="btn btn-primary">더보기</button>
+		</div>
+			
+			
 		</div>
 	</div>
-</div>
+	
+
+
 
 <c:import url="../../../temp/footer.jsp"></c:import>
 </body>

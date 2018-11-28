@@ -18,7 +18,7 @@ public class FileDAO {
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		st.setInt(1, fileDTO.getNum());
-		st.setString(2, fileDTO.getKind());
+		st.setString(2, fileDTO.getKind()); // A : Activity
 		
 		ResultSet rs = st.executeQuery();
 		

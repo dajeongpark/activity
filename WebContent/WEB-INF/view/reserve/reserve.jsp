@@ -32,6 +32,8 @@
 			//opener.document.frm.selectDate.value='${selectDate}';
 			self.close();
 		});
+		
+		
 		$("#reserveBtn").click(function() {
 			var num = ${param.num};
 			var selectDate = $("#selectDate").val();
@@ -67,6 +69,32 @@
 			var totalPrice = eval("person * price");
 			$("#totalPrice").html(totalPrice);
 		});
+		
+		
+		/* $("#paymentBtn").click(function() {
+			var num = ${param.num};
+			var selectDate = $("#selectDate").val();
+			var person = $("#person").val();
+			var title = '${param.title}';
+			var price = ${param.price};
+			
+			$.ajax({
+				type: "get",
+				url: "./orderPage.do",
+				data: {num:num, selectDate:selectDate, person:person, title:title, price:price},
+				success: function(result) {
+					result = result.trim();
+					if(result>0){
+						alert("예약되었습니다. 결제 페이지로 이동");
+					}else{
+						alert("Reserve Fail");
+					}
+					self.close();
+				}
+			}); 
+		}); */
+		
+		
 		
 	});
 	

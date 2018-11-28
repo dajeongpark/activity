@@ -7,17 +7,103 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../../../temp/bootStrap.jsp"></c:import>
+<style type="text/css">
+	.box {
+		margin: 30px;
+	}
+	.btnBox {
+		margin-top: 30px;
+	}
+	.del {
+		color: red;
+		cursor: pointer;
+	}
+</style>
+<script type="text/javascript">
+	
+	$(function() {
+		
+		var count=1;
+		var index=0;
+		$("#add").click(function() {
+			if(count<6){
+				var r = '<div class="form-group" id="f'+index+'">';
+				r = r+'<label for="file">File:</label>';
+				r = r+'<input type="file" class="form-control" id="file" name="f'+index+'1">';
+				r = r+'<span class="remove" title="'+index+'">X</span>';
+				r = r+'</div>';
+				var n=5;
+					$("#file").append(r);
+				count++;
+				index++;
+			}else{
+				alert("파일 5개까지 업로드 가능");
+			}
+		});
+		
+		
+		$(".del").click(function() {
+			// /file/fileDelete.do
+			var fnum = $(this).attr("id");
+			var fname = $(this).attr("title");
+			//alert
+			$.post("../file/fileDelete.do", {fnum:fnum, fname:fname}, function(data) {
+				data = data.trim();
+				if(data=='1'){
+					alert("File Delete Success");
+					$("#"+fnum).parent().remove();
+				}else{
+					alert("File Delete Fail");
+				}
+			});
+		});
+		
+		
+		
+		$(".areas").hide();
+		
+		$("#s").click(function() {
+			$("#selectArea").hide();
+			$(".areas").hide();	
+			$(".s").show();
+			$("#area").val("s");
+		});
+		$("#gg").click(function() {
+			$("#area").val() = 'gg';
+			$("#selectArea").hide();
+			$(".areas").hide();	
+			$(".gg").show();
+			$("#area").val("gg");
+		});
+		$("#gw").click(function() {
+			$("#area").val() = 'gw';
+			$("#selectArea").hide();
+			$(".areas").hide();	
+			$(".gw").show();
+			$("#area").val("gw");
+		});
+		$("#e").click(function() {
+			$("#area").val() = 'e';
+			$("#selectArea").hide();
+			$(".areas").hide();	
+			$(".e").show();
+			$("#area").val("e");
+		});
+		
+	});
+	
+</script>
 </head>
 <body>
 <c:import url="../../../temp/header.jsp"></c:import>
 	
 <div class="container-fluid box">
 	<div class="row">
-		<form id="frm" action="./activityWrite.do" method="post" enctype="multipart/form-data">
-		
+		<form id="frm" action="./activityUpdate.do" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="num" value="${activityDTO.num}">
 			<div class="form-group">
 				<label for="title">TITLE: </label>
-				<input type="text" class="form-control" id="title" placeholder="Enter Title : title(area)" name="title">
+				<input type="text" class="form-control" id="title" placeholder="Enter Title : title(area)" name="title" value="${activityDTO.title}">
 			</div>
 			
 			<div class="form-group dropdown">
@@ -52,24 +138,18 @@
 					<li><a tabindex="-1" href="#" id="e">그 외 지역</a></li>
 			    </ul>
 			    
-				<input type="hidden" value="" id="area" name="area">				
+				<input type="hidden" value="${activityDTO.area}" id="area" name="area">				
 				
-				<!-- <select class="selectpicker">
-					<option>서울</option>
-					<option>경기</option>
-					<option>강원</option>
-					<option>그 외 지역</option>
-				</select> -->
 			</div>
 			
 			<div class="form-group">
 				<label for="price">PRICE: </label>
-				<input type="text" class="form-control" id="price" placeholder="Enter Price" name="price">
+				<input type="text" class="form-control" id="price" placeholder="Enter Price" name="price" value="${activityDTO.price}">
 			</div>
 			
 			<div class="form-group">
 				<label for="contents">CONTENTS: </label>
-				<textarea rows="25" cols="" class="form-control" id="contents" placeholder="Enter Contents" name="contents"></textarea>
+				<textarea rows="25" cols="" class="form-control" id="contents" placeholder="Enter Contents" name="contents">${activityDTO.contents}</textarea>
 			</div>
 			
 			<input type="button" id="add" value="File Add">				
@@ -77,8 +157,15 @@
 				
 			</div>
 			
+			<c:forEach items="${files}" var="file" varStatus="i">
+				<div class="form-group" id="p${file.fnum}">
+					<span>${file.oname}</span>
+					<span class="del" id="${file.fnum}" title="${file.fname}">X</span>
+				</div>
+			</c:forEach>
+			
 			<div class="btnBox">
-				<input type="button" id="writeBtn" value="Write" class="btn btn-default">
+				<button type="submit" id="updateBtn" class="btn btn-default">Update</button>
 			</div>
 			
 		</form>

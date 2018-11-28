@@ -31,9 +31,7 @@ public class ActivityController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String command = request.getPathInfo();
-		
 		ActionForward actionForward = new ActionForward();
 		
 		if(command.equals("/activityList.do")) {
@@ -44,8 +42,10 @@ public class ActivityController extends HttpServlet {
 			actionForward = activityService.insert(request, response);
 		}else if(command.equals("/activityUpdate.do")) {
 			actionForward = activityService.update(request, response);
-		}else if(command.equals("activityDelete.do")) {
+		}else if(command.equals("/activityDelete.do")) {
 			actionForward = activityService.delete(request, response);
+		}else if(command.equals("/activityMore.do")) {
+			actionForward = activityService.more(request, response);
 		}
 		
 		if(actionForward.isCheck()) {

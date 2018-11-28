@@ -29,6 +29,7 @@ public class ActivityDAO {
 		while(rs.next()) {
 			ActivityDTO activityDTO = new ActivityDTO();
 			activityDTO.setNum(rs.getInt("num"));
+			activityDTO.setWriter(rs.getString("writer"));
 			activityDTO.setTitle(rs.getString("title"));
 			activityDTO.setContents(rs.getString("contents"));
 			activityDTO.setHit(rs.getInt("hit"));
@@ -54,6 +55,7 @@ public class ActivityDAO {
 		if(rs.next()) {
 			activityDTO = new ActivityDTO();
 			activityDTO.setNum(rs.getInt("num"));
+			activityDTO.setWriter(rs.getString("writer"));
 			activityDTO.setTitle(rs.getString("title"));
 			activityDTO.setContents(rs.getString("contents"));
 			activityDTO.setHit(rs.getInt("hit"));
@@ -68,7 +70,7 @@ public class ActivityDAO {
 	//insert
 	public int insert(ActivityDTO activityDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql = "insert into activity values (?, ?, ?, 0, ?, ?)";
+		String sql = "insert into activity values (?, 'admin', ?, ?, 0, ?, ?)";
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		st.setInt(1, activityDTO.getNum());
@@ -97,13 +99,14 @@ public class ActivityDAO {
 	//update
 	public int update(ActivityDTO activityDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql = "update activity set title=?, area=?, price=?, contents=?";
+		String sql = "update activity set title=?, area=?, price=?, contents=? where num=?";
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		st.setString(1, activityDTO.getTitle());
 		st.setString(2, activityDTO.getArea());
 		st.setInt(3, activityDTO.getPrice());
 		st.setString(4, activityDTO.getContents());
+		st.setInt(5, activityDTO.getNum());
 		
 		int result = st.executeUpdate();
 		DBConnector.disConnect(st, con);

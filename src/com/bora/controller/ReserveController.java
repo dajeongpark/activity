@@ -38,8 +38,9 @@ public class ReserveController extends HttpServlet {
 		if(command.equals("/reserve.do")) {
 			actionForward = reserveService.selectOne(request, response);
 		}else if(command.equals("/reserveWrite.do")) {
-			System.out.println("ddd");
 			actionForward = reserveService.reserve(request, response);
+		}else if(command.equals("/orderPage.do")) {
+			//actionForward = paymentService.
 		}
 		
 		if(actionForward.isCheck()) {
