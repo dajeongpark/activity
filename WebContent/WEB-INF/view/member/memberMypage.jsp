@@ -60,7 +60,6 @@
       <div class="col-sm-offset-2 col-sm-10">
         <a href="./memberUpdate.do" class="btn btn-default">회원 정보 수정</a>
         <input type="button" id="del" class="btn btn-default" value="회원 탈퇴">
-		<!-- <a href="./memberDelete.do" class="btn btn-default">회원 탈퇴</a> -->
       </div>
     </div>
   </form>
