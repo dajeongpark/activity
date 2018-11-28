@@ -1,3 +1,4 @@
+<%@page import="com.bora.member.MemberDTO"%>
 <%@page import="com.bora.notice.NoticeDTO"%>
 <%@page import="com.bora.notice.NoticeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>글쓰기</title>
 <c:import url="../../../temp/bootStrap.jsp"></c:import>
 <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js">
 	CKEDITOR.replace("contents");
@@ -55,8 +56,11 @@
 </script>	
 
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body>
 <c:import url="../../../temp/header.jsp"></c:import>
+<%
+MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+%>
 <div class="container-fluid">
  <div class="row">
 	<form id="frm" action="./${board}write.do" method="Post" enctype="multipart/form-data">
@@ -77,6 +81,10 @@
 			<!-- <input type="text" class="form-control" id="contents" placeholder="Enter contents" name="contents">  -->
 		</div>
 	
+	<div class="form-group">
+	      <label for="file">FILE:</label>
+	      <input type="file" class="form-control" id="file" name="f1">
+	    </div>
 		 
 		<input type="button" value="File add">
 		<div class="files" id="file">
@@ -85,7 +93,6 @@
 	</form>
 	</div>
 </div>
-
 
 <jsp:include page="../../../temp/footer.jsp"></jsp:include>
 </body>

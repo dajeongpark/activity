@@ -21,7 +21,11 @@
 			}else {
 				alert("아이디를 입력하세요");
 			}
-		});	
+		});
+		
+		$(".phone").on("keyup", function() {
+			$(this).val($(this).val().replace(/[^0-9]/g,""));
+		});
 		
 		$("#alert-success").hide();
 		$("#alert-danger").hide();
@@ -51,31 +55,6 @@
 				}
 			});
 		});
-		
-		$(document).ready(function(){ 
-		    $("input#phone").blur(function(){
-		    	var num = $("#phone").val();
-		    	blur(num)
-		    });
-		    $("input#phone").click(function(){
-		    	var num = $("#phone").val();
-		    	focus(num);
-		    });
-		});
-		function focus(num) {
-			num = num.replace(/[^0-9]/g, '');
-			$("#phone").val(num);
-		}
-		function blur(num) {
-			num = num.replace(/[^0-9]/g, '');
-			var tmp = '';
-			tmp += num.substr(0, 3);
-			tmp += '-';
-			tmp += num.substr(3, 4);
-			tmp += '-';
-			tmp += num.substr(7);
-			$("#phone").val(tmp);
-		}
 		$("#join").click(function() {
 			var check = $("#idCheck").val();
 			if(check!='s'){
@@ -101,9 +80,9 @@
 				alert("이메일을 입력하세요");
 				$("#domain").focus();
 				return false;
-			}else if($("#phone").val()==''){
+			}else if($("#phone2").val()==''){
 				alert("연락처를 입력하세요");
-				$("#phone").focus();
+				$("#phone2").focus();
 				return false;
 			}else {
 				$("#frm").submit();
@@ -128,21 +107,40 @@
 			      <input type="button" id="btn" class="btn btn-default" value="중복확인">
 			    </div>
 			    <div class="form-group">
-			      <label for="pw">Password:</label>
+			      <label for="pw">PASSWORD:</label>
 			      <input type="password" class="form-control" id="pw1" placeholder="Enter pw">
 			    </div>
 			    <div class="form-group">
-			      <label for="pw">Password:</label>
+			      <label for="pw">PASSWORD:</label>
 			      <input type="password" class="form-control" id="pw2" placeholder="Enter pw" name="pw">
 			    </div>
 			    <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
 				<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 			    <div class="form-group">
-			      <label for="name">Name:</label>
+			      <label for="name">NAME:</label>
 	              <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
 	    	    </div>
+	    	    
+	    	    <div class="form-group">
+	              <label for="birth">BIRTH:</label>
+	              <input type="date" class="form-control" id="birth" placeholder="Enter birth" name="birth">
+	            </div>
+	    	    
+	    	    <label for="phone">PHONE:</label>
+	            <div class="form-inline">
+	              <select name="phone1" class="form-control" id="phone1">
+	              	<option value="010" selected>010</option>
+	              	<option value="011">011</option>
+	              	<option value="012">012</option>
+	              	<option value="013">013</option>
+	              </select> 
+	              -
+	              <input type="text" class="phone form-control" id="phone2" name="phone2" maxlength="4">
+	              -
+	              <input type="text" class="phone form-control" id="phone3" name="phone3" maxlength="4">
+	            </div><br>
 	            
-	            <label for="email">E-Mail:</label>
+	            <label for="email">E-MAIL:</label>
 	            <div class="form-inline">
 	              <input type="text" id="email" class="form-control" placeholder="Enter email" name="email">@<input type="text" id="domain" class="form-control"name="domain">
 	              <select name="emailSelect" class="form-control" id="emailSelect">
@@ -153,19 +151,10 @@
 	              	<option value="daum.net">daum.net</option>
 	              </select>
 	            </div><br>
-	             
+	            
 	            <div class="form-group">
-	              <label for="phone">Phone:</label>
-	              <input type="text" class="form-control" id="phone" placeholder="Enter phone" name="phone">
-	            </div>
-	            <div class="form-group">
-	              <label for="birth">Birth:</label>
-	              <input type="date" class="form-control" id="birth" placeholder="Enter birth" name="birth">
-	            </div>
-	            <div class="form-group">
-	              <label for="kind">Kind:</label>
-	              <p>admin: <input type="radio" class="form-control" id="kind" name="kind" value="admin"></p>
-	              <p>user: <input type="radio" class="form-control" id="kind" name="kind" value="user" checked="checked"></p>
+	              <label for="kind">KIND:</label>
+	              <p>관리자: <input type="radio" id="kind" name="kind" value="admin">  일반회원: <input type="radio" id="kind" name="kind" value="user" checked="checked"></p>
 	            </div>
 			 <input type="button" id="join" class="btn btn-default" value="JOIN">
  		</form>

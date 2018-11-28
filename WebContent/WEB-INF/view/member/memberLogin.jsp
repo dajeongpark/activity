@@ -6,14 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../../../temp/bootStrap.jsp"/>
+<jsp:include page="../../../temp/bootStrap.jsp"/>
 </head>
 <body>
-<c:import url="../../../temp/header.jsp"/>
+<jsp:include page="../../../temp/header.jsp"/>
 
 <div class="container-fluid">
 	<div class="row">
-		<h3>로그인</h3>
+		<h2>로그인</h2>
 		<form name="frm" action="./memberLogin.do" method="post" >
 			<input type="hidden" value="f" name="idcheck" id="idcheck">
 			    <div class="form-group">
@@ -26,14 +26,16 @@
 			    </div>
 			    <div class="form-group">
 			      <label for="kind">KIND:</label>
-			      <p>admin: <input type="radio" class="form-control" id="kind" name="kind" value="admin"></p>
-			      <p>user: <input type="radio" class="form-control" id="kind" name="kind" value="user" checked="checked"></p>
-			    </div> 
+			      <p>관리자: <input type="radio" id="kind" name="kind" value="admin"> 일반회원: <input type="radio" id="kind" name="kind" value="user" checked="checked"></p>
+			    </div>
+
+			    <p style="color: red">${message}</p><br>
+
 			 <button type="submit" class="btn btn-default">LOGIN</button>
 		</form>
 	</div>
 </div>
 
-<c:import url="../../../temp/footer.jsp"></c:import>
+<jsp:include page="../../../temp/footer.jsp"/>
 </body>
 </html>

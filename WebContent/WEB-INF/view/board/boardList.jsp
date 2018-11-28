@@ -70,7 +70,7 @@ strong{
 						</div>
 							<button type="submit" class="btn btn-default">Search</button>
 					</form>
-					<button type="text"></button>
+					
 				</div>
 				<table class="table table-hover" summary="번호,제목,작성자,작성한 날짜, 조회수">
 					<tr>
@@ -99,7 +99,7 @@ strong{
 
 				</table>
 				
-				<!-- <a href="./boardWrite.jsp" class="btn btn-default">Write</a> -->
+				<a href="./boardWrite.do" class="btn btn-default">Write</a>
 			</div>
 			<div class="container-fluid">
 				<div class="row">

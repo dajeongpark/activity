@@ -37,15 +37,17 @@ public class MemberDAO {
 		//update
 		public int update(MemberDTO memberDTO) throws Exception {
 			Connection con = DBConnector.getConnect();
-			String sql = "update member set pw=?, name=?, email=?, phone=?, birth=?, domain=? where id=?";
+			String sql = "update member set pw=?, name=?, email=?, birth=?, domain=?, phone1=?, phone2=?, phone3=? where id=?";
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, memberDTO.getPw());
 			st.setString(2, memberDTO.getName());
 			st.setString(3, memberDTO.getEmail());
-			st.setString(4, memberDTO.getPhone());
-			st.setString(5, memberDTO.getBirth());
-			st.setString(6, memberDTO.getDomain());
-			st.setString(7, memberDTO.getId());
+			st.setString(4, memberDTO.getBirth());
+			st.setString(5, memberDTO.getDomain());
+			st.setString(6, memberDTO.getPhone1());
+			st.setString(7, memberDTO.getPhone2());
+			st.setString(8, memberDTO.getPhone3());
+			st.setString(9, memberDTO.getId());
 			int result = st.executeUpdate();
 			
 			DBConnector.disConnect(st, con);
@@ -67,8 +69,10 @@ public class MemberDAO {
 				memberDTO.setName(rs.getString("name"));
 				memberDTO.setEmail(rs.getString("email"));
 				memberDTO.setDomain(rs.getString("domain"));
-				memberDTO.setPhone(rs.getString("phone"));
 				memberDTO.setBirth(rs.getString("birth"));
+				memberDTO.setPhone1(rs.getString("phone1"));
+				memberDTO.setPhone2(rs.getString("phone2"));
+				memberDTO.setPhone3(rs.getString("phone3"));
 			}else {
 				memberDTO = null;
 			}
@@ -79,16 +83,18 @@ public class MemberDAO {
 		//join
 		public int join(MemberDTO memberDTO) throws Exception{
 			Connection con = DBConnector.getConnect();
-			String sql = "insert into member values(?,?,?,?,?,?,?,?)";
+			String sql = "insert into member values(?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, memberDTO.getId());
 			st.setString(2, memberDTO.getPw());
 			st.setString(3, memberDTO.getName());
 			st.setString(4, memberDTO.getEmail());
-			st.setString(5, memberDTO.getPhone());
+			st.setString(5, memberDTO.getPhone1());
 			st.setString(6, memberDTO.getBirth());
 			st.setString(7, memberDTO.getKind());
 			st.setString(8, memberDTO.getDomain());
+			st.setString(9, memberDTO.getPhone2());
+			st.setString(10, memberDTO.getPhone3());
 			int result = st.executeUpdate();
 			DBConnector.disConnect(st, con);
 			

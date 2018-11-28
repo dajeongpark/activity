@@ -144,6 +144,20 @@ public class QnaDAO implements BoardDAO, BoardReplyDAO {
 		DBConnector.disConnect(st, con);
 		return result;
 	}
+	@Override
+	public int delete(int num) throws Exception {
+		Connection con = DBConnector.getConnect();
+		String sql = "delete qna where num=?";
+		PreparedStatement st = con.prepareStatement(sql); //미리전송
+		
+		st.setInt(1, num);
+		
+		int result = st.executeUpdate();
+		DBConnector.disConnect(st, con);
+		
+		return result;
+		
+	}
 
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
@@ -161,19 +175,6 @@ public class QnaDAO implements BoardDAO, BoardReplyDAO {
 		return result;
 	}
 
-	@Override
-	public int delete(int num) throws Exception {
-		Connection con = DBConnector.getConnect();
-		String sql = "delete qna where num=?";
-		
-		PreparedStatement st = con.prepareStatement(sql);
-		st.setInt(1, num);
-		int result = st.executeUpdate();
-		DBConnector.disConnect(st, con);
-		
-		return result;
-		
-	}
 
 	@Override
 	public int getCount(Search search) throws Exception {

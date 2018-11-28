@@ -45,12 +45,12 @@ public class MemberService {
 			MemberDTO memberDTO = null;
 			HttpSession session = request.getSession();
 			memberDTO = (MemberDTO)session.getAttribute("member");
-			String message = "Delete Fail";
+			String message = "회원 탈퇴에 실패하였습니다.";
 			
 			try {
 				int result = memberDAO.delete(memberDTO);
 				if(result>0) {
-					message = "Delete Success";
+					message = "회원 탈퇴가 처리되었습니다.";
 					session.invalidate();
 				}
 			} catch (Exception e) {
@@ -79,13 +79,15 @@ public class MemberService {
 					memberDTO.setName(request.getParameter("name"));
 					memberDTO.setEmail(request.getParameter("email"));
 					memberDTO.setDomain(request.getParameter("domain"));
-					memberDTO.setPhone(request.getParameter("phone"));
 					memberDTO.setBirth(request.getParameter("birth"));
+					memberDTO.setPhone1(request.getParameter("phone1"));
+					memberDTO.setPhone2(request.getParameter("phone2"));
+					memberDTO.setPhone3(request.getParameter("phone3"));
 
 					int result = memberDAO.update(memberDTO);
 					if(result>0) {
 						request.getSession().setAttribute("member", memberDTO);
-						message="Update Success";
+						message="회원 정보가 수정되었습니다.";
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -147,7 +149,7 @@ public class MemberService {
 					actionForward.setCheck(false);
 					actionForward.setPath("../index.jsp");
 				}else {
-					request.setAttribute("message", "Login Fail");
+					request.setAttribute("message", "아이디 또는 비밀번호를 다시 확인하세요.");
 					actionForward.setCheck(true);
 					actionForward.setPath("../WEB-INF/view/member/memberLogin.jsp");
 				}
@@ -170,9 +172,11 @@ public class MemberService {
 				memberDTO.setName(request.getParameter("name"));
 				memberDTO.setEmail(request.getParameter("email"));
 				memberDTO.setDomain(request.getParameter("domain"));
-				memberDTO.setPhone(request.getParameter("phone"));
 				memberDTO.setBirth(request.getParameter("birth"));
 				memberDTO.setKind(request.getParameter("kind"));
+				memberDTO.setPhone1(request.getParameter("phone1"));
+				memberDTO.setPhone2(request.getParameter("phone2"));
+				memberDTO.setPhone3(request.getParameter("phone3"));
 				
 				try {
 					int result = memberDAO.join(memberDTO);
