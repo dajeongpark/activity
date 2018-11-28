@@ -7,7 +7,8 @@ public class ActivityDTO {
 	private String contents;
 	private int hit;
 	private String area;
-	private int price;
+	private int onePrice;
+	
 	public int getNum() {
 		return num;
 	}
@@ -44,11 +45,11 @@ public class ActivityDTO {
 	public void setArea(String area) {
 		this.area = area;
 	}
-	public int getPrice() {
-		return price;
+	public int getOnePrice() {
+		return onePrice;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setOnePrice(int onePrice) {
+		this.onePrice = onePrice;
 	}
 	
 	

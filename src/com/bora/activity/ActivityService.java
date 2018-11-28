@@ -144,7 +144,7 @@ public class ActivityService {
 				activityDTO.setTitle(multi.getParameter("title"));
 				activityDTO.setContents(multi.getParameter("contents"));
 				activityDTO.setArea(multi.getParameter("area"));
-				activityDTO.setPrice(Integer.parseInt(multi.getParameter("price")));
+				activityDTO.setOnePrice(Integer.parseInt(multi.getParameter("onePrice")));
 				int result = activityDAO.insert(activityDTO);
 				if(result>0) {
 					FileDAO fileDAO = new FileDAO();
@@ -202,7 +202,7 @@ public class ActivityService {
 				activityDTO.setNum(Integer.parseInt(multi.getParameter("num")));
 				activityDTO.setTitle(multi.getParameter("title"));
 				activityDTO.setArea(multi.getParameter("area"));
-				activityDTO.setPrice(Integer.parseInt(multi.getParameter("price")));
+				activityDTO.setOnePrice(Integer.parseInt(multi.getParameter("onePrice")));
 				activityDTO.setContents(multi.getParameter("contents"));
 				
 				//update

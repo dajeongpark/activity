@@ -34,7 +34,7 @@ public class ActivityDAO {
 			activityDTO.setContents(rs.getString("contents"));
 			activityDTO.setHit(rs.getInt("hit"));
 			activityDTO.setArea(rs.getString("area"));
-			activityDTO.setPrice(rs.getInt("price"));
+			activityDTO.setOnePrice(rs.getInt("onePrice"));
 			ar.add(activityDTO);
 		}
 		
@@ -60,7 +60,7 @@ public class ActivityDAO {
 			activityDTO.setContents(rs.getString("contents"));
 			activityDTO.setHit(rs.getInt("hit"));
 			activityDTO.setArea(rs.getString("area"));
-			activityDTO.setPrice(rs.getInt("price"));
+			activityDTO.setOnePrice(rs.getInt("onePrice"));
 		}
 		
 		DBConnector.disConnect(rs, st, con);
@@ -77,7 +77,7 @@ public class ActivityDAO {
 		st.setString(2, activityDTO.getTitle());
 		st.setString(3, activityDTO.getContents());
 		st.setString(4, activityDTO.getArea());
-		st.setInt(5, activityDTO.getPrice());
+		st.setInt(5, activityDTO.getOnePrice());
 		
 		int result = st.executeUpdate();
 		DBConnector.disConnect(st, con);
@@ -99,12 +99,12 @@ public class ActivityDAO {
 	//update
 	public int update(ActivityDTO activityDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql = "update activity set title=?, area=?, price=?, contents=? where num=?";
+		String sql = "update activity set title=?, area=?, onePrice=?, contents=? where num=?";
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		st.setString(1, activityDTO.getTitle());
 		st.setString(2, activityDTO.getArea());
-		st.setInt(3, activityDTO.getPrice());
+		st.setInt(3, activityDTO.getOnePrice());
 		st.setString(4, activityDTO.getContents());
 		st.setInt(5, activityDTO.getNum());
 		
