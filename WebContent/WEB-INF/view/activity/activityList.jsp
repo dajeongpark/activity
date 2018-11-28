@@ -117,11 +117,11 @@
 	
 	.areaBox {
 		display: inline-block;
-		width: 50px;
+		width: 60px;
 		height: 20px;
 		border: 1px solid #5b5b5b;
 		color: #fff;
-		font-size: 9px;
+		font-size: 12px;
 		line-height: 18px;
 		margin-top: 15%;
 	}
@@ -140,12 +140,13 @@
 		display: inline-block;
 		padding: 0 2px;
 		border-bottom: 1px solid #868686;
-		font-size: 10px;
+		font-size: 12px;
 	}
 	
 </style>
 
 <script type="text/javascript">
+	
 	$(document).ready(function(){
 		$(".areas1").click(function(){
 			$(".areas2").hide();
@@ -169,6 +170,7 @@
 		           // ajax call get data from server and append to the div
 		    }
 		}); */
+		
 		
 	});
 </script>
@@ -264,9 +266,9 @@
 		<div class="row">
 		
 		
-	<%-- <c:if test="${not empty member and member.kind eq '관리자'}"> --%>
+		<c:if test="${not empty member and member.kind eq 'admin'}">
 			<c:import url="../../../temp/writeButton.jsp"></c:import>
-	<%-- </c:if> --%>
+		</c:if>
 		
 		<div class="moreBtnBox">
 			<button id="more" class="btn btn-primary">더보기</button>

@@ -1,8 +1,10 @@
 package com.bora.order;
 
 import com.bora.action.ActionForward;
-import com.bora.payment.HttpServletRequest;
-import com.bora.payment.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.bora.reserve.ReserveDTO;
 /*import com.iu.action.ActionFoward;
 import com.iu.member.HttpSession;
@@ -15,7 +17,7 @@ public class OrderService {
 		ActionForward actionForward = new ActionForward();
 
 		String method=request.getMethod();
-		
+		OrderDAO orderDAO = new OrderDAO();
 		if(method.equals("POST")) {
 			OrderDTO orderDTO = new OrderDTO();
 			orderDTO.setName(request.getParameter("name"));

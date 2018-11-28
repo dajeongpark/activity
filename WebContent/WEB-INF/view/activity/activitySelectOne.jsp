@@ -130,15 +130,14 @@
 						<c:forEach items="${files}" var="fileDTO">
 							<img src="../upload/${fileDTO.fname}"><br>
 						</c:forEach>
-						${firstFile}
 						<br>${activityDTO.contents}<br>
 						<div class="btnBox">
 							<button onclick="openReserve()" class="btn btn-primary">예약하기</button>
 							<button onclick="location.href='./activityList.do'" class="btn btn-primary">목록으로 돌아가기</button>
 							
-							<%-- <c:if test="${not empty member and member.kind eq '관리자'}"> --%>
-							<c:import url="../../../temp/updateDeleteButton.jsp"></c:import>
-							<%-- </c:if> --%>
+							<c:if test="${not empty member and member.kind eq 'admin'}">
+								<c:import url="../../../temp/updateDeleteButton.jsp"></c:import>
+							</c:if>
 							
 						</div>
 						

@@ -49,6 +49,25 @@ public class ActivityService {
 			e.printStackTrace();
 		}
 		
+		/* ==================== File for Title ==================== */
+		
+		/*int num = Integer.parseInt(request.getParameter("num"));
+		ActivityDTO activityDTO = new ActivityDTO();
+		try {
+			activityDTO = activityDAO.selectOne(num);
+			FileDAO fileDAO = new FileDAO();
+			FileDTO fileDTO = new FileDTO();
+			fileDTO.setNum(num);
+			fileDTO.setKind("A");
+			List<FileDTO> fileAr = fileDAO.selectList(fileDTO);
+			request.setAttribute("files", fileAr);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}*/
+		
+		/* ==================== File for Title ==================== */
+		
 		String path=request.getPathInfo();
 		path = path.replace(".do", ".jsp");
 		

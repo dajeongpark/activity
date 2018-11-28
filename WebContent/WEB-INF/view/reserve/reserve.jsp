@@ -102,8 +102,6 @@
 
 </head>
 <body>
-<c:import url="../../../temp/header.jsp"></c:import> <!-- 허전해보여서 header, footer 넣음ㅋㅋ  나중에 빼고 새로 디자인하기 -->
-	
 	<div class="container-fluid box">
 		<form id="frm" action="./reserveWrite.do" accept-charset="utf-8" name="reserveView" method="get">
 			<input type="hidden" name="num" value="${param.num}">
@@ -157,6 +155,5 @@
 		</form>
 	</div>
 	
-<c:import url="../../../temp/footer.jsp"></c:import>
 </body>
 </html>

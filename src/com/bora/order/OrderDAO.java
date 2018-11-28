@@ -97,16 +97,16 @@ public class OrderDAO {
 			st.setInt(1, idx);
 					
 			ReserveDTO reserveDTO = null;
-			paymentDTO paymentDTO = null;
+			OrderDTO orderDTO = null;
 
 			ResultSet rs = st.executeQuery();
 			if(rs.next()) {
 				reserveDTO = new ReserveDTO();
-				paymentDTO = new paymentDTO();
+				orderDTO = new OrderDTO();
 				int totalPrice = reserveDTO.getOnePrice()*reserveDTO.getPerson();
-				reserveDTO.setNum(rs.getInt("num"));
-				reserveDTO.setTitle(rs.getString("title"));
-				reserveDTO.setSelectDate(rs.getDate("selectDate"));
+				orderDTO.setNum(rs.getInt("num"));
+				orderDTO.setTitle(rs.getString("title"));
+				reserveDTO.setSelectDate(rs.getString("selectDate"));
 				reserveDTO.setOnePrice(rs.getInt("onePrice"));
 				reserveDTO.setPerson(rs.getInt("person"));
 				paymentDTO.setTotalPrice(totalPrice);

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bora.action.ActionForward;
+import com.bora.order.OrderService;
 import com.bora.reserve.ReserveService;
 
 /**
@@ -19,6 +20,7 @@ import com.bora.reserve.ReserveService;
 public class ReserveController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReserveService reserveService;
+	private OrderService orderService;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -26,6 +28,7 @@ public class ReserveController extends HttpServlet {
     public ReserveController() {
         super();
         reserveService = new ReserveService();
+        orderService = new OrderService();
     }
 
 	/**
@@ -40,7 +43,7 @@ public class ReserveController extends HttpServlet {
 		}else if(command.equals("/reserveWrite.do")) {
 			actionForward = reserveService.reserve(request, response);
 		}else if(command.equals("/orderPage.do")) {
-			//actionForward = paymentService.
+			actionForward = orderService.orderInfo(request, response);
 		}
 		
 		if(actionForward.isCheck()) {
