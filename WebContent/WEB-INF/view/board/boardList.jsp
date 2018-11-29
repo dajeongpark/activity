@@ -42,15 +42,7 @@ strong{
 <c:import url="../../../temp/header.jsp"/>
 
 	<div class="container-fluid">
-		<div id="wrap" align="center" class="image">
-			<!-- @ -->
-			<img alt="Qna images" src="../images/QNA1.png">
-			<div class="text">
-				<h1>
-					BORACAY&nbsp;&nbsp;<strong>Q&amp;A</strong>
-				</h1>
-			</div>
-		</div>
+		
 		<div class="boardList">
 			<table border="1" summary="">
 				<caption>&nbsp;&nbsp;&nbsp;&nbsp;</caption>
@@ -75,7 +67,7 @@ strong{
 				<table class="table table-hover" summary="번호,제목,작성자,작성한 날짜, 조회수">
 					<tr>
 						<td>NUM</td>
-						<td>&nbsp;&nbsp;&nbsp;TITLE&nbsp;</td>
+						<td>TITLE</td>
 						<td>WRITER</td>
 						<td>DATE</td>
 						<td>HIT</td>

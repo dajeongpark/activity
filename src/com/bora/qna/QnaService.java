@@ -99,7 +99,7 @@ public class QnaService implements BoardReplyService {
 		try {
 			ar = qnaDAO.selectList(rowNumber);
 			int totalCount = qnaDAO.getCount(rowNumber.getSearch());
-			Pager pager = mk.makePager(totalCount);		
+			Pager pager = mk.makePage(totalCount);	
 			request.setAttribute("list", ar);
 			request.setAttribute("pager", pager);
 			request.setAttribute("board", "qna");
