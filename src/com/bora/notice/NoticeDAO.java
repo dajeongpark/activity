@@ -98,7 +98,7 @@ public class NoticeDAO implements BoardDAO{
 	@Override
 	public int delete(int num) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql = "delete * from notice where num=?";
+		String sql = "delete notice where num=?";
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setInt(1, num);//숫자
 		int result = st.executeUpdate();

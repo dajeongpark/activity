@@ -232,20 +232,22 @@ public class NoticeService implements BoardReplyService{
 
 		try {
 			int num = Integer.parseInt(request.getParameter("num"));
+			FileDAO fileDAO = new FileDAO();
+			fileDAO.deleteAll(num);
 			num = noticeDAO.delete(num);
 
 			if(num>0) {
-				request.setAttribute("message", "delete success");
+				request.setAttribute("message", "삭제되었습니다");
 				request.setAttribute("path", "./noticeList.do");
 			}else {
-				request.setAttribute("message", "delete fail");
+				request.setAttribute("message", "삭제가 실패되었습니다");
 				request.setAttribute("path", "./noticeList.do");				
 			} 
 
 
 		} catch (Exception e) {
-			/*request.setAttribute("message", "Delete Fail");
-			request.setAttribute("path", "./noticeList.do");*/
+			request.setAttribute("message", "안되요오류에용");
+			request.setAttribute("path", "./noticeList.do");
 			e.printStackTrace();
 		}
 
