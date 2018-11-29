@@ -1,9 +1,6 @@
 package com.bora.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,33 +24,19 @@ public class NoticeController extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-   
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String phone = request.getServletContext().getInitParameter("phone");
-		System.out.println(phone);
-		String command = request.getPathInfo();
-		ActionForward actionForward = null;
+		ActionForward actionForward = new ActionForward();
+		//주소가져오자
+		String adress = request.getPathInfo();
 		NoticeService noticeService = new NoticeService();
-		
-		if(command.equals("/noticeList.do")) {
-			actionForward = noticeService.selectList(request, response);
-		}else if(command.equals("/noticeSelectOne.do")) {
-			actionForward = noticeService.selectOne(request, response);
-		}else if(command.equals("/noticeWrite.do")) {
-			actionForward = noticeService.insert(request, response);
-		}else  if(command.equals("/noticeUpdate.do")){
-			actionForward = noticeService.update(request, response);
-		}
-		
-		if(actionForward.isCheck()) {
-			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
-			view.forward(request, response);
-		}else {
-			response.sendRedirect(actionForward.getPath());
+		if(adress.equals("./noticeList.do")) {
+			actionForward = noticeService.selectList(request, response);//list 불러오기
+		}else if(adress.equals("./noticeDelete.do")) {
+			actionForward = noticeService.delete(request,response);
 		}
 	}
 
