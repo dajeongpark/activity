@@ -7,14 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../../../temp/bootStrap.jsp"></c:import>
+
 <style type="text/css">
 	#person1, #totalPrice {
 		color: blue;
 	}
 	.box {
-		display: block;
-		max-width: 100px;
-		max-height: 100px;
 		margin-top: -20px;
 		margin-bottom: 20px;
 	}
@@ -31,7 +29,7 @@
 	} */
 	
 	$(document).ready(function() {
-		$("#closeBtn").click(function() {
+		$(".closeBtn").click(function() {
 			//opener.document.frm.selectDate.value='${selectDate}';
 			self.close();
 		});
@@ -42,7 +40,7 @@
 			var selectDate = $("#selectDate").val();
 			var person = $("#person").val();
 			var title = '${param.title}';
-			var onePrice = ${param.onePrice};
+			var onePrice = ${param.onePrice}; //$("#onePrice").val()
 			
 			$.ajax({
 				type: "get",
@@ -68,7 +66,7 @@
 			$("#person1").html(person);
 		}).change(function() {
 			var person = $("#person").val(); // why "#person1" isn't working?
-			var onePrice = ${param.onePrice};
+			var onePrice = ${param.onePrice}; //$("#onePrice").val()
 			var totalPrice = eval("person * onePrice");
 			$("#totalPrice").html(totalPrice);
 		});
@@ -108,7 +106,7 @@
 	<div class="container-fluid box">
 		<form id="frm" action="./reserveWrite.do" accept-charset="utf-8" name="reserveView" method="get">
 			<input type="hidden" name="num" value="${param.num}">
-			
+			<input type="hidden" id="onePrice" name="onePrice" value="${param.onePrice}">
 			
 			<div class="container-fluid">
 				<h3>${param.title}</h3>
@@ -159,4 +157,5 @@
 	</div>
 	
 </body>
+
 </html>

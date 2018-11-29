@@ -74,12 +74,16 @@
 		width: 300px;
 	}
 	
+	.replyUpdateBtn, .replyDeleteBtn {
+		cursor: pointer;
+	}
+	
 </style>
 
 <script type="text/javascript">
 	
 	function openReserve() {
-		window.open("../reserve/reserve.do?num=${activityDTO.num}&title=${activityDTO.title}&price=${activityDTO.onePrice}", "", "width=500, height=500, left=400, top=200");
+		window.open("../reserve/reserve.do?num=${activityDTO.num}&title=${activityDTO.title}&onePrice=${activityDTO.onePrice}", "", "width=500, height=500, left=400, top=200");
 		// activity디렉터리에 있는 페이지에서 요청보내는거라서 path가 activity/activity/로 시작함
 		// 그래서 ../로 한 디렉터리 올라가줘야함 (and then current directory : view)
 	}
@@ -93,17 +97,35 @@
 	$(function() {
 		var curPage=1;
 		$("#commentBtn").click(function() {
-			$.post("./replyWrite.do?curPage="+curPage, function(data) {
-				alert("clicked");
-				$(".replyTable").html(data);
-			});
+			$.post("../reply/replyWrite.do", 
+					{ 
+						num : ${param.num},
+						writer : ${member.id},
+						contents : $("#contents").val()
+					},
+					function(data) {
+						$(".replyTable").html(data);
+					});
 			curPage++;
 		});
+		
+		$(".replyUpdateBtn").click(function() {
+			alert("clicked");
+			location.href='./replyUpdate.do';
+		});
+		
+		$(".replyDeleteBtn").click(function() {
+			location.href='./replyUpdate.do';
+		});
+		
 	});
+	
+	
+	
 	
 	function deleteFunction() {
 		if(confirm("정말로 삭제하시겠습니까?")){
-			location.href='./activityDelete.do?num=${activityDTO.num}'
+			location.href='./activityDelete.do?num=${activityDTO.num}';
 		}else{
 			
 		}
@@ -147,15 +169,17 @@
 								<tr class="replySpace">
 									<td colspan=3>
 										<form class="form-horizontal" action="#" id="frm" method="post">
-											<form class="form-inline">
+											<!-- <form class="form-inline"> -->
 												<div class="commentBox">
 													<label class="control-label col-sm-2">Comment</label>
 													<div class="col-sm-7">
 														<input type="text" class="form-control" id="contents" placeholder="Enter Comment" name="contents" autocomplete="off">
+														<input type="hidden" name="writer" value="${member.id}">
+														<input type="hidden" name="num" value="${activityDTO.num}">
 													</div>
 													<input type="button" id="commentBtn" class="btn btn-default" value="댓글 달기">
 												</div>
-											</form>
+											<!-- </form> -->
 										</form>
 									</td>
 								</tr>
@@ -163,7 +187,20 @@
 							
 							<table class="replyTable">
 								<c:forEach items="${comments}" var="replyDTO">
-									<tr> <td>${replyDTO.writer}</td> <td>${replyDTO.contents}</td> <td>${replyDTO.reg_date}</td> </tr>
+									<tr>
+										<td>${replyDTO.writer}</td>
+										<td class="replyContents">${replyDTO.contents}</td>
+										<td>${replyDTO.reg_date}</td> 
+										
+										<%-- <c:if test="${not empty member and '${activityDTO.writer}' eq '${member.id}'}"> --%>
+										<c:if test="${'${replyDTO.writer}' eq '${member.id}'}">
+											<td>
+												<span class="glyphicon glyphicon-pencil replyUpdateBtn"></span>
+												<span class="glyphicon glyphicon-remove replyDeleteBtn"></span>
+											</td>
+										</c:if>
+										
+									</tr>
 								</c:forEach>
 							</table>
 							

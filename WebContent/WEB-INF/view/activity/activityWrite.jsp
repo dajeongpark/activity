@@ -27,7 +27,7 @@
 			}
 		});
 		
-		var countOnce=1;
+		/* var countOnce=1;
 		$("#add0").click(function() {
 			if(countOnce<2){
 				var r = '<div class="form-group" id="f0">';
@@ -38,10 +38,10 @@
 				$("#file0").append(r);
 				countOnce++;
 			}
-		});
+		}); */
 		
 		var count=1;
-		var index=1; //add0이 index 0번
+		var index=0;
 		$("#add").click(function() {
 			if(count<6){
 				var r = '<div class="form-group" id="f'+index+'">';
@@ -154,10 +154,10 @@
 				<textarea rows="25" cols="" class="form-control" id="contents" placeholder="Enter Contents" name="contents"></textarea>
 			</div>
 			
-			<input type="button" id="add0" value="File for Title" name="file0">
+			<!-- <input type="button" id="add0" value="File for Title" name="file0">
 			<div class="files0" id="file0">
 				
-			</div>
+			</div> -->
 			
 			<input type="button" id="add" value="File Add">	
 			<div class="files" id="file">

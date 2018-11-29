@@ -2,6 +2,7 @@ package com.bora.activity;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -45,28 +46,26 @@ public class ActivityService {
 		try {
 			List<ActivityDTO> ar = activityDAO.selectList(rowNumber);
 			request.setAttribute("list", ar);
+		
+		
+		
+		/* ==================== File for Title ==================== */
+		
+		
+			FileDAO fileDAO = new FileDAO();
+			List<FileDTO> fileAr = new ArrayList<>();
+			for (int i=0; i<ar.size() ; i++) {
+				FileDTO fileDTO = fileDAO.selectOne(ar.get(i).getNum());
+				fileAr.add(fileDTO);
+			}
+			request.setAttribute("files", fileAr);
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
 		
 		/* ==================== File for Title ==================== */
 		
-		/*int num = Integer.parseInt(request.getParameter("num"));
-		ActivityDTO activityDTO = new ActivityDTO();
-		try {
-			activityDTO = activityDAO.selectOne(num);
-			FileDAO fileDAO = new FileDAO();
-			FileDTO fileDTO = new FileDTO();
-			fileDTO.setNum(num);
-			fileDTO.setKind("A");
-			List<FileDTO> fileAr = fileDAO.selectList(fileDTO);
-			request.setAttribute("files", fileAr);
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}*/
-		
-		/* ==================== File for Title ==================== */
 		
 		String path=request.getPathInfo();
 		path = path.replace(".do", ".jsp");
@@ -93,7 +92,6 @@ public class ActivityService {
 			List<FileDTO> ar = fileDAO.selectList(fileDTO);
 			request.setAttribute("files", ar);
 			request.setAttribute("activityDTO", activityDTO);
-			//request.setAttribute("firstFile", ar.get(0).getFname());
 			
 			actionForward.setCheck(true);
 			actionForward.setPath("../WEB-INF/view/activity/activitySelectOne.jsp");

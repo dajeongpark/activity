@@ -75,15 +75,18 @@
 	.imageBox {
 	position: relative;
 	width: 100%;
+	height: 100%;
 	max-width: 33%;
+	max-height: 350px;
+	overflow: hidden;
 	float: left;
 	/* padding: 0.4%; */
 	}
 
 	.image {
 		display: block;
-		width: 100%;
-		height: 100%;
+		width: inherit;
+		height: inherit;
 	}
 	
 	.overlay {
@@ -195,11 +198,11 @@
 			<div class="activityList">
 				
 				<ul class="images" id="images" style="list-style-type:none">
-					<c:forEach items="${list}" var="activityDTO">
+					<c:forEach items="${list}" var="activityDTO" varStatus="i">
 						<c:if test="${activityDTO.area eq 's'}">
 							<li class="areas2 s" id="s">
 								<div class="imageBox">
-									<img src="../upload/test.png" class="image">
+									<img src="../upload/${files[i.index].fname}" class="image">
 									<div class="overlay" onclick="location.href='./activitySelectOne.do?num=${activityDTO.num}'">
 										<span class="areaBox">서울</span>
 										<span><p></p>${activityDTO.title}<p></p></span>
@@ -213,7 +216,7 @@
 						<c:if test="${activityDTO.area eq 'gg'}">
 							<li class="areas2 gg" id="gg">
 								<div class="imageBox">
-									<img src="../upload/test.png" class="image">
+									<img src="../upload/${files[i.index].fname}" class="image">
 									<div class="overlay" onclick="location.href='./activitySelectOne.do?num=${activityDTO.num}'">
 										<span class="areaBox">경기</span>
 										<span><p></p>${activityDTO.title}<p></p></span>
@@ -227,7 +230,7 @@
 						<c:if test="${activityDTO.area eq 'gw'}">
 							<li class="areas2 gw" id="gw">
 								<div class="imageBox">
-									<img src="../upload/test.png" class="image">
+									<img src="../upload/${files[i.index].fname}" class="image">
 									<div class="overlay" onclick="location.href='./activitySelectOne.do?num=${activityDTO.num}'">
 										<span class="areaBox">강원</span>
 										<span><p></p>${activityDTO.title}<p></p></span>
@@ -241,7 +244,7 @@
 						<c:if test="${activityDTO.area eq 'e'}">
 							<li class="areas2 e" id="e">
 								<div class="imageBox">
-									<img src="../upload/test.png" class="image">
+									<img src="../upload/${files[i.index].fname}" class="image">
 									<div class="overlay" onclick="location.href='./activitySelectOne.do?num=${activityDTO.num}'">
 										<span class="areaBox">그 외 지역</span>
 										<span><p></p>${activityDTO.title}<p></p></span>
