@@ -13,6 +13,15 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>order</servlet-name>
+		<servlet-class>com.bora.controller.OrderController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>order</servlet-name>
+		<url-pattern>/order/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>file</servlet-name>
 		<servlet-class>com.bora.controller.FileController</servlet-class>
 	</servlet>
@@ -38,7 +47,7 @@
 		<servlet-name>reserve</servlet-name>
 		<url-pattern>/reserve/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>activity</servlet-name>
 		<servlet-class>com.bora.controller.ActivityController</servlet-class>
