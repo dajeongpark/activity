@@ -13,10 +13,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:import url="../../../temp/bootStrap.jsp" />
+<script src="https://cdn.ckeditor.com/4.10.1/full/ckeditor.js"></script>
+
 <script type="text/javascript">
 	$(function() {
 		
-		CKEDITOR.replace("contents");
+		CKEDITOR.replace("contents", {
+	         enterMode:'2'
+	      });
+		
 		$("#btn").click(function() {
 			var title = $("#title").val();
 		

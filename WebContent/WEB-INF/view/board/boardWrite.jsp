@@ -18,8 +18,10 @@
 <script type="text/javascript">
 	$(function() {
 		
-		CKEDITOR.replace("contents");
-		
+		CKEDITOR.replace("contents", {
+	         enterMode:'2'
+	      });
+	      
 		$("#btn").click(function() {
 			var title = $("#title").val();
 			if(title != ''){
