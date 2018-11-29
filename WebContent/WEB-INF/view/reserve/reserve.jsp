@@ -12,6 +12,9 @@
 		color: blue;
 	}
 	.box {
+		display: block;
+		max-width: 100px;
+		max-height: 100px;
 		margin-top: -20px;
 		margin-bottom: 20px;
 	}
