@@ -3,6 +3,7 @@ package com.bora.controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,29 +35,30 @@ public class QnaController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String board = this.getServletContext().getInitParameter("board");
+		String board = this.getServletConfig().getInitParameter("board");
 		System.out.println(board);
 		
 		String command = request.getPathInfo();
 		ActionForward actionForward = null;
 		
-		if(command.equals("/boardList.do")) {
+		if(command.equals("/qnaList.do")) {
 			actionForward = qnaService.selectList(request, response);
-		}else if(command.equals("/boardSelectOne.do")) {
+		}else if(command.equals("/qnaSelectOne.do")) {
 			actionForward = qnaService.selectOne(request, response);
-		}else if(command.equals("/boardWrite.do")) {
+		}else if(command.equals("/qnaWrite.do")) {
 			actionForward = qnaService.insert(request, response);
-		}else if(command.equals("/boardUpdate.do")) {
+		}else if(command.equals("/qnaUpdate.do")) {
 			actionForward = qnaService.update(request, response);
-		}else if(command.equals("/boardDelete.do")) {
+		}else if(command.equals("/qnaDelete.do")) {
 			actionForward = qnaService.delete(request, response);
 		}
-		/*if(actionForward.isCheck()) {
+		
+		if(actionForward.isCheck()) {
 			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
 			view.forward(request, response);
 		}else {
 			response.sendRedirect(actionForward.getPath());
-		}*/
+		}
 	}
 
 	/**
