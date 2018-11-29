@@ -2,6 +2,8 @@ package com.bora.notice;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bora.board.BoardDAO;
@@ -14,14 +16,50 @@ public class NoticeDAO implements BoardDAO{
 
 	@Override
 	public List<BoardDTO> selectList(RowNumber rowNumber) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con = DBConnector.getConnect();
+		String sql = "select * from (select rownum R, N. * from (select num, title, writer, reg_date, hit from notice "
+				+ "where " + rowNumber.getSearch().getKind()+" like ?"
+						+ "order by num desc) N) where R between ? and ?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, "%"+rowNumber.getSearch().getSearch()+"%");
+		st.setInt(2, rowNumber.getStartRow());
+		st.setInt(3, rowNumber.getLastRow());
+		
+		ResultSet rs = st.executeQuery();
+		List<BoardDTO> ar = new ArrayList<>();
+		NoticeDTO noticeDTO = null;
+		while (rs.next()) {
+			noticeDTO = new NoticeDTO();
+			noticeDTO.setNum(rs.getInt("num"));
+			noticeDTO.setTitle(rs.getString("title"));
+			noticeDTO.setWriter(rs.getString("writer"));
+			noticeDTO.setReg_date(rs.getDate("reg_date"));
+			noticeDTO.setHit(rs.getInt("hit"));
+			ar.add(noticeDTO);
+		}
+		DBConnector.disConnect(rs, st, con); 
+		return ar;
 	}
 
 	@Override
 	public BoardDTO selectOne(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con = DBConnector.getConnect();
+		String sql = "select * from notice where num=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setInt(1, num);
+		NoticeDTO noticeDTO = new NoticeDTO();
+		ResultSet rs = st.executeQuery();
+		if(rs.next()) {
+			noticeDTO.setNum(rs.getInt("num"));
+			noticeDTO.setTitle(rs.getString("title"));
+			noticeDTO.setContents(rs.getString("contents"));
+			noticeDTO.setWriter(rs.getString("writer"));
+			noticeDTO.setReg_date(rs.getDate("reg_date"));
+			noticeDTO.setHit(rs.getInt("hit"));
+		}
+		DBConnector.disConnect(rs, st, con); 
+		return noticeDTO;
 	}
 
 	@Override
@@ -39,9 +77,17 @@ public class NoticeDAO implements BoardDAO{
 	}
 
 	@Override
+	//글번호 입력 - 제목, 내용 수정하기
 	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con = DBConnector.getConnect();
+		String sql = "update notice set title=?, contents=? where num=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, boardDTO.getTitle());
+		st.setString(2, boardDTO.getContents());
+		st.setInt(3, boardDTO.getNum());
+		int result = st.executeUpdate();
+		DBConnector.disConnect(st, con);
+		return result;
 	}
 
 	@Override
@@ -57,8 +103,15 @@ public class NoticeDAO implements BoardDAO{
 
 	@Override
 	public int getCount(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con = DBConnector.getConnect();
+		String sql = "select count(num) from notice where "+search.getKind()+" like ?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, "%"+search.getSearch()+"%");
+		ResultSet rs = st.executeQuery();
+		rs.next();
+		int result = rs.getInt(1);
+		DBConnector.disConnect(rs, st, con);
+		return result;
 	}
 
 }
