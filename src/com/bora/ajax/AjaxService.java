@@ -15,6 +15,7 @@ import com.bora.page.RowNumber;
 import com.bora.page.Search;
 
 public class AjaxService {
+	
 	public ActionForward list(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
 		NoticeDAO noticeDAO = new NoticeDAO();

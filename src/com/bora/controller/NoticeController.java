@@ -33,20 +33,21 @@ public class NoticeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String phone=request.getServletContext().getInitParameter("phone");
 		System.out.println(phone);
-
-		ActionForward actionForward = new ActionForward();
+		
 		//주소가져오자
 		String adress = request.getPathInfo();
+		ActionForward actionForward = null;
 		NoticeService noticeService = new NoticeService();
-		if(adress.equals("./noticeList.do")) {
-			actionForward = noticeService.delete(request,response);
-		}else if(adress.equals("./noticWrite.do")) {
+		
+		if(adress.equals("/noticeList.do")) {
+			actionForward = noticeService.selectList(request, response);
+		}else if(adress.equals("/noticWrite.do")) {
 			actionForward = noticeService.insert(request, response);
-		}else if(adress.equals("./noticeUpdate.do")) {
+		}else if(adress.equals("/noticeUpdate.do")) {
 			actionForward = noticeService.update(request, response);
-		}else if(adress.equals("./noticeDelete.do")) {
+		}else if(adress.equals("/noticeDelete.do")) {
 			actionForward = noticeService.delete(request, response);
-		}else if(adress.equals("./noticeSelectOne.do")){
+		}else if(adress.equals("/noticeSelectOne.do")){
 			actionForward = noticeService.selectOne(request, response);
 		}
 		

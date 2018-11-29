@@ -21,34 +21,36 @@ public class NoticeService implements BoardReplyService{
 	public NoticeService() {
 		noticeDAO = new NoticeDAO();
 	}
-	
+
 	@Override
 	public ActionForward selectList(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
 		int curPage = 1;
-		curPage = Integer.parseInt(request.getParameter("curPage"));
+		try {
+			curPage = Integer.getInteger(request.getParameter("curPage"));
+		}catch (Exception e) {
+
+		}
+
 		String kind = request.getParameter("kind");
 		String search = request.getParameter("search");
-		
+
 		MakePager mk = new MakePager(curPage, search, kind);
 		RowNumber rowNumber = mk.makeRow();
-		
 		List<BoardDTO> ar;
+
 		try {
 			ar = noticeDAO.selectList(rowNumber);
 			int totalCount = noticeDAO.getCount(rowNumber.getSearch());
-			request.setAttribute("list", ar);
 			Pager pager = mk.makePage(totalCount);
+			request.setAttribute("list", ar);
 			request.setAttribute("pager", pager);
 			request.setAttribute("board", "notice");
 			actionForward.setPath("../WEB-INF/view/board/boardList.jsp");
 		} catch (Exception e) {
-			request.setAttribute("message", "Fail");
-			request.setAttribute("path", "../index.jsp");
 			e.printStackTrace();
 		}
-		actionForward.setPath("../WEB-INF/common/result/jsp");
-		
+		actionForward.setCheck(true);	
 		return actionForward;
 	}
 
@@ -74,7 +76,7 @@ public class NoticeService implements BoardReplyService{
 			actionForward.setPath("./noticeList.do");
 			e.printStackTrace();
 		}
-		
+
 		if(boardDTO ==null) {
 			actionForward.setCheck(false);
 			actionForward.setPath("./noticeLsit.do");
@@ -105,28 +107,32 @@ public class NoticeService implements BoardReplyService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
-		//
-		int num = Integer.parseInt(request.getParameter("num"));
+
 		try {
+			int num = Integer.parseInt(request.getParameter("num"));
 			num = noticeDAO.delete(num);
-			request.setAttribute("message", "delete fail");
-			request.setAttribute("path", "./noticeList.do");
+
 			if(num>0) {
 				request.setAttribute("message", "delete success");
 				request.setAttribute("path", "./noticeList.do");
-			}
-			
-			actionForward.setCheck(true);
-			actionForward.setPath("../WEB-INF/view/common/result.jsp");
-			
+			}else {
+				request.setAttribute("message", "delete fail");
+				request.setAttribute("path", "./noticeList.do");				
+			} 
+
+
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			/*request.setAttribute("message", "Delete Fail");
+			request.setAttribute("path", "./noticeList.do");*/
 			e.printStackTrace();
 		}
+
+		actionForward.setCheck(true);
+		actionForward.setPath("../WEB-INF/view/common/result.jsp");
 		return actionForward;
 	}
 
