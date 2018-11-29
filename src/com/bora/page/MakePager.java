@@ -37,7 +37,7 @@ public class MakePager {
 		return rowNumber;
 	}
 	
-	public Pager makePage(int totalCount) {
+	public Pager makePager(int totalCount) {
 		//1. totalPage
 		int totalPage = totalCount/this.perPage;
 		if(totalCount%this.perPage != 0) {

@@ -95,6 +95,7 @@ public class QnaService implements BoardReplyService {
 		
 		MakePager mk = new MakePager(curPage, search, kind);		
 		RowNumber rowNumber = mk.makeRow();
+		
 		List<BoardDTO> ar;
 		try {
 			ar = qnaDAO.selectList(rowNumber);
