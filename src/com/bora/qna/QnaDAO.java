@@ -109,8 +109,8 @@ public class QnaDAO implements BoardDAO, BoardReplyDAO {
 		return ar;
 	}
 
-	/* insert 출력 /insert를 출력했을때, 1은 성공 0은 실패
-	 * public static void main(String[] args) {
+	 //insert 출력 /insert를 출력했을때, 1은 성공 0은 실패
+	  public static void main(String[] args) {
 		QnaDAO qnaDAO = new QnaDAO(); 
 		BoardDTO boardDTO = new BoardDTO();
 		boardDTO.setTitle("title");
@@ -127,7 +127,7 @@ public class QnaDAO implements BoardDAO, BoardReplyDAO {
 			e.printStackTrace();
 		}
 	}
-	*/
+	
 	
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
