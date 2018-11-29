@@ -48,4 +48,12 @@
 		<url-pattern>/activity/*</url-pattern>
 	</servlet-mapping>
 	<display-name>activity</display-name>
+	<servlet>
+		<servlet-name>notice</servlet-name>
+		<servlet-class>com.bora.controller.NoticeController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>notice</servlet-name>
+		<url-pattern>/notice/*</url-pattern>
+	</servlet-mapping>
 </web-app>
