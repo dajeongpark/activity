@@ -15,6 +15,20 @@
 <c:import url="../../../temp/bootStrap.jsp" />
 <script type="text/javascript">
 	$(function() {
+		
+		CKEDITOR.replace("contents");
+		$("#btn").click(function() {
+			var title = $("#title").val();
+		
+			if(title != ''){
+				$("#frm").submit();
+			}else {
+				alert("Title을 입력");
+			}
+		});
+	});
+	
+	$(function() {
 		$(".del").click(function() {
 			//  /file/fileDelete.do
 			var fnum = $(this).attr("id");

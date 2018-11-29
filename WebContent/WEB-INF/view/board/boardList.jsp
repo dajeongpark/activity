@@ -82,7 +82,6 @@
 	  		<li><a href="./${board}List.do?curPage=${i}">${i}</a></li>
 	  	</c:forEach>
 	  	
-	   	
 	   	<c:if test="${pager.curBlock lt pager.totalBlock}">
 	   		<li><a href="./${board}List.do?curPage=${pager.lastNum+1}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
 	   	</c:if>
@@ -93,10 +92,6 @@
 	  
   	</div>
 </div>
-	
-	
-
-
 	<c:choose>
 		<c:when test="${board eq 'notice'}">
 			<c:if test="${not empty member and member.kind eq 'admin'}">

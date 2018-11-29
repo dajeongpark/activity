@@ -27,7 +27,9 @@
 			<h1>Contents : ${dto.contents}</h1>
 			
 		</div>	
-	</div>
+		<c:forEach items="${files}" var="fileDTO">
+			<img src="../upload/${fileDTO.fname}"><br>
+		</c:forEach>
 	<div>
 		<a href="./${requestScope.board}List.do">List</a>
 		<a href="./${requestScope.board}Update.do?num=${dto.num}">Update</a>
@@ -36,6 +38,7 @@
 			<a href="./${board}Reply.do">Reply</a>
 		</c:if>
 		<%-- <c:if test="${not empty board}"></c:if> --%>
+	</div>
 	</div>
 	
 <jsp:include page="../../../temp/footer.jsp"></jsp:include>

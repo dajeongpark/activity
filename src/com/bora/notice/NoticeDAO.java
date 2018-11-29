@@ -70,12 +70,12 @@ public class NoticeDAO implements BoardDAO{
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql = "insert into notice values(notice_seq.nextval,?,?,?,sysdate,0)";
+		String sql = "insert into notice values(?,?,?,?,sysdate,0)";
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setInt(1, boardDTO.getNum());//글번호
-		st.setString(2, boardDTO.getTitle());
-		st.setString(3, boardDTO.getContents());
-		st.setString(4, boardDTO.getWriter());
+		st.setString(2, boardDTO.getWriter());
+		st.setString(3, boardDTO.getTitle());
+		st.setString(4, boardDTO.getContents());
 		int result = st.executeUpdate();
 		DBConnector.disConnect(st, con);
 		return result;
