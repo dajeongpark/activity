@@ -100,8 +100,8 @@
 		
 		</c:when>
 		<c:otherwise>
-			<c:if test="${not empty member}">
-				<c:import url="../../../temp/writeButton.jsp"></c:import>
+			<c:if test="${not empty member and member.kind eq 'admin'}">
+				<c:import url="../../../temp/boardWriteButton.jsp"></c:import>
 			</c:if>
 		</c:otherwise>
 	
