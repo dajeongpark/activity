@@ -1,10 +1,18 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="com.bora.payment.paymentDAO"%>
-<%@page import="com.bora.payment.paymentDTO"%>
+<%@page import="com.bora.order.OrderDAO"%>
+<%@page import="com.bora.order.OrderDTO"%>
 <%@page import="com.bora.reserve.ReserveDTO"%>
+<%@page import="com.bora.reserve.ReserveDAO"%>
 <%@page import="com.bora.member.MemberDTO"%>
+<%@page import="com.bora.member.MemberDAO"%>
+
+<%
+MemberDTO member = MemberDAO.getMemberInfo(id, memberDTO);
+ReserveDTO reserve = ReserveDAO.selectOne(num);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -40,7 +48,11 @@
 
     <div class="container-fluid">
         <div class="row">
+        <div class="contentWrap">
         <form action="./orderResult.do" id="frm" method="post">
+        	<!--<%-- <input type="hidden" name="num" value="${member.num}">
+        	<input type="hidden" name="email" value="${member.email}">
+        	<input type="hidden" name="phone" value="${member.phone}"> --%>-->
             <div class="mWt48p">
                 <div class="left_box">
                     <h1 class="pageTitle">이용규칙 확인하기</h1>
@@ -49,6 +61,11 @@
                         <h3 class="boxTitle"><!-- <span id="region">지역</span> --><span id="date">예약날짜</span></h3>
                         <div class="no_grayBox"><span id="reserveDate">${reserve.selectDate}</span><br><span id="reserveTime">12:00</span></div>
                     </div>
+                 	<div class="memInfo">
+                 		<div class="name"><span class="label">대표자명</span> : ${member.name}</div>
+                 		<div class="name"><span class="label">E-Mail</span> : ${member.email}</div>
+                 		<div class="name"><span class="label">연락처</span> : ${member.phone}</div>
+                 	</div>
                     <div class="g_line"></div>
                     <div class="notes">
                         <h3 class="boxTitle">주의할 사항</h3>
@@ -58,14 +75,14 @@
             <div class="mWt48p">
                 <div class="payment_box">
                     <div class="gray_whiteBox">
-                        <div class="thumbnail">
+                        <!-- <div class="thumbnail">
                             <img src="">
-                        </div>
+                        </div> -->
                         <h3 class="boxTitle">${reserve.title}</h3>
-                        <div class="rate">
+                        <!-- <div class="rate">
                             <span>별점표시</span>
                             <span>후기<span id="review_num">00</span>개</span>
-                        </div>
+                        </div> -->
                         <div class="g_line"></div>
                         <div class="guest">게스트 <span id="guestNum">${reserve.person}</span>명</div>
                         <div class="reserveDate">
@@ -110,8 +127,11 @@
                 </div>
             </div>
         </form>
-            <input type="button" id="cancle" value="취소">
-            <input type="button" id="confirm" value="확인">
+            <div class="btnBox">
+                <input type="button" id="cancle" value="취소">
+                <input type="button" id="confirm" value="확인">
+            </div>
+        </div>
         </div>
     </div>
     <c:import url="../../../temp/footer.jsp"></c:import>

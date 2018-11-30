@@ -3,6 +3,7 @@ package com.bora.order;
 import java.sql.Date;
 
 public class OrderDTO {
+	private int num;
 	private String name;
 	private String email;
 	private String phone;
@@ -12,13 +13,19 @@ public class OrderDTO {
 	private int totalPrice;
 	private String payMethod;
 	private int cardNum;
-	private Date selectDate;
+	private String selectDate;
 	private String orderId;
-	
-	
-
-
 	private int idx;
+	
+	
+
+
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public int getIdx() {
 		return idx;
 	}
@@ -85,10 +92,10 @@ public class OrderDTO {
 	public void setCardNum(int cardNum) {
 		this.cardNum = cardNum;
 	}
-	public Date getSelectDate() {
+	public String getSelectDate() {
 		return selectDate;
 	}
-	public void setSelectDate(Date selectDate) {
+	public void setSelectDate(String selectDate) {
 		this.selectDate = selectDate;
 	}
 }

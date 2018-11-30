@@ -11,38 +11,33 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bora.action.ActionForward;
 import com.bora.order.OrderService;
-import com.bora.reserve.ReserveService;
 
 /**
- * Servlet implementation class ReserveController
+ * Servlet implementation class OrderController
  */
-@WebServlet("/ReserveController")
-public class ReserveController extends HttpServlet {
+@WebServlet("/OrderController")
+public class OrderController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ReserveService reserveService;
 	private OrderService orderService;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReserveController() {
+    public OrderController() {
         super();
-        reserveService = new ReserveService();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		String command = request.getPathInfo();
-		ActionForward actionForward = new ActionForward();
+		ActionForward actionForward=null;
 		
-		if(command.equals("/reserve.do")) {
-			actionForward = reserveService.selectOne(request, response);
-		}else if(command.equals("/reserveWrite.do")) {
-			actionForward = reserveService.reserve(request, response);
-		}else if(command.equals("/orderPage.do")) {
-			actionForward = orderService.orderInfo(request, response);
+		if(command.equals("/orderResult.do")) {
+			actionForward = orderService.orderConfirm(request, response);
 		}
 		
 		if(actionForward.isCheck()) {
