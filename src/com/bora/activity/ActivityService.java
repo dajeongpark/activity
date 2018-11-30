@@ -287,45 +287,49 @@ public class ActivityService {
 	}
 	
 	//more
-	public ActionForward more(HttpServletRequest request, HttpServletResponse response) {
-		ActionForward actionForward = new ActionForward();
-		ActivityDTO activityDTO = new ActivityDTO();
-		
-		int curPage = Integer.parseInt(request.getParameter("curPage"));
-		
-		MakePager mk = new MakePager(curPage, "", "");
-		RowNumber rowNumber = mk.makeRow();
-		
-		List<ActivityDTO> ar;
-		try {
-			ar = activityDAO.selectList(rowNumber);
-			request.setAttribute("list", ar);
-			request.setAttribute("activityDTO", activityDTO);
-		
-			activityDTO = activityDAO.selectOne(activityDTO.getNum());
-			FileDAO fileDAO = new FileDAO();
-			FileDTO fileDTO = new FileDTO();
-			fileDTO.setNum(activityDTO.getNum());
-			fileDTO.setKind("A");
-			List<FileDTO> fileAr = fileDAO.selectList(fileDTO);
-			request.setAttribute("files", fileAr);
-			request.setAttribute("activityDTO", activityDTO);
+		public ActionForward more(HttpServletRequest request, HttpServletResponse response) {
+			ActionForward actionForward = new ActionForward();
+			ActivityDTO activityDTO = new ActivityDTO();
 			
+			int curPage = Integer.parseInt(request.getParameter("curPage"));
 			
-		} catch (Exception e) {
+			MakePager mk = new MakePager(curPage, "", "");
+			RowNumber rowNumber = mk.makeRow();
 			
-			e.printStackTrace();
+			List<ActivityDTO> ar;
+			try {
+				ar = activityDAO.selectList(rowNumber);
+				System.out.println();
+				request.setAttribute("list", ar);
+				request.setAttribute("activityDTO", activityDTO);
+			
+				//List<FileDTO> fileAr = fileDAO.selectList(fileDTO);
+				
+				
+				FileDAO fileDAO = new FileDAO();
+				List<FileDTO> fileAr = new ArrayList<>();
+				for (int i=0; i<ar.size() ; i++) {
+					FileDTO fileDTO = fileDAO.selectOne(ar.get(i).getNum());
+					fileAr.add(fileDTO);
+				}
+				request.setAttribute("files", fileAr);
+				request.setAttribute("activityDTO", activityDTO);
+				
+				
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+				
+				
+			String path = request.getPathInfo();
+			path = path.replace(".do", ".jsp");
+			actionForward.setCheck(true);
+			actionForward.setPath("../WEB-INF/view/activity/"+path);
+			
+			return actionForward;
 		}
-			
-			
-		String path = request.getPathInfo();
-		path = path.replace(".do", ".jsp");
-		
-		actionForward.setCheck(true);
-		actionForward.setPath("../WEB-INF/view/activity/"+path);
-		
-		return actionForward;
-	}
 	
 }
 	

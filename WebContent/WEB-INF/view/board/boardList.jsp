@@ -31,7 +31,7 @@
 				        <option>Writer</option>
 			     	</select>	
 						    
-			      <input type="text" class="form-control" id="search" placeholder="Enter search" name="search">
+			      <input type="text" class="form-control" id="search" placeholder="Enter search" name="search" autocomplete="off">
 			    </div>
 			    
 			    <button type="submit" class="btn btn-default">Submit</button>

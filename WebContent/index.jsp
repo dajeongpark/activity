@@ -173,28 +173,28 @@
 			<h2>MD추천</h2>
 			<div class="md">
 				<div class="md_1">
-					<img class="img" alt="" src="./images/md1.png">
+					<img class="img" alt="" src="./images/md1.png" onclick="location.href='http://localhost:8081/activity/activity/activitySelectOne.do?num=5'">
 					<div class="mdinfo">
 						<span class="name">런닝맨 제8의 멤버는 나야 나!</span> <span
 							class="price">16,000원~</span>
 					</div>
 				</div>
 				<div class="md_2">
-					<img class="img" alt="" src="./images/md2.jpg">
+					<img class="img" alt="" src="./images/md2.jpg" onclick="location.href='http://localhost:8081/activity/activity/activitySelectOne.do?num=13'">
 					<div class="mdinfo">
 						<span class="name">기차와 함께 달리는 행복한 전주한옥 레일바이크!</span> <span
 							class="price">20,000원~</span>
 					</div>
 				</div>
 				<div class="md_3">
-					<img class="img" alt="" src="./images/md3.jpg">
+					<img class="img" alt="" src="./images/md3.jpg" onclick="location.href='http://localhost:8081/activity/activity/activitySelectOne.do?num=4'">
 					<div class="mdinfo">
 						<span class="name">청평호반에서 즐기는 수상 레저스포츠</span> <span
 							class="price">34,000원~</span>
 					</div>
 				</div>
 				<div class="md_4">
-						<img class="img" alt="" src="./images/md4.jpg">
+						<img class="img" alt="" src="./images/md4.jpg" onclick="location.href='http://localhost:8081/activity/activity/activitySelectOne.do?num=10'">
 						<div class="mdinfo">
 							<span class="name">모든 레이서들의 꿈을 담은 3.908km</span> 
 							<span class="price">30,000원~</span>
