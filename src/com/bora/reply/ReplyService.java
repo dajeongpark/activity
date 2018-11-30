@@ -59,10 +59,10 @@ public class ReplyService {
 		RowNumber rowNumber = mk.makeRow();
 		
 		replyDTO.setContents(request.getParameter("contents"));
-		replyDTO.setWriter(request.getParameter("writer"));
+		replyDTO.setWriter(request.getParameter("memberId"));
 		
 		try {
-			int idx = Integer.parseInt(request.getParameter("num"));
+			int idx = Integer.parseInt(request.getParameter("num")); //selectOne의 num을 reply의 idx에 저장하기 위한 변수 idx
 			replyDAO.insert(idx, replyDTO);
 			System.out.println("idx : "+idx);
 			List<ReplyDTO> ar = replyDAO.selectList(idx, rowNumber);
@@ -108,6 +108,17 @@ public class ReplyService {
 	//delete
 	public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
+		
+		int num = Integer.parseInt(request.getParameter("num"));
+		
+		try {
+			replyDAO.delete(num);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		actionForward.setCheck(true);
+		actionForward.setPath("../WEB-INF/view/activity/activitySelectOne.jsp");
 		
 		return actionForward;
 	}

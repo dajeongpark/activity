@@ -77,7 +77,7 @@
 	width: 100%;
 	height: 100%;
 	max-width: 33%;
-	max-height: 350px;
+	max-height: 330px;
 	overflow: hidden;
 	float: left;
 	/* padding: 0.4%; */

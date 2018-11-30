@@ -83,7 +83,8 @@
 <script type="text/javascript">
 	
 	function openReserve() {
-		window.open("../reserve/reserve.do?num=${activityDTO.num}&title=${activityDTO.title}&onePrice=${activityDTO.onePrice}", "", "width=500, height=500, left=400, top=200");
+		var title=encodeURI('${activityDTO.title}');
+		window.open("../reserve/reserve.do?num=${activityDTO.num}&title="+title+"&onePrice=${activityDTO.onePrice}", "", "width=500, height=500, left=400, top=200");
 		// activity디렉터리에 있는 페이지에서 요청보내는거라서 path가 activity/activity/로 시작함
 		// 그래서 ../로 한 디렉터리 올라가줘야함 (and then current directory : view)
 	}
@@ -100,7 +101,7 @@
 			$.post("../reply/replyWrite.do", 
 					{ 
 						num : ${param.num},
-						writer : ${member.id},
+						writer : $("#memberId"),
 						contents : $("#contents").val()
 					},
 					function(data) {
@@ -110,12 +111,27 @@
 		});
 		
 		$(".replyUpdateBtn").click(function() {
-			alert("clicked");
-			location.href='./replyUpdate.do';
+			$.post("../reply/replyUpdate.do", 
+					{ 
+						num : ${param.num},
+						writer : $("#writer"),
+						contents : $("#contents").val()
+					},
+					function(data) {
+						$(".replyTable").html(data);
+					});
 		});
 		
 		$(".replyDeleteBtn").click(function() {
-			location.href='./replyUpdate.do';
+			$.post("../reply/replyUpdate.do", 
+					{ 
+						num : ${param.num},
+						writer : $("#writer"),
+						contents : $("#contents").val()
+					},
+					function(data) {
+						$(".replyTable").html(data);
+					});
 		});
 		
 	});
@@ -154,7 +170,10 @@
 						</c:forEach>
 						<br>${activityDTO.contents}<br>
 						<div class="btnBox">
-							<button onclick="openReserve()" class="btn btn-primary">예약하기</button>
+						
+							<c:if test="${not empty member}">
+								<button onclick="openReserve()" class="btn btn-primary">예약하기</button>
+							</c:if>
 							<button onclick="location.href='./activityList.do'" class="btn btn-primary">목록으로 돌아가기</button>
 							
 							<c:if test="${not empty member and member.kind eq 'admin'}">
@@ -174,7 +193,7 @@
 													<label class="control-label col-sm-2">Comment</label>
 													<div class="col-sm-7">
 														<input type="text" class="form-control" id="contents" placeholder="Enter Comment" name="contents" autocomplete="off">
-														<input type="hidden" name="writer" value="${member.id}">
+														<input type="hidden" name="memberId" id="memberId" value="${member.id}">
 														<input type="hidden" name="num" value="${activityDTO.num}">
 													</div>
 													<input type="button" id="commentBtn" class="btn btn-default" value="댓글 달기">
@@ -193,12 +212,12 @@
 										<td>${replyDTO.reg_date}</td> 
 										
 										<%-- <c:if test="${not empty member and '${activityDTO.writer}' eq '${member.id}'}"> --%>
-										<c:if test="${'${replyDTO.writer}' eq '${member.id}'}">
+										<%-- <c:if test="${'${replyDTO.writer}' eq '${member.id}'}"> --%>
 											<td>
 												<span class="glyphicon glyphicon-pencil replyUpdateBtn"></span>
 												<span class="glyphicon glyphicon-remove replyDeleteBtn"></span>
 											</td>
-										</c:if>
+										<%-- </c:if> --%>
 										
 									</tr>
 								</c:forEach>
