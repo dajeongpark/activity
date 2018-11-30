@@ -79,7 +79,8 @@
 <script type="text/javascript">
 	
 	function openReserve() {
-		window.open("../reserve/reserve.do?num=${activityDTO.num}&title=${activityDTO.title}&price=${activityDTO.onePrice}", "", "width=500, height=500, left=400, top=200");
+		var title=encodeURI('${activityDTO.title}');
+		window.open("../reserve/reserve.do?num=${activityDTO.num}&title="+title+"&onePrice=${activityDTO.onePrice}", "", "width=500, height=500, left=400, top=200");
 		// activity디렉터리에 있는 페이지에서 요청보내는거라서 path가 activity/activity/로 시작함
 		// 그래서 ../로 한 디렉터리 올라가줘야함 (and then current directory : view)
 	}

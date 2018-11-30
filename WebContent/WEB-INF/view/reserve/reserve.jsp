@@ -71,16 +71,17 @@
 		});
 		
 		
-		/* $("#paymentBtn").click(function() {
+		$("#paymentBtn").click(function() {
 			var num = ${param.num};
 			var selectDate = $("#selectDate").val();
 			var person = $("#person").val();
 			var title = '${param.title}';
 			var onePrice = ${param.onePrice};
+			location.href="../order/orderPage.do?num="+num+"&selectDate="+selectDate+"&person"+person+"&title"+title+"&onePrice"+onePrice;
 			
-			$.ajax({
+			/* $.ajax({
 				type: "get",
-				url: "./orderPage.do",
+				url: "../order/orderPage.do",
 				data: {num:num, selectDate:selectDate, person:person, title:title, onePrice:onePrice},
 				success: function(result) {
 					result = result.trim();
@@ -91,8 +92,8 @@
 					}
 					self.close();
 				}
-			}); 
-		}); */
+			});  */
+		});
 		
 		
 		

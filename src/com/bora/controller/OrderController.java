@@ -24,8 +24,9 @@ public class OrderController extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public OrderController() {
-        super();
+    	        super();
         // TODO Auto-generated constructor stub
+    	        orderService = new OrderService();
     }
 
 	/**
@@ -33,11 +34,17 @@ public class OrderController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String command = request.getPathInfo();
 		ActionForward actionForward=null;
-		
+				
 		if(command.equals("/orderResult.do")) {
+			System.out.println("result접속");
 			actionForward = orderService.orderConfirm(request, response);
+		}else if(command.equals("/orderPage.do")) {
+			System.out.println("page접속");
+			actionForward = orderService.orderInfo(request, response);
 		}
 		
 		if(actionForward.isCheck()) {

@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,10 +8,7 @@
 <%@page import="com.bora.member.MemberDTO"%>
 <%@page import="com.bora.member.MemberDAO"%>
 
-<%
-MemberDTO member = MemberDAO.getMemberInfo(id, memberDTO);
-ReserveDTO reserve = ReserveDAO.selectOne(num);
-%>
+
 <!DOCTYPE html>
 <html>
 
@@ -22,7 +18,7 @@ ReserveDTO reserve = ReserveDAO.selectOne(num);
     <c:import url="../../../temp/bootStrap.jsp"></c:import>
 	<c:import url="../../../css/sub.css"></c:import>
 	<script type="text/javascript">
-	function(){
+	$(document).ready(function(){
 		$("#confirm").click(function(){
 			var result = 0;
 			var isTest = 1;
@@ -37,7 +33,7 @@ ReserveDTO reserve = ReserveDAO.selectOne(num);
 		$('#cancle').click(function(){
 			history.back();
 		});
-	}
+	});
 	
 	</script>
 	
@@ -50,9 +46,15 @@ ReserveDTO reserve = ReserveDAO.selectOne(num);
         <div class="row">
         <div class="contentWrap">
         <form action="./orderResult.do" id="frm" method="post">
-        	<!--<%-- <input type="hidden" name="num" value="${member.num}">
+        	<input type="hidden" name="num" value="${member.num}">
         	<input type="hidden" name="email" value="${member.email}">
-        	<input type="hidden" name="phone" value="${member.phone}"> --%>-->
+        	<input type="hidden" name="phone" value="${member.phone}"> 
+        	<input type="hidden" name="selectDate" value="${reserve.selectDate}">
+        	<input type="hidden" name="title" value="${reserve.title}">
+        	<input type="hidden" name="person" value="${reserve.person}">
+        	<input type="hidden" name="onePrice" value="${reserve.onePrice}">
+        	<input type="hidden" name="totalPrice" value="${reserve.onePrice*reserve.person}">
+        	
             <div class="mWt48p">
                 <div class="left_box">
                     <h1 class="pageTitle">이용규칙 확인하기</h1>
@@ -100,18 +102,18 @@ ReserveDTO reserve = ReserveDAO.selectOne(num);
                                 <span class="currency">$</span>
                                 <span class="onePrice">${reserve.onePrice}</span>
                             </div>
-                            <br>
+                            <!-- <br>
                             <div class="fees">
                                 <span class="currency">$</span>
                                 <span class="onePrice">3.25</span>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="g_line"></div>
                         <div class="totalPriceBox">
                             <div class="">총 합계(<span class="currency">$</span>)</div>
                             <div class="finalCheck">
                                 <span class="currency">$</span>
-                                <span class="totalPrice">${reserve.totalPrice}</span>
+                                <span class="totalPrice">${reserve.onePrice*reserve.person}</span>
                             </div>
                         </div>
                         <div class="g_line"></div>
@@ -127,10 +129,10 @@ ReserveDTO reserve = ReserveDAO.selectOne(num);
                 </div>
             </div>
         </form>
-            <div class="btnBox">
-                <input type="button" id="cancle" value="취소">
-                <input type="button" id="confirm" value="확인">
-            </div>
+        <div class="btnBox">
+            <input type="button" id="cancle" value="취소">
+            <input type="button" id="confirm" value="확인">
+        </div>
         </div>
         </div>
     </div>

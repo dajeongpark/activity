@@ -1,5 +1,6 @@
 package com.bora.activity;
 
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +31,7 @@ public class ActivityDAO {
 			ActivityDTO activityDTO = new ActivityDTO();
 			activityDTO.setNum(rs.getInt("num"));
 			activityDTO.setWriter(rs.getString("writer"));
-			activityDTO.setTitle(rs.getString("title"));
+			activityDTO.setTitle(URLEncoder.encode(rs.getString("title"), "UTF-8"));
 			activityDTO.setContents(rs.getString("contents"));
 			activityDTO.setHit(rs.getInt("hit"));
 			activityDTO.setArea(rs.getString("area"));

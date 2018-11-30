@@ -1,5 +1,6 @@
 package com.bora.reserve;
 
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ public class ReserveDAO {
 		while(rs.next()) {
 			reserveDTO = new ReserveDTO();
 			reserveDTO.setNum(rs.getInt("num"));
-			reserveDTO.setTitle(rs.getString("title"));
+			reserveDTO.setTitle(URLEncoder.encode(rs.getString("title"), "UTF-8"));
 			reserveDTO.setSelectDate(rs.getString("selectDate"));
 			reserveDTO.setPerson(rs.getInt("person"));
 			reserveDTO.setOnePrice(rs.getInt("onePrice"));
@@ -43,7 +44,7 @@ public class ReserveDAO {
 		
 		//get all of these with parameters
 		st.setInt(1, reserveDTO.getNum());
-		st.setString(2, reserveDTO.getTitle());
+		st.setString(2, URLEncoder.encode(reserveDTO.getTitle(), "UTF-8"));
 		st.setString(3, reserveDTO.getSelectDate());
 		st.setInt(4, reserveDTO.getPerson());
 		st.setInt(5, reserveDTO.getOnePrice());

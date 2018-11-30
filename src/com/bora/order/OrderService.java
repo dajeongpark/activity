@@ -2,6 +2,7 @@ package com.bora.order;
 
 
 import com.bora.action.ActionForward;
+import com.bora.member.MemberDTO;
 import com.bora.reserve.ReserveDTO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,19 +20,19 @@ private OrderDAO orderDAO;
 		ActionForward actionForward = new ActionForward();
 		
 		ReserveDTO reserveDTO = new ReserveDTO();
-		request.setAttribute("reserveDTO", reserveDTO);
+		request.setAttribute("reserve", reserveDTO);	
 		
-		int num = Integer.parseInt(request.getParameter("num"));
+		reserveDTO.setNum(Integer.parseInt(request.getParameter("num")));
+		reserveDTO.setTitle(request.getParameter("title"));
+		reserveDTO.setSelectDate(request.getParameter("selectDate"));
+		reserveDTO.setOnePrice(Integer.parseInt(request.getParameter("onePrice")));
+		reserveDTO.setPerson(Integer.parseInt(request.getParameter("person")));
 		
-		OrderDAO orderDAO = new OrderDAO();
-		try {
-			orderDAO.orderInfo(num, reserveDTO);
-			actionForward.setCheck(true);
-			actionForward.setPath("../WEB-INF/view/order/orderPage.jsp");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+			
+		actionForward.setCheck(true);
+		actionForward.setPath("../WEB-INF/view/order/orderPage.jsp");
+		
 		
 		return actionForward;
 	}
@@ -54,16 +55,24 @@ private OrderDAO orderDAO;
 			orderDTO.setSelectDate(request.getParameter("selectDate"));
 			orderDTO.setTotalPrice(Integer.parseInt(request.getParameter("totalPrice")));
 			orderDTO.setTitle(request.getParameter("title"));
+			HttpSession session = request.getSession();
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			ReserveDTO reserveDTO = new ReserveDTO();
+			reserveDTO.setNum(Integer.parseInt(request.getParameter("num")));
+			reserveDTO.setOnePrice(Integer.parseInt(request.getParameter("onePrice")));
+			reserveDTO.setPerson(Integer.parseInt(request.getParameter("person")));
+			reserveDTO.setSelectDate(request.getParameter("selectDate"));
+			reserveDTO.setTitle(request.getParameter("title"));
 			
+			int result = 0;
 			try {
-				orderDTO = orderDAO.orderConfirm(reserveDTO, memberDTO);
+				result = orderDAO.orderConfirm(reserveDTO, memberDTO);
 			} catch (Exception e) {
-				orderDTO = null;
+				result = 0;
 				e.printStackTrace();
 			}
 			
-			if(orderDTO != null) {
-				HttpSession session = request.getSession();
+			if(result != 0) {
 				session.setAttribute("order", orderDTO);
 				actionForward.setCheck(false);
 				actionForward.setPath("./orderResult.jsp");
