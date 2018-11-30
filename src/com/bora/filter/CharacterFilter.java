@@ -1,4 +1,4 @@
-package com.iu.filter;
+package com.bora.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;
