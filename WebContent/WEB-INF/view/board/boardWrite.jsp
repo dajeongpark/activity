@@ -53,6 +53,8 @@
 			$("#f"+t).remove();
 			count--;
 		});
+		
+		
 	});
 </script>	
 </head>

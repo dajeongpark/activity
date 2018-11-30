@@ -132,12 +132,12 @@ public class QnaDAO implements BoardDAO, BoardReplyDAO {
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql = "insert into qna values(?,?,?,?,sysdate,0,0,0,0)";
+		String sql = "insert into qna values(qna_seq.nextval,?,?,?,sysdate,0,0,0,0)";
 		PreparedStatement st= con.prepareStatement(sql); //미리전송보기
-		st.setInt(1, boardDTO.getNum());
+		/*st.setInt(1, boardDTO.getNum());*/
+		st.setString(1, boardDTO.getWriter());
 		st.setString(2, boardDTO.getTitle());
 		st.setString(3, boardDTO.getContents());
-		st.setString(4, boardDTO.getWriter());
 		
 		int result= st.executeUpdate();
 		
