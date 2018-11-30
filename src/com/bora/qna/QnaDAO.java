@@ -51,13 +51,13 @@ public class QnaDAO implements BoardDAO, BoardReplyDAO {
 
 	@Override		//selectOne
 	public BoardDTO selectOne(int num) throws Exception {
-		QnaDTO qnaDTO=null;
 		Connection con = DBConnector.getConnect();
 		String sql ="select * from qna where num=?";
 		
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setInt(1, num);
 		ResultSet rs = st.executeQuery();
+		QnaDTO qnaDTO=null;
 		
 		if(rs.next()) {
 			qnaDTO = new QnaDTO();
@@ -166,6 +166,7 @@ public class QnaDAO implements BoardDAO, BoardReplyDAO {
 		String sql = "update qna set title=?, contents=? where num=?";
 		
 		PreparedStatement st = con.prepareStatement(sql);
+		
 		st.setString(1, boardDTO.getTitle());
 		st.setString(2, boardDTO.getContents());
 		st.setInt(3, boardDTO.getNum());

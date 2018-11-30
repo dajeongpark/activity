@@ -4,11 +4,14 @@
 <%@page import="com.bora.notice.NoticeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    String board=(String)request.getAttribute("board"); 
+    %>
     
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
+ 
   <title>Bootstrap Theme Company Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,18 +21,18 @@
 <script type="text/javascript">
 	$(function() {
 		
-		CKEDITOR.replace("contents", {
+			CKEDITOR.replace("contents", {
 	         enterMode:'2'
 	      });
 	      
 		$("#btn").click(function() {
-			var title = $("#title").val();
-			if(title != ''){
+				var title = $("#title").val();
+				if(title != ''){
 				$("#frm").submit();
-			}else {
+				}else {
 				alert("Title을 입력");
-			}
-		});
+				}
+			});
 		
 		var count=1;
 		var index=0;
@@ -46,8 +49,7 @@
 			}else {
 				alert("파일은 5개 까지 가능");
 			}
-		});
-		
+		});	
 		$("#file").on("click", ".remove", function() {
 			var t = $(this).attr("title");
 			$("#f"+t).remove();

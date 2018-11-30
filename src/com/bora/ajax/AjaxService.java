@@ -14,7 +14,6 @@ import com.bora.notice.NoticeDAO;
 import com.bora.page.RowNumber;
 import com.bora.page.Search;
 
-
 public class AjaxService {
    
    public ActionForward list(HttpServletRequest request, HttpServletResponse response) {
@@ -48,4 +47,5 @@ public class AjaxService {
       
       return actionForward;
    }   
+
 }

@@ -15,6 +15,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../../../temp/bootStrap.jsp" %>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#writeBt').click(function(){
+		$(location).attr('href','write.do');
+	});
+	
+});
+
+
+</script>
 
 </head>
 <body>
@@ -74,7 +84,7 @@
          </c:forEach>
       </table>
       
-      <a href="./qnaWrite.do" class="btn btn-default">Write</a>
+      <button type="button" id="writeBt" class="btn btn-default">WRITE</button>
    </div>
    
 <div class="container-fluid">

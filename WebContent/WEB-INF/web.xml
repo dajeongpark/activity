@@ -41,6 +41,7 @@
     <url-pattern>/activity/*</url-pattern>
   </servlet-mapping>
   <display-name>activity</display-name>
+  
   <servlet>
     <servlet-name>qna</servlet-name>
     <servlet-class>com.bora.controller.QnaController</servlet-class>
@@ -53,6 +54,7 @@
     <servlet-name>qna</servlet-name>
     <url-pattern>/qna/*</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>notice</servlet-name>
     <servlet-class>com.bora.controller.NoticeController</servlet-class>

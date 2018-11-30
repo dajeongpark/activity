@@ -35,26 +35,46 @@ public class QnaService implements BoardReplyService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+	
 		return actionForward;
 	}
 
 	@Override
 	public ActionForward update(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+		ActionForward actionForward = new ActionForward();
+		
+		QnaDAO qnaDAO = new QnaDAO();
+		BoardDTO boardDTO = new BoardDTO();
+		
+		
+		int result;
+		try {
+			result = qnaDAO.update(boardDTO);
+			String s= "update Fail"; //메세지를 보여줌
+			if(result>0) {
+				s="update success";
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		actionForward.setCheck(true);
+		actionForward.setPath("./qnaupdate.do"); //실제 파일을 불러옴
+		
+		return actionForward;
 	}
 
 	@Override
 	public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward= new ActionForward();
 		
-		int result= Integer.parseInt(request.getParameter("result"));//메세지를 요청
+		int num= Integer.parseInt(request.getParameter("num"));//메세지를 요청
 		
-		if(result>0) {
+		if(num>0) {
 			request.setAttribute("message", "delete fail"); //실패 메세지를 띄우고
-			request.setAttribute("path", "./qnadelete.do");
+			request.setAttribute("path", "./qnaList.do");
 		}else {
 			request.setAttribute("message", "delete success"); //성공메세지를 띄운다.
 			request.setAttribute("path", "./qnaList.do");
@@ -88,7 +108,7 @@ public class QnaService implements BoardReplyService {
 		
 		if(boardDTO==null){
 			actionForward.setCheck(false);
-			actionForward.setPath("./qnaList.do");
+			actionForward.setPath("./qnaList.do"); //실제 존재하는 파일을 불러옴.
 		}
 		return actionForward;
 	}
@@ -99,7 +119,7 @@ public class QnaService implements BoardReplyService {
 		ActionForward actionForward = new ActionForward();
 		int curPage = 1;
 		try {
-			curPage = Integer.getInteger(request.getParameter("curPage"));
+			 curPage = Integer.getInteger(request.getParameter("curPage"));
 		}catch (Exception e) {
 
 		}		

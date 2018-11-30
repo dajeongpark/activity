@@ -29,6 +29,7 @@ public class QnaController extends HttpServlet {
         qnaService = new QnaService();
         // TODO Auto-generated constructor stub
     }
+    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
