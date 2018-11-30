@@ -137,21 +137,13 @@
 				<div class="carousel-inner">
 
 					<div class="item active">
-						<img src="./images/image1.jpg" alt="Los Angeles"
+						<img src="./images/header1.PNG" alt="Los Angeles"
 							style="width: 100%; height: 500px;">
-						<div class="carousel-caption">
-							<h3>Los Angeles</h3>
-							<p>LA is always so much fun!</p>
-						</div>
 					</div>
 
 					<div class="item">
-						<img src="./images/image2.jpg" alt="Chicago"
+						<img src="./images/header2.jpg" alt="Chicago"
 							style="width: 100%; height: 500px;">
-						<div class="carousel-caption">
-							<h3>Chicago</h3>
-							<p>Thank you, Chicago!</p>
-						</div>
 					</div>
 
 					<!--  	      <div class="item">
@@ -181,30 +173,31 @@
 			<h2>MD추천</h2>
 			<div class="md">
 				<div class="md_1">
-					<img class="img" alt="" src="./images/md1.jpg">
+					<img class="img" alt="" src="./images/md1.png">
 					<div class="mdinfo">
-						<span class="name">아찔한 원주 소금산 출렁다리와 제천 힐링 여행</span> <span
-							class="price">22,900원~</span>
+						<span class="name">런닝맨 제8의 멤버는 나야 나!</span> <span
+							class="price">16,000원~</span>
 					</div>
 				</div>
 				<div class="md_2">
-					<img class="img" alt="" src="./images/md2.png">
+					<img class="img" alt="" src="./images/md2.jpg">
 					<div class="mdinfo">
-						<span class="name">♥ KTX ♥ 장사도 카멜리아+외도 보타니아+통영 케이블카 ♥</span> <span
-							class="price">279,000원~</span>
+						<span class="name">기차와 함께 달리는 행복한 전주한옥 레일바이크!</span> <span
+							class="price">20,000원~</span>
 					</div>
 				</div>
 				<div class="md_3">
-					<img class="img" alt="" src="./images/md3.png">
+					<img class="img" alt="" src="./images/md3.jpg">
 					<div class="mdinfo">
-						<span class="name">명량! 한려수도(통영~남해~여수) 완!전!일!주!</span> <span
-							class="price">334,000원~</span>
+						<span class="name">청평호반에서 즐기는 수상 레저스포츠</span> <span
+							class="price">34,000원~</span>
 					</div>
 				</div>
 				<div class="md_4">
-						<img class="img" alt="" src="./images/md4.png">
+						<img class="img" alt="" src="./images/md4.jpg">
 						<div class="mdinfo">
-							<span class="name">천혜의 비경 백령도 (1박2일)</span> <span class="price">145,000원~</span>
+							<span class="name">모든 레이서들의 꿈을 담은 3.908km</span> 
+							<span class="price">30,000원~</span>
 						</div>
 						<div class="overlay"></div>
 				</div>
