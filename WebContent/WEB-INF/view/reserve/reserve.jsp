@@ -75,7 +75,7 @@
 			var num = ${param.num};
 			var selectDate = $("#selectDate").val();
 			var person = $("#person").val();
-			var title = '${param.title}';
+			var title = encodeURI('${param.title}');
 			var onePrice = ${param.onePrice};
 			location.href="../order/orderPage.do?num="+num+"&selectDate="+selectDate+"&person"+person+"&title"+title+"&onePrice"+onePrice;
 			

@@ -19,8 +19,7 @@ private OrderDAO orderDAO;
 	public ActionForward orderInfo(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
 		
-		ReserveDTO reserveDTO = new ReserveDTO();
-		request.setAttribute("reserve", reserveDTO);	
+		ReserveDTO reserveDTO = new ReserveDTO();	
 		
 		reserveDTO.setNum(Integer.parseInt(request.getParameter("num")));
 		reserveDTO.setTitle(request.getParameter("title"));
@@ -29,7 +28,8 @@ private OrderDAO orderDAO;
 		reserveDTO.setPerson(Integer.parseInt(request.getParameter("person")));
 		
 		
-			
+
+		request.setAttribute("reserve", reserveDTO);
 		actionForward.setCheck(true);
 		actionForward.setPath("../WEB-INF/view/order/orderPage.jsp");
 		
