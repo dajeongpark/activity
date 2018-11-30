@@ -59,7 +59,7 @@ public class QnaService implements BoardReplyService {
 			request.setAttribute("message", "delete success"); //성공메세지를 띄운다.
 			request.setAttribute("path", "./qnaList.do");
 		}
-		
+	
 		actionForward.setCheck(true);
 		actionForward.setPath("../WEB-INF/view/common/result.jsp"); //실제 있는 파일을 불러옴
 	

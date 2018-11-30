@@ -6,6 +6,7 @@
 <%@page import="com.bora.board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
  
 <!DOCTYPE html>
@@ -14,32 +15,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../../../temp/bootStrap.jsp" %>
-<style type="text/css">
-h1{
-	position: absolute;
-	top: 75px;
-	left: 850px;
-	font-size-adjust: large;
-	opacity: 0.7;
-	text-shadow: 1px 1px 2px black;
-	color: white;
-	
-}
-strong{
-	position: absolute;
-	color: white;
-	font-size-adjust: none;	
-}
-</style>
+
 </head>
 <body>
 <c:import url="../../../temp/header.jsp" />
 <div class="container-fluid">
    <div id="wrap" align="center" class="row">
-   <div class="text">
-			<h1>BORACAY&nbsp;&nbsp;<strong>Q&amp;A</strong></h1>
-		</div>
-   </div>
+   
    <div class="row">
       <div>
       <div class="boardList">
@@ -67,7 +49,7 @@ strong{
       <table class="table table-hover" summary="번호,제목,작성자,작성한 날짜,조회수">
          <tr>
             <td>NUM</td>
-            <td>&nbsp;&nbsp;TITLE&nbsp;</td>
+            <td>TITLE</td>
             <td>WRITER</td>
             <td>DATE</td>
             <td>HIT</td>
@@ -91,6 +73,7 @@ strong{
          </tr>
          </c:forEach>
       </table>
+      
       <a href="./qnaWrite.do" class="btn btn-default">Write</a>
    </div>
    
@@ -98,7 +81,7 @@ strong{
    <div class="row">
           
      <ul class="pagination">
-        <li><a href="./${board} }List.do?curPage=1"><span class="glyphicon glyphicon-backward"></span></a></li>
+        <li><a href="./${board}List.do?curPage=1"><span class="glyphicon glyphicon-backward"></span></a></li>
         
         <c:if test="${pager.curBlock gt 1}">
            <li><a href="./${board}List.do?curPage=${pager.startNum-1}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
@@ -133,7 +116,7 @@ strong{
    
    </c:choose>
 
-
+ </div>
 </div>
 </div>
 
