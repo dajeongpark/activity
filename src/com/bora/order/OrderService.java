@@ -19,13 +19,14 @@ private OrderDAO orderDAO;
 	public ActionForward orderInfo(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
 		
-		ReserveDTO reserveDTO = new ReserveDTO();	
+		ReserveDTO reserveDTO = new ReserveDTO();
 		
-		reserveDTO.setNum(Integer.parseInt(request.getParameter("num")));
+		reserveDTO.setNum(Integer.parseInt(request.getParameter("num").trim()));
 		reserveDTO.setTitle(request.getParameter("title"));
 		reserveDTO.setSelectDate(request.getParameter("selectDate"));
-		reserveDTO.setOnePrice(Integer.parseInt(request.getParameter("onePrice")));
-		reserveDTO.setPerson(Integer.parseInt(request.getParameter("person")));
+		reserveDTO.setOnePrice(Integer.parseInt(request.getParameter("onePrice").trim()));
+		System.out.println(Integer.parseInt(request.getParameter("onePrice").trim()));
+		reserveDTO.setPerson(Integer.parseInt(request.getParameter("person").trim()));
 		
 		
 
@@ -44,10 +45,10 @@ private OrderDAO orderDAO;
 		
 		if(method.equals("POST")) {
 			OrderDTO orderDTO = new OrderDTO();
-			orderDTO.setNum(Integer.parseInt(request.getParameter("num")));
+			orderDTO.setNum(Integer.parseInt(request.getParameter("num").trim()));
 			orderDTO.setName(request.getParameter("name"));
-			orderDTO.setOnePrice(Integer.parseInt(request.getParameter("onePrice")));
-			orderDTO.setPerson(Integer.parseInt(request.getParameter("person")));
+			orderDTO.setOnePrice(Integer.parseInt(request.getParameter("onePrice").trim()));
+			orderDTO.setPerson(Integer.parseInt(request.getParameter("person").trim()));
 			orderDTO.setEmail(request.getParameter("email"));
 			orderDTO.setOrderId(request.getParameter("orderId"));
 			orderDTO.setPayMethod(request.getParameter("payMethod"));
@@ -59,8 +60,8 @@ private OrderDAO orderDAO;
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			ReserveDTO reserveDTO = new ReserveDTO();
 			reserveDTO.setNum(Integer.parseInt(request.getParameter("num")));
-			reserveDTO.setOnePrice(Integer.parseInt(request.getParameter("onePrice")));
-			reserveDTO.setPerson(Integer.parseInt(request.getParameter("person")));
+			reserveDTO.setOnePrice(Integer.parseInt(request.getParameter("onePrice").trim()));
+			reserveDTO.setPerson(Integer.parseInt(request.getParameter("person").trim()));
 			reserveDTO.setSelectDate(request.getParameter("selectDate"));
 			reserveDTO.setTitle(request.getParameter("title"));
 			

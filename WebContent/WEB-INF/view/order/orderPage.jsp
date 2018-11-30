@@ -17,7 +17,8 @@
     <title>Insert title here</title>
     <c:import url="../../../temp/bootStrap.jsp"></c:import>
 	<c:import url="../../../css/sub.css"></c:import>
-	<script type="text/javascript">
+
+<script type="text/javascript">
 	$(document).ready(function(){
 		$("#confirm").click(function(){
 			var result = 0;
@@ -31,7 +32,7 @@
 		});
 		
 		$('#cancle').click(function(){
-			history.back();
+			self.close();
 		});
 	});
 	
@@ -68,10 +69,10 @@
                  		<div class="name"><span class="label">E-Mail</span> : ${member.email}</div>
                  		<div class="name"><span class="label">연락처</span> : ${member.phone}</div>
                  	</div>
-                    <div class="g_line"></div>
+                    <!-- <div class="g_line"></div>
                     <div class="notes">
                         <h3 class="boxTitle">주의할 사항</h3>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="mWt48p">
@@ -88,7 +89,7 @@
                         <div class="g_line"></div>
                         <div class="guest">게스트 <span id="guestNum">${reserve.person}</span>명</div>
                         <div class="reserveDate">
-                            <span>${reserve.selectDate}</span><br><span>12:00</span>
+                            <span>${reserve.selectDate}</span> <span>12:00</span>
                         </div>
                         <div class="g_line"></div>
                         <div class="Price">
