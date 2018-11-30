@@ -68,7 +68,7 @@ public class QnaService implements BoardReplyService {
 
 	@Override
 	public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
-		ActionForward actionForward= new ActionForward();
+		ActionForward actionForward= new ActionForward(); //알림창띄우게 만들기.
 		
 		int num= Integer.parseInt(request.getParameter("num"));//메세지를 요청
 		

@@ -42,7 +42,7 @@
   </servlet-mapping>
   <display-name>activity</display-name>
   
-  <servlet>
+<servlet>
     <servlet-name>qna</servlet-name>
     <servlet-class>com.bora.controller.QnaController</servlet-class>
     <init-param>
