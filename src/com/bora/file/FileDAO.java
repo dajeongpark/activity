@@ -36,6 +36,26 @@ public class FileDAO {
 		return ar;
 	}
 	
+	//selectOne
+	public FileDTO selectOne(int num) throws Exception {
+		Connection con = DBConnector.getConnect();
+		String sql = "select * from upload where num = ?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setInt(1, num);
+		FileDTO fileDTO = null;
+		ResultSet rs = st.executeQuery();
+		if(rs.next()) {
+			fileDTO = new FileDTO();
+			fileDTO.setFnum(rs.getInt("fnum"));
+			fileDTO.setFname(rs.getString("fname"));
+			fileDTO.setOname(rs.getString("oname"));
+			fileDTO.setNum(rs.getInt("num"));
+			fileDTO.setKind(rs.getString("kind"));
+		}
+		DBConnector.disConnect(rs, st, con);
+		return fileDTO;
+	}
+	
 	//insert
 	public int insert(FileDTO fileDTO) throws Exception {
 		Connection con = DBConnector.getConnect();

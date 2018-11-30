@@ -27,6 +27,19 @@
 			}
 		});
 		
+		/* var countOnce=1;
+		$("#add0").click(function() {
+			if(countOnce<2){
+				var r = '<div class="form-group" id="f0">';
+				r = r+'<label for="file">File:</label>';
+				r = r+'<input type="file" class="form-control" id="file" name="f0">';
+				r = r+'<span class="remove" title="0">X</span>';
+				r = r+'</div>';
+				$("#file0").append(r);
+				countOnce++;
+			}
+		}); */
+		
 		var count=1;
 		var index=0;
 		$("#add").click(function() {
@@ -132,8 +145,8 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="price">PRICE: </label>
-				<input type="text" class="form-control" id="price" placeholder="Enter Price" name="price" autocomplete="off">
+				<label for="onePrice">PRICE(per person): </label>
+				<input type="text" class="form-control" id="onePrice" placeholder="Enter Price(per person)" name="onePrice" autocomplete="off">
 			</div>
 			
 			<div class="form-group">
@@ -141,8 +154,10 @@
 				<textarea rows="25" cols="" class="form-control" id="contents" placeholder="Enter Contents" name="contents"></textarea>
 			</div>
 			
-			<!-- <input type="button" id="addFirst" value="File for Title" name="addFirst"> -->
-			
+			<!-- <input type="button" id="add0" value="File for Title" name="file0">
+			<div class="files0" id="file0">
+				
+			</div> -->
 			
 			<input type="button" id="add" value="File Add">	
 			<div class="files" id="file">

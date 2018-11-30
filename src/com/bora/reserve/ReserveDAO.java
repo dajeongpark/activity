@@ -30,7 +30,6 @@ public class ReserveDAO {
 			reserveDTO.setOnePrice(rs.getInt("onePrice"));
 			ar.add(reserveDTO);
 		}
-		
 		DBConnector.disConnect(rs, st, con);
 		return ar;
 	}
@@ -38,7 +37,7 @@ public class ReserveDAO {
 	//reserve
 	public int reserve(ReserveDTO reserveDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql = "insert into reserve values (?,?,?,?,?)";
+		String sql = "insert into reserve values (?,?,?,?,?,reserve_seq.nextval)";
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		//get all of these with parameters

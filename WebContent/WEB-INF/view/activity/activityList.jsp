@@ -75,15 +75,18 @@
 	.imageBox {
 	position: relative;
 	width: 100%;
+	height: 100%;
 	max-width: 33%;
+	max-height: 330px;
+	overflow: hidden;
 	float: left;
 	/* padding: 0.4%; */
 	}
 
 	.image {
 		display: block;
-		width: 100%;
-		height: 100%;
+		width: inherit;
+		height: inherit;
 	}
 	
 	.overlay {
@@ -117,11 +120,11 @@
 	
 	.areaBox {
 		display: inline-block;
-		width: 50px;
+		width: 60px;
 		height: 20px;
 		border: 1px solid #5b5b5b;
 		color: #fff;
-		font-size: 9px;
+		font-size: 12px;
 		line-height: 18px;
 		margin-top: 15%;
 	}
@@ -140,12 +143,13 @@
 		display: inline-block;
 		padding: 0 2px;
 		border-bottom: 1px solid #868686;
-		font-size: 10px;
+		font-size: 12px;
 	}
 	
 </style>
 
 <script type="text/javascript">
+	
 	$(document).ready(function(){
 		$(".areas1").click(function(){
 			$(".areas2").hide();
@@ -170,6 +174,7 @@
 		    }
 		}); */
 		
+		
 	});
 </script>
 
@@ -193,11 +198,11 @@
 			<div class="activityList">
 				
 				<ul class="images" id="images" style="list-style-type:none">
-					<c:forEach items="${list}" var="activityDTO">
+					<c:forEach items="${list}" var="activityDTO" varStatus="i">
 						<c:if test="${activityDTO.area eq 's'}">
 							<li class="areas2 s" id="s">
 								<div class="imageBox">
-									<img src="../upload/test.png" class="image">
+									<img src="../upload/${files[i.index].fname}" class="image">
 									<div class="overlay" onclick="location.href='./activitySelectOne.do?num=${activityDTO.num}'">
 										<span class="areaBox">서울</span>
 										<span><p></p>${activityDTO.title}<p></p></span>
@@ -211,7 +216,7 @@
 						<c:if test="${activityDTO.area eq 'gg'}">
 							<li class="areas2 gg" id="gg">
 								<div class="imageBox">
-									<img src="../upload/test.png" class="image">
+									<img src="../upload/${files[i.index].fname}" class="image">
 									<div class="overlay" onclick="location.href='./activitySelectOne.do?num=${activityDTO.num}'">
 										<span class="areaBox">경기</span>
 										<span><p></p>${activityDTO.title}<p></p></span>
@@ -225,7 +230,7 @@
 						<c:if test="${activityDTO.area eq 'gw'}">
 							<li class="areas2 gw" id="gw">
 								<div class="imageBox">
-									<img src="../upload/test.png" class="image">
+									<img src="../upload/${files[i.index].fname}" class="image">
 									<div class="overlay" onclick="location.href='./activitySelectOne.do?num=${activityDTO.num}'">
 										<span class="areaBox">강원</span>
 										<span><p></p>${activityDTO.title}<p></p></span>
@@ -239,7 +244,7 @@
 						<c:if test="${activityDTO.area eq 'e'}">
 							<li class="areas2 e" id="e">
 								<div class="imageBox">
-									<img src="../upload/test.png" class="image">
+									<img src="../upload/${files[i.index].fname}" class="image">
 									<div class="overlay" onclick="location.href='./activitySelectOne.do?num=${activityDTO.num}'">
 										<span class="areaBox">그 외 지역</span>
 										<span><p></p>${activityDTO.title}<p></p></span>
@@ -264,9 +269,9 @@
 		<div class="row">
 		
 		
-	<%-- <c:if test="${not empty member and member.kind eq '관리자'}"> --%>
+		<c:if test="${not empty member and member.kind eq 'admin'}">
 			<c:import url="../../../temp/writeButton.jsp"></c:import>
-	<%-- </c:if> --%>
+		</c:if>
 		
 		<div class="moreBtnBox">
 			<button id="more" class="btn btn-primary">더보기</button>

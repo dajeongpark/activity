@@ -8,6 +8,7 @@ public class ReserveDTO {
 	private String selectDate;
 	private int person;
 	private int onePrice;
+	private int idx;
 	
 	public int getNum() {
 		return num;
@@ -39,8 +40,11 @@ public class ReserveDTO {
 	public void setOnePrice(int onePrice) {
 		this.onePrice = onePrice;
 	}
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
 	
-	
-	
-
 }

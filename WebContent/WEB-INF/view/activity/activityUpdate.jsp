@@ -69,21 +69,18 @@
 			$("#area").val("s");
 		});
 		$("#gg").click(function() {
-			$("#area").val() = 'gg';
 			$("#selectArea").hide();
 			$(".areas").hide();	
 			$(".gg").show();
 			$("#area").val("gg");
 		});
 		$("#gw").click(function() {
-			$("#area").val() = 'gw';
 			$("#selectArea").hide();
 			$(".areas").hide();	
 			$(".gw").show();
 			$("#area").val("gw");
 		});
 		$("#e").click(function() {
-			$("#area").val() = 'e';
 			$("#selectArea").hide();
 			$(".areas").hide();	
 			$(".e").show();
@@ -143,8 +140,8 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="price">PRICE: </label>
-				<input type="text" class="form-control" id="price" placeholder="Enter Price" name="price" value="${activityDTO.price}">
+				<label for="onePrice">PRICE(per person): </label>
+				<input type="text" class="form-control" id="onePrice" placeholder="Enter Price(per person)" name="onePrice" value="${activityDTO.onePrice}">
 			</div>
 			
 			<div class="form-group">

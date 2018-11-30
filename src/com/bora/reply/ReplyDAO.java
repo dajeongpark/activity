@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bora.activity.ActivityDTO;
 import com.bora.page.RowNumber;
 import com.bora.page.Search;
 import com.bora.util.DBConnector;
@@ -74,15 +75,16 @@ public class ReplyDAO {
 	
 	
 	//insert(replyWrite)
-	public int insert(ReplyDTO replyDTO) throws Exception {
+	public int insert(int idx, ReplyDTO replyDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql = "insert into reply values (reply_seq.nextval, 'test', ?, sysdate, ?)";
+		ActivityDTO activityDTO = new ActivityDTO();
+		String sql = "insert into reply values (reply_seq.nextval, ?, ?, sysdate, ?)";
 												//num,writer,contents,reg_date,idx
 		
 		PreparedStatement st = con.prepareStatement(sql);
-		
-		st.setString(1, replyDTO.getContents());
-		st.setInt(2, replyDTO.getIdx());
+		st.setString(1, replyDTO.getWriter());
+		st.setString(2, replyDTO.getContents());
+		st.setInt(3, idx); //replyDTO.getIdx()
 		
 		int result = st.executeUpdate();
 		DBConnector.disConnect(st, con);
