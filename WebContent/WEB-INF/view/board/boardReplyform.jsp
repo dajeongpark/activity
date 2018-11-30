@@ -28,7 +28,7 @@
 <div class="container-fluid">
 	<div class="row">
 	<h1>Reply form</h1>
-	  <form action="./qnaReplyProcess.jsp" method="post">
+	  <form action="./${board}Replyform.jsp" method="post">
 		<input type="hidden" name="num" value="<%=num%>">
 	  
 	    <div class="form-group">

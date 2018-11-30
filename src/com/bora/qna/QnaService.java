@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bora.action.ActionForward;
 import com.bora.board.BoardDTO;
 import com.bora.board.BoardReplyService;
+import com.bora.file.FileDAO;
 import com.bora.page.MakePager;
 import com.bora.page.Pager;
 import com.bora.page.RowNumber;
@@ -24,11 +25,10 @@ public class QnaService implements BoardReplyService {
 	public ActionForward insert(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
 		BoardDTO boardDTO = new BoardDTO(); //QNADAO안에 insert랑 값이 같고, 
-		boardDTO.setTitle(request.getParameter("title")); //set : 입력한 값을 getParameter를 통해 가
+		boardDTO.setTitle(request.getParameter("title")); //set : 입력한 값을 getParameter를 통해 가지고 들어옴
 		boardDTO.setContents(request.getParameter("contents"));
 		boardDTO.setWriter(request.getParameter("writer"));
 		try {
-			
 			int insert=qnaDAO.insert(boardDTO);
 			System.out.println(insert);
 		} catch (Exception e) {
@@ -48,8 +48,22 @@ public class QnaService implements BoardReplyService {
 
 	@Override
 	public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+		ActionForward actionForward= new ActionForward();
+		
+		int result= Integer.parseInt(request.getParameter("result"));//메세지를 요청
+		
+		if(result>0) {
+			request.setAttribute("message", "delete fail"); //실패 메세지를 띄우고
+			request.setAttribute("path", "./qnadelete.do");
+		}else {
+			request.setAttribute("message", "delete success"); //성공메세지를 띄운다.
+			request.setAttribute("path", "./qnaList.do");
+		}
+		
+		actionForward.setCheck(true);
+		actionForward.setPath("../WEB-INF/view/common/result.jsp"); //실제 있는 파일을 불러옴
+	
+		return actionForward;
 	}
 	
 	//select

@@ -42,17 +42,23 @@ $(function(){
 	 			<input type="hidden" name="num" value="${dto.num}">
 	 		<div class="form-group">
 	 			<label for="title">Title :</label>
-	 			<input type="text" value="${boardDTO.title}" class="form-control" id="title" placeholder="Enter Title" name="title">
+	 			<input type="text" value="${boardDTO.title}" class="form-control" id="title" 
+
+placeholder="Enter Title" name="title">
 	 		</div>
 	 		
 	 		<div class="form-group">
 	 			<label for="writer">Writer :</label>
-	 			<input type="text" class="form-control" value="${boardDTO.writer}" id="writer" placeholder="Enter Writer" name="writer">
+	 			<input type="text" class="form-control" value="${boardDTO.writer}" 
+
+id="writer" placeholder="Enter Writer" name="writer">
 	 		</div>
 	 		
 		 	<div class="form-group">
 	 			<label for="contents">Contents:</label>
-	 		<textarea rows="15" cols="" class="form-control" name="contents">${boardDTO.contents}</textarea>
+	 		<textarea rows="15" cols="" class="form-control" name="contents">
+
+${boardDTO.contents}</textarea>
 	 		</div>
 	 		
 	 	<c:forEach items="${files}" var="file" varStatus="i">

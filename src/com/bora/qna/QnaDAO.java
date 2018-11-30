@@ -109,7 +109,7 @@ public class QnaDAO implements BoardDAO, BoardReplyDAO {
 		return ar;
 	}
 
-	 //insert 출력 /insert를 출력했을때, 1은 성공 0은 실패
+	 /*//insert 출력 /insert를 출력했을때, 1은 성공 0은 실패
 	  public static void main(String[] args) {
 		QnaDAO qnaDAO = new QnaDAO(); 
 		BoardDTO boardDTO = new BoardDTO();
@@ -126,24 +126,25 @@ public class QnaDAO implements BoardDAO, BoardReplyDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql = "insert into qna values(qna_seq.nextval,?,?,?,sysdate,0,0,0,0)";
+		String sql = "insert into qna values(?,?,?,?,sysdate,0,0,0,0)";
 		PreparedStatement st= con.prepareStatement(sql); //미리전송보기
-		
-		st.setString(1, boardDTO.getTitle());
-		st.setString(2, boardDTO.getContents());
-		st.setString(3, boardDTO.getWriter());
+		st.setInt(1, boardDTO.getNum());
+		st.setString(2, boardDTO.getTitle());
+		st.setString(3, boardDTO.getContents());
+		st.setString(4, boardDTO.getWriter());
 		
 		int result= st.executeUpdate();
 		
 		DBConnector.disConnect(st, con);
 		return result;
 	}
+	
 	@Override
 	public int delete(int num) throws Exception {
 		Connection con = DBConnector.getConnect();
@@ -162,7 +163,7 @@ public class QnaDAO implements BoardDAO, BoardReplyDAO {
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
-		String sql = "update qna set title=?,contents=? where num=?";
+		String sql = "update qna set title=?, contents=? where num=?";
 		
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setString(1, boardDTO.getTitle());
