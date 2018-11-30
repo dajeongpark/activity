@@ -166,7 +166,7 @@
 				<tr>
 					<td>
 						<c:forEach items="${files}" var="fileDTO">
-							<img src="../upload/${fileDTO.fname}"><br>
+							<img style="width: 1000px;" src="../upload/${fileDTO.fname}"><br>
 						</c:forEach>
 						<br>${activityDTO.contents}<br>
 						<div class="btnBox">
