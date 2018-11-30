@@ -94,6 +94,31 @@
 			}); 
 		}); */
 		
+		$("#paymentBtn").click(function() {
+			var num = ${param.num};
+			var selectDate = $("#selectDate").val();
+			var person = $("#person").val();
+			var title = encodeURI('${param.title}');
+			var onePrice = ${param.onePrice};
+			location.href="../order/orderPage.do?num="+num+"&selectDate="+selectDate+"&person="+person+"&title="+title+"&onePrice="+onePrice;
+			
+			/* $.ajax({
+				type: "get",
+				url: "../order/orderPage.do",
+				data: {num:num, selectDate:selectDate, person:person, title:title, onePrice:onePrice},
+				success: function(result) {
+					result = result.trim();
+					if(result>0){
+						alert("예약되었습니다. 결제 페이지로 이동");
+					}else{
+						alert("Reserve Fail");
+					}
+					self.close();
+				}
+			});  */
+		});
+		
+		
 		
 		
 	});

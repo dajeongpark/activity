@@ -102,4 +102,27 @@ public class MemberDAO {
 		return result;
 	}
 
+    public MemberDTO getMemberInfo(String id, MemberDTO memberDTO) throws Exception{
+        Connection con = DBConnector.getConnect();
+		String sql = "select * from member where id=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, id);
+		ResultSet rs = st.executeQuery();
+		if(rs.next()) {
+			memberDTO.setName(rs.getString("name"));
+			memberDTO.setEmail(rs.getString("email"));
+			memberDTO.setDomain(rs.getString("domain"));
+			memberDTO.setBirth(rs.getString("birth"));
+			memberDTO.setPhone1(rs.getString("phone1"));
+			memberDTO.setPhone2(rs.getString("phone2"));
+			memberDTO.setPhone3(rs.getString("phone3"));
+		}else {
+			memberDTO = null;
+		}
+		DBConnector.disConnect(rs, st, con);
+		return memberDTO;
+        
+        
+    }
+    
 }

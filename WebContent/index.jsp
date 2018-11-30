@@ -173,7 +173,7 @@
 			<h2>MD추천</h2>
 			<div class="md">
 				<div class="md_1">
-					<img class="img" alt="" src="./images/md1.png" onclick="location.href='http://localhost:8081/activity/activity/activitySelectOne.do?num=5'">
+					<img class="img" alt="" src="./images/md1.png" onclick="location.href='http://localhost:8081/activity/activitySelectOne.do?num=5'">
 					<div class="mdinfo">
 						<span class="name">런닝맨 제8의 멤버는 나야 나!</span> <span
 							class="price">16,000원~</span>

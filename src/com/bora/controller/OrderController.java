@@ -10,37 +10,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bora.action.ActionForward;
-import com.bora.reserve.ReserveService;
+import com.bora.order.OrderService;
 
 /**
- * Servlet implementation class ReserveController
+ * Servlet implementation class OrderController
  */
-@WebServlet("/ReserveController")
-public class ReserveController extends HttpServlet {
+@WebServlet("/OrderController")
+public class OrderController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ReserveService reserveService;
+	private OrderService orderService;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReserveController() {
-        super();
-        reserveService = new ReserveService();
+    public OrderController() {
+    	        super();
+        // TODO Auto-generated constructor stub
+    	        orderService = new OrderService();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String command = request.getPathInfo();
-		ActionForward actionForward = new ActionForward();
-		
-		if(command.equals("/reserve.do")) {
-			actionForward = reserveService.selectOne(request, response);
-		}else if(command.equals("/reserveWrite.do")) {
-			actionForward = reserveService.reserve(request, response);
+		ActionForward actionForward=null;
+				
+		if(command.equals("/orderResult.do")) {
+			System.out.println("result접속");
+			actionForward = orderService.orderConfirm(request, response);
+		}else if(command.equals("/orderPage.do")) {
+			System.out.println("page접속");
+			actionForward = orderService.orderInfo(request, response);
 		}
-		
 		
 		if(actionForward.isCheck()) {
 			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());

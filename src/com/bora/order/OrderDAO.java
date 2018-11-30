@@ -7,35 +7,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.bora.activity.ActivityDTO;
-import com.bora.card.CardDTO;
-import com.bora.payment.MemberDTO;
-import com.bora.payment.paymentDTO;
+import com.bora.member.MemberDAO;
+import com.bora.member.MemberDTO;
+import com.bora.reserve.ReserveDAO;
 import com.bora.reserve.ReserveDTO;
 import com.bora.util.DBConnector;
 
 public class OrderDAO {
-	//payment Add
-		//payment Edit
-		//payment Delete
-		//payment update
-		//payment Save
-		//payment search
-		//payment checkDetaills
+	
 		
-		
-		
-		
-	/*	public void paymentSave() throws Exception{
-			
-		}
-		public void paymentSearch() throws Exception{
-			
-		}
-		public void paymentCheckDetails() throws Exception{
-			
-		};*/
-		
-		//주문ID생성
+		/*//주문ID생성
 		
 		public void orderId() throws Exception{
 			paymentDTO paymentDTO= new paymentDTO();
@@ -51,33 +32,7 @@ public class OrderDAO {
 			 //System.out.println(orderID);
 			 paymentDTO.setOrderId(orderID);
 		}
-		
-		
-		//주문내용 확인하고 확인누르면 result값 넘겨주기
-		public int orderConfirm(ReserveDTO reserveDTO, MemberDTO memberDTO, CardDTO cardDTO) throws Exception{
-			Connection con = DBConnector.getConnect();
-			String sql = "insert into payment values(?,?,?,?,?,?,?,?,?,?)";
-			PreparedStatement st = con.prepareStatement(sql);
-			int totalPrice = reserveDTO.getOnePrice()*reserveDTO.getPerson();
-			String payMethod = "card";
-			
-			st.setString(1, memberDTO.getName());
-			st.setString(2, memberDTO.getEmail());
-			st.setString(3, memberDTO.getPhone());
-			st.setString(4, reserveDTO.getTitle());
-			st.setInt(5, reserveDTO.getOnePrice());
-			st.setInt(6, reserveDTO.getPerson());
-			st.setInt(7, totalPrice);
-			st.setString(8, payMethod);
-			st.setInt(9, cardDTO.getNum());
-			st.setDate(10, reserveDTO.getSelectDate());
 
-			int result= st.executeQuery();
-			
-			DBConnector.disConnect(st, con);
-			return result;
-		}
-		
 		//수수료 계산
 		public void feesCal() throws Exception{
 			paymentDTO paymentDTO= new paymentDTO();
@@ -87,38 +42,120 @@ public class OrderDAO {
 			//System.out.println(fees);
 			
 		}
+		*/
 		
 
-		//주문정보불러오기
-		public ReserveDTO orderInfo(int idx) throws Exception{
+		/*//주문정보불러오기
+		public OrderDTO orderInfo(int num,int idx, ReserveDTO reserveDTO) throws Exception{
 			Connection con= DBConnector.getConnect();
-			String sql ="select num,title,selectDate,onePrice,person from reserve where idx=?";
+			String sql ="select num,title,selectDate,onePrice,person from reserve where num=? and idx=?";
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setInt(1, idx);
+			st.setInt(1, num);//상품번호
+			st.setInt(2, idx);
 					
-			ReserveDTO reserveDTO = null;
-			paymentDTO paymentDTO = null;
+			OrderDTO orderDTO = null;
 
 			ResultSet rs = st.executeQuery();
 			if(rs.next()) {
-				reserveDTO = new ReserveDTO();
-				paymentDTO = new paymentDTO();
+				orderDTO = new OrderDTO();
 				int totalPrice = reserveDTO.getOnePrice()*reserveDTO.getPerson();
-				reserveDTO.setNum(rs.getInt("num"));
-				reserveDTO.setTitle(rs.getString("title"));
-				reserveDTO.setSelectDate(rs.getDate("selectDate"));
-				reserveDTO.setOnePrice(rs.getInt("onePrice"));
-				reserveDTO.setPerson(rs.getInt("person"));
-				paymentDTO.setTotalPrice(totalPrice);
+				orderDTO.setNum(rs.getInt("num"));//5
+				orderDTO.setTitle(rs.getString("title"));//test
+				orderDTO.setSelectDate(rs.getString("selectDate"));//11-30
+				orderDTO.setOnePrice(rs.getInt("onePrice"));//10000
+				orderDTO.setPerson(rs.getInt("person"));//5
+				orderDTO.setTotalPrice(totalPrice);
 				
 			}
 			
 			DBConnector.disConnect(rs, st, con);
 			
-			return reserveDTO;
+			return orderDTO;
 			
+		}*/
+		
+			//주문정보불러오기
+			public OrderDTO orderInfo(int num,int idx, ReserveDTO reserveDTO) throws Exception{
+				Connection con= DBConnector.getConnect();
+				String sql ="insert into num,title,selectDate,onePrice,person from reserve where num=? and idx=?";
+				PreparedStatement st = con.prepareStatement(sql);
+				st.setInt(1, num);//상품번호
+				st.setInt(2, idx);
+						
+				OrderDTO orderDTO = null;
+
+				ResultSet rs = st.executeQuery();
+				if(rs.next()) {
+					orderDTO = new OrderDTO();
+					int totalPrice = reserveDTO.getOnePrice()*reserveDTO.getPerson();
+					orderDTO.setNum(rs.getInt("num"));//5
+					orderDTO.setTitle(rs.getString("title"));//test
+					orderDTO.setSelectDate(rs.getString("selectDate"));//11-30
+					orderDTO.setOnePrice(rs.getInt("onePrice"));//10000
+					orderDTO.setPerson(rs.getInt("person"));//5
+					orderDTO.setTotalPrice(totalPrice);
+					
+				}
+				
+				DBConnector.disConnect(rs, st, con);
+				
+				return orderDTO;
+				
+			}
+	
+
+		//주문내용 확인하고 확인누르면 result값 넘겨주기
+		public int orderConfirm(ReserveDTO reserveDTO, MemberDTO memberDTO) throws Exception{
+			System.out.println("orderConfirm접속");
+			Connection con = DBConnector.getConnect();
+			String sql = "insert into payment values(?,?,?,?,?,?,?,?,?,?,?)";
+			PreparedStatement st = con.prepareStatement(sql);
+			int totalPrice = reserveDTO.getOnePrice()*reserveDTO.getPerson();
+			String payMethod = "card";
+			String phone = memberDTO.getPhone1()+memberDTO.getPhone2()+memberDTO.getPhone3();
+			
+			st.setString(1, memberDTO.getName());
+			st.setString(2, memberDTO.getEmail());
+			st.setString(3, phone);
+			st.setString(4, reserveDTO.getTitle());
+			st.setInt(5, reserveDTO.getOnePrice());
+			st.setInt(6, reserveDTO.getPerson());
+			st.setInt(7, totalPrice);
+			st.setString(8, payMethod);
+			st.setString(9, reserveDTO.getSelectDate());
+
+			int result= st.executeUpdate();
+			
+			DBConnector.disConnect(st, con);
+			return result;
 		}
-		//선택한 액티비티 상세내용 불러오기
+		/*//주문내용 확인하고 확인누르면 result값 넘겨주기
+		public int orderConfirm(ReserveDTO reserveDTO, MemberDTO memberDTO) throws Exception{
+			Connection con = DBConnector.getConnect();
+			String sql = "insert into payment values(?,?,?,?,?,?,?,?,?,?,?)";
+			PreparedStatement st = con.prepareStatement(sql);
+			int totalPrice = reserveDTO.getOnePrice()*reserveDTO.getPerson();
+			String payMethod = "card";
+			
+			st.setString(1, memberDTO.getName());
+			st.setString(2, memberDTO.getEmail());
+			st.setString(3, memberDTO.getPhone1());
+			st.setString(4, memberDTO.getPhone2());
+			st.setString(5, memberDTO.getPhone3());
+			st.setString(6, reserveDTO.getTitle());
+			st.setInt(7, reserveDTO.getOnePrice());
+			st.setInt(8, reserveDTO.getPerson());
+			st.setInt(9, totalPrice);
+			st.setString(10, payMethod);
+			st.setString(11, reserveDTO.getSelectDate());
+
+			int result= st.executeUpdate();
+			
+			DBConnector.disConnect(st, con);
+			return result;
+		}*/
+		
+		/*//선택한 액티비티 상세내용 불러오기
 		
 		public ActivityDTO actInfo(int idx) throws Exception{
 			Connection con = DBConnector.getConnect();
@@ -144,6 +181,6 @@ public class OrderDAO {
 			
 			DBConnector.disConnect(rs, st, con);
 			return activityDTO; 
-		}
+		}*/
 		
 }

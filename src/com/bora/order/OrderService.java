@@ -1,23 +1,51 @@
 package com.bora.order;
 
+
 import com.bora.action.ActionForward;
-import com.bora.payment.HttpServletRequest;
-import com.bora.payment.HttpServletResponse;
+import com.bora.member.MemberDTO;
 import com.bora.reserve.ReserveDTO;
-/*import com.iu.action.ActionFoward;
-import com.iu.member.HttpSession;
-import com.iu.member.MemberDTO;*/
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class OrderService {
+private OrderDAO orderDAO;
 	
+	public OrderService() {
+		orderDAO = new OrderDAO();
+	}
 	
+	//selectOne
 	public ActionForward orderInfo(HttpServletRequest request, HttpServletResponse response) {
+		ActionForward actionForward = new ActionForward();
+		
+		ReserveDTO reserveDTO = new ReserveDTO();	
+		
+		reserveDTO.setNum(Integer.parseInt(request.getParameter("num").trim()));
+		reserveDTO.setTitle(request.getParameter("title"));
+		reserveDTO.setSelectDate(request.getParameter("selectDate"));
+		reserveDTO.setOnePrice(Integer.parseInt(request.getParameter("onePrice").trim()));
+		System.out.println(Integer.parseInt(request.getParameter("onePrice").trim()));
+		reserveDTO.setPerson(Integer.parseInt(request.getParameter("person").trim()));
+		
+		
+
+		request.setAttribute("reserve", reserveDTO);
+		actionForward.setCheck(true);
+		actionForward.setPath("../WEB-INF/view/order/orderPage.jsp");
+		
+		
+		return actionForward;
+	}
+	
+	public ActionForward orderConfirm(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
 
 		String method=request.getMethod();
 		
 		if(method.equals("POST")) {
 			OrderDTO orderDTO = new OrderDTO();
+			orderDTO.setNum(Integer.parseInt(request.getParameter("num")));
 			orderDTO.setName(request.getParameter("name"));
 			orderDTO.setOnePrice(Integer.parseInt(request.getParameter("onePrice")));
 			orderDTO.setPerson(Integer.parseInt(request.getParameter("person")));
@@ -28,23 +56,31 @@ public class OrderService {
 			orderDTO.setSelectDate(request.getParameter("selectDate"));
 			orderDTO.setTotalPrice(Integer.parseInt(request.getParameter("totalPrice")));
 			orderDTO.setTitle(request.getParameter("title"));
+			HttpSession session = request.getSession();
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			ReserveDTO reserveDTO = new ReserveDTO();
+			reserveDTO.setNum(Integer.parseInt(request.getParameter("num")));
+			reserveDTO.setOnePrice(Integer.parseInt(request.getParameter("onePrice")));
+			reserveDTO.setPerson(Integer.parseInt(request.getParameter("person")));
+			reserveDTO.setSelectDate(request.getParameter("selectDate"));
+			reserveDTO.setTitle(request.getParameter("title"));
 			
+			int result = 0;
 			try {
-				orderDTO = orderDAO.orderInfo(orderDTO);
+				result = orderDAO.orderConfirm(reserveDTO, memberDTO);
 			} catch (Exception e) {
-				orderDTO = null;
+				result = 0;
 				e.printStackTrace();
 			}
 			
-			if(orderDTO != null) {
-				HttpSession session = request.getSession();
-				session.setAttribute("payment", orderDTO);
+			if(result != 0) {
+				session.setAttribute("order", orderDTO);
 				actionForward.setCheck(false);
 				actionForward.setPath("./orderResult.jsp");
 			}else {
 				request.setAttribute("message", "예약을 실패했습니다.");
 				actionForward.setCheck(true);
-				actionForward.setPath("../WEB-INF/view/reserve/reservePage.jsp");
+				actionForward.setPath("../WEB-INF/view/reserve/reserve.jsp");
 			}
 			
 		}else {
@@ -56,44 +92,3 @@ public class OrderService {
 		return actionForward;
 	}
 }
-	/*
-	//login
-	public ActionFoward login(HttpServletRequest request, HttpServletResponse response) {
-		ActionFoward actionFoward = new ActionFoward();
-		
-		String method=request.getMethod();
-		
-		if(method.equals("POST")) {
-		
-			MemberDTO memberDTO = new MemberDTO();
-			memberDTO.setId(request.getParameter("id"));
-			memberDTO.setPw(request.getParameter("pw"));
-			memberDTO.setKind(request.getParameter("kind"));
-			try {
-				memberDTO = memberDAO.login(memberDTO);
-			} catch (Exception e) {
-				memberDTO = null;
-				e.printStackTrace();
-			}
-			
-			if(memberDTO != null) {
-				HttpSession session = request.getSession();
-				session.setAttribute("member", memberDTO);
-				actionFoward.setCheck(false);
-				actionFoward.setPath("../index.jsp");
-			}else {
-				request.setAttribute("message", "Login Fail");
-				actionFoward.setCheck(true);
-				actionFoward.setPath("../WEB-INF/view/member/memberLogin.jsp");
-			}
-			
-		}else {
-			//GET
-			actionFoward.setCheck(true);
-			actionFoward.setPath("../WEB-INF/view/member/memberLogin.jsp");
-			
-		}
-		return actionFoward;
-	}
-}
-*/

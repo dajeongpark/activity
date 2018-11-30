@@ -1,12 +1,49 @@
 @charset "EUC-KR";
 
-.mWt48p{width:48%;}
-.left_box{float:left;}
-.right_box{float:right;}
-.gray_whiteBox{background-color:#fff; border:1px solid #d1d1d1;}
-.no_grayBox{background-color: #aaa; height:56px; margin:8px 12px;}
+<style>
+.contentWrap{max-width:1100px; margin:0 auto;}
+.mWt48p{width:48%; float:left;}
+.left_box{float:left; width: 90%; height: 500px;}
+.right_box{float:right;  width: 90%; height: 500px;}
+.gray_whiteBox{background-color:#fff;     padding: 15px;border: 0.5px solid #e1e1e1;}
+.no_grayBox{background-color: #aaa;     height: 110px;
+    width: 100px; margin:8px 12px;
+    padding: 30px   9px;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;}
 .thumbnail{width:50px; height:50px;}
-.g_line{width:100%; height:1px; margin:15px 0;}
-.b_round2{border-radius: 2px;}
+.g_line{width:100%; height:1px; margin:20px 0;
+    background: #e1e1e1;}
+.b_round2{border-radius: 2px; margin: 20px 2px 10px;}
 .finalCheck{font-weight:bold;}
-.boxTitle{padding:15px; font-size: 16px;}
+.boxTitle{padding:15px; font-size: 16px; font-weight: bold;}/* 
+.payment_box .gray_whiteBox>div{display: inline-block;} */
+.payment_box .gray_whiteBox>h3{margin-top: 0px;}
+.payment_box .boxTitle{padding:15px 0;}
+.btnBox{clear:both; width:100%; text-align: center;
+    padding: 27px 0;}
+.btnBox>input{
+       width: 80px;
+    height: 45px; padding: 6px 12px;
+       color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+        border: 1px solid transparent;
+    border-radius: 4px;
+    text-align: center;
+}
+#reserveDate {font-size: 16px}
+#reserveTime{margin-top:10px;}
+
+div.name .label {
+   color:#000 !important; font-size: 14px;
+}
+.payment_box{margin-top:20px;}
+.date_check{display: inline-block;}
+.memInfo{display: inline-block;}
+
+.cancelGuide h3{margin-top:0;}
+.cancelGuide{
+    padding-bottom: 23px;}
+</style>
