@@ -2,6 +2,6 @@
     pageEncoding="UTF-8"%>
     
 		<div class="writeBtnBox">
-			<a href="./${board}Write.do" class="btn btn-primary">WRITE</a>
+			<a href="./${board}Write.do" class="btn btn-default">WRITE</a>
 		</div>
 

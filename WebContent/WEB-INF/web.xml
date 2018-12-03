@@ -8,6 +8,7 @@
     <servlet-name>member</servlet-name>
     <url-pattern>/member/*</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>file</servlet-name>
     <servlet-class>com.bora.controller.FileController</servlet-class>
@@ -46,8 +47,8 @@
     <servlet-name>qna</servlet-name>
     <servlet-class>com.bora.controller.QnaController</servlet-class>
     <init-param>
-      <param-name>board</param-name>
-      <param-value>qna</param-value>
+      	<param-name>board</param-name>
+      	<param-value>qna</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
@@ -60,7 +61,7 @@
     <servlet-class>com.bora.controller.NoticeController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>notice</servlet-name>
-    <url-pattern>/notice/*</url-pattern>
+    	<servlet-name>notice</servlet-name>
+    	<url-pattern>/notice/*</url-pattern>
   </servlet-mapping>
 </web-app>

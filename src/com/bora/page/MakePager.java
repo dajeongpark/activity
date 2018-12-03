@@ -36,7 +36,7 @@ public class MakePager {
 		rowNumber.setSearch(this.search);
 		return rowNumber;
 	}
-	
+				
 	public Pager makePager(int totalCount) {
 		//1. totalPage
 		int totalPage = totalCount/this.perPage;

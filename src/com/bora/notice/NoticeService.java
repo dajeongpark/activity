@@ -43,8 +43,9 @@ public class NoticeService implements BoardReplyService {
 		
 		MakePager mk = new MakePager(curPage, search, kind);
 		RowNumber rowNumber = mk.makeRow();
+		List<BoardDTO> ar;
 		try {
-			List<BoardDTO> ar = noticeDAO.selectList(rowNumber);
+			ar = noticeDAO.selectList(rowNumber);
 			int totalCount = noticeDAO.getCount(rowNumber.getSearch());
 			Pager pager = mk.makePager(totalCount);
 			request.setAttribute("list", ar);
@@ -52,14 +53,9 @@ public class NoticeService implements BoardReplyService {
 			request.setAttribute("board", "notice");
 			actionForward.setPath("../WEB-INF/view/board/boardList.jsp");
 		} catch (Exception e) {
-			request.setAttribute("message", "Fail");
-			request.setAttribute("path", "../index.jsp");
-			actionForward.setPath("../WEB-INF/view/common/result.jsp");
 			e.printStackTrace();
 		}
-		
 		actionForward.setCheck(true);
-		
 		return actionForward;
 	}
 	
@@ -95,8 +91,30 @@ public class NoticeService implements BoardReplyService {
 
 	@Override
 	public ActionForward insert(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+		ActionForward actionForward= new ActionForward();
+		String method = request.getMethod();
+		
+		if(method.equals("POST")) {
+			String message= "fail";
+			String path = "./noticeList.do";
+			int maxSize =1024*1024*10;
+			String save = request.getServletContext().getRealPath("upload");
+			System.out.println(save);
+			File file = new File(save);
+			if(!file.exists()) { //exists() : 특정필드 값이 로드 스크립트의 필드로 이미 로드 되었는지를 결정하는 함수
+				file.mkdirs();
+			}
+			
+			try {
+				MultipartRequest multit = new MultipartRequest(request, save, maxSize,"UTF-8", new DefaultFileRenamePolicy());
+				NoticeDTO noticeDTO = new NoticeDTO();
+				noticeDTO.setTitle();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return actionForward;
 	}
 	
 	@Override

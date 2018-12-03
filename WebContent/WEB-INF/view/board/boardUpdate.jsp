@@ -39,7 +39,7 @@
 			var fnum = $(this).attr("id");
 			var fname =$(this).attr("title");
 			$.post("../file/fileDelete.do",{fnum:fnum, fname:fname}, function(data) {
-				data = data.trim();
+				data = data.trim();//trim :공백
 				if(data == '1'){
 					alert("Success");
 					$("#"+fnum).parent().remove();

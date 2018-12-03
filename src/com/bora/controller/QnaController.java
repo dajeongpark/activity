@@ -3,6 +3,7 @@ package com.bora.controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,13 +30,13 @@ public class QnaController extends HttpServlet {
         qnaService = new QnaService();
         // TODO Auto-generated constructor stub
     }
+    @Override
     
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String board = this.getServletConfig().getInitParameter("board");
+		String board = this.getServletConfig().getInitParameter("board");// getServletcontext? 가 아니라 config임.
 		System.out.println(board);
 		
 		String command = request.getPathInfo();

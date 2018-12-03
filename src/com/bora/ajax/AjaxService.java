@@ -26,7 +26,7 @@ public class AjaxService {
       List<BoardDTO> ar = null;
       
       try {
-         ar = noticeDAO.selectList(rowNumber);
+         ar = noticeDAO.selectList(rowNumber); //notice를 불러오기
       } catch (Exception e) {
          e.printStackTrace();
       }

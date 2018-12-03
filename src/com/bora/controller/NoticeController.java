@@ -34,20 +34,22 @@ public class NoticeController extends HttpServlet {
 		String phone= request.getServletContext().getInitParameter("phone");
 		System.out.println(phone);
 		
-		String command=request.getPathInfo();
+		String adress =request.getPathInfo();
 		ActionForward actionForward = null;
 		NoticeService noticeService = new NoticeService();
 		
-		if(command.equals("/noticeList.do")) {
+		if(adress.equals("/noticeList.do")) {
 			actionForward = noticeService.selectList(request, response);
-		}else if(command.equals("/noticeSelectOne.do")) {
-			actionForward = noticeService.selectOne(request, response);
-		}else if(command.equals("/noticeWrite.do")) {
+		}else if(adress.equals("/noticeWrite.do")) {
 			actionForward = noticeService.insert(request, response);
-		}else if(command.equals("/noticeUpdate.do")) {
+		}else if(adress.equals("/noticeUpdate.do")) {
 			actionForward = noticeService.update(request, response);
+		}else if(adress.equals("/noticeDelete.do")) {
+			actionForward = noticeService.delete(request, response);
+		}else if(adress.equals("/noticeSelectOne.do")){
+			actionForward = noticeService.selectOne(request, response);
 		}
-	
+		
 		if(actionForward.isCheck()) {
 			RequestDispatcher view = request.getRequestDispatcher(actionForward.getPath());
 			view.forward(request, response);

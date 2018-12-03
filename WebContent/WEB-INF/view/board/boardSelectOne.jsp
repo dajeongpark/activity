@@ -121,7 +121,7 @@ table {
 							<a href="./${requestScope.board}Update.do?num=${dto.num}" class="btn btn-default">수정</a> 
 							<a href="./${requestScope.board}Delete.do?num=${dto.num}" class="btn btn-default">삭제</a>
 							<c:if test="${board ne 'notice'}">
-								<a href="./${board}Reply.do">Reply</a>
+								<a href="./${board}Replyform.do">Reply</a>
 							</c:if>
 						</div>
 					</td>
